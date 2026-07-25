@@ -1,6 +1,6 @@
 const translations = {
   en: {
-    title: "Daniele Fam\u00e0 | AI Systems Engineer",
+    title: "Daniele Fam\u00e0",
     nav: {
       about: "About",
       focus: "Skills",
@@ -233,7 +233,7 @@ const translations = {
     ]
   },
   it: {
-    title: "Daniele Fam\u00e0 | AI Systems Engineer",
+    title: "Daniele Fam\u00e0",
     nav: {
       about: "Chi sono",
       focus: "Strumenti",
