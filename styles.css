@@ -1010,8 +1010,9 @@ main,
 }
 
 .project-atmosphere-calculator {
-  left: 52%;
-  opacity: 0.34;
+  left: 64%;
+  color: #102a66;
+  opacity: 1;
 }
 
 .mini-calculator {
@@ -1020,9 +1021,9 @@ main,
   --object-x: 9px;
   --object-y: -7px;
   position: absolute;
-  width: 68px;
-  height: 96px;
-  padding: 42px 10px 10px;
+  width: 52px;
+  height: 74px;
+  padding: 32px 7px 7px;
   border: 1px solid currentColor;
   border-radius: 4px 4px 7px 7px;
   animation: project-object-drift 8s ease-in-out infinite alternate;
@@ -1031,10 +1032,10 @@ main,
 .mini-calculator::before {
   content: "";
   position: absolute;
-  top: 10px;
-  right: 9px;
-  left: 9px;
-  height: 20px;
+  top: 7px;
+  right: 7px;
+  left: 7px;
+  height: 15px;
   border: 1px solid currentColor;
   border-radius: 2px;
 }
@@ -1042,12 +1043,12 @@ main,
 .mini-calculator > span {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 6px;
+  gap: 4px;
 }
 
 .mini-calculator i {
-  width: 9px;
-  height: 7px;
+  width: 7px;
+  height: 5px;
   border: 1px solid currentColor;
   border-radius: 1px;
 }
@@ -1078,8 +1079,52 @@ main,
   animation-duration: 7.2s;
 }
 
+.mini-calculator-d {
+  top: 4%;
+  left: 43%;
+  --object-angle: 5deg;
+  --object-scale: 0.62;
+  --object-x: 5px;
+  animation-delay: -1.7s;
+  animation-duration: 8.7s;
+}
+
+.mini-calculator-e {
+  top: 30%;
+  right: 8%;
+  --object-angle: -11deg;
+  --object-scale: 0.7;
+  --object-y: 6px;
+  animation-delay: -4.4s;
+  animation-duration: 7.8s;
+}
+
+.mini-calculator-f {
+  bottom: 19%;
+  left: 31%;
+  --object-angle: 11deg;
+  --object-scale: 0.52;
+  --object-x: -6px;
+  animation-delay: -2.6s;
+  animation-duration: 9.1s;
+}
+
+.mini-calculator-g {
+  right: 35%;
+  bottom: 2%;
+  --object-angle: -6deg;
+  --object-scale: 0.46;
+  --object-y: 7px;
+  animation-delay: -6.1s;
+  animation-duration: 8.3s;
+}
+
 .project-atmosphere-database {
-  opacity: 0.28;
+  left: 48%;
+  color: #07568c;
+  opacity: 0.78;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.3) 26%, #000 58%, rgba(0, 0, 0, 0.72) 84%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.3) 26%, #000 58%, rgba(0, 0, 0, 0.72) 84%, transparent 100%);
 }
 
 .database-mark {
@@ -1088,8 +1133,8 @@ main,
   --object-x: 7px;
   --object-y: -6px;
   position: absolute;
-  width: 64px;
-  height: 55px;
+  width: 48px;
+  height: 41px;
   border-right: 1px solid currentColor;
   border-bottom: 1px solid currentColor;
   border-left: 1px solid currentColor;
@@ -1100,10 +1145,10 @@ main,
 .database-mark::before {
   content: "";
   position: absolute;
-  top: -7px;
+  top: -5px;
   right: -1px;
   left: -1px;
-  height: 14px;
+  height: 11px;
   border: 1px solid currentColor;
   border-radius: 50%;
 }
@@ -1111,10 +1156,10 @@ main,
 .database-mark::after {
   content: "";
   position: absolute;
-  top: 21px;
+  top: 16px;
   right: -1px;
   left: -1px;
-  height: 10px;
+  height: 8px;
   border-top: 1px solid currentColor;
   border-radius: 50%;
 }
@@ -1139,6 +1184,45 @@ main,
   --object-angle: 3deg;
   --object-scale: 0.62;
   animation-delay: -6.4s;
+}
+
+.database-mark-d {
+  top: 5%;
+  left: 30%;
+  --object-angle: -5deg;
+  --object-scale: 0.52;
+  animation-delay: -1.9s;
+  animation-duration: 8.1s;
+}
+
+.database-mark-e {
+  top: 29%;
+  right: 4%;
+  --object-angle: 9deg;
+  --object-scale: 0.68;
+  --object-y: 5px;
+  animation-delay: -4.9s;
+  animation-duration: 9.6s;
+}
+
+.database-mark-f {
+  bottom: 29%;
+  left: 13%;
+  --object-angle: 4deg;
+  --object-scale: 0.48;
+  --object-x: -4px;
+  animation-delay: -2.8s;
+  animation-duration: 7.6s;
+}
+
+.database-mark-g {
+  right: 47%;
+  bottom: 8%;
+  --object-angle: -9deg;
+  --object-scale: 0.42;
+  --object-y: 6px;
+  animation-delay: -5.7s;
+  animation-duration: 8.8s;
 }
 
 .data-route {
@@ -1191,35 +1275,38 @@ main,
 }
 
 .project-atmosphere-audio {
-  color: rgba(49, 92, 255, 0.8);
-  opacity: 0.3;
+  left: 48%;
+  color: #174fa3;
+  opacity: 0.8;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.3) 26%, #000 58%, rgba(0, 0, 0, 0.72) 84%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.3) 26%, #000 58%, rgba(0, 0, 0, 0.72) 84%, transparent 100%);
 }
 
 .audio-trace {
   position: absolute;
   display: flex;
   align-items: center;
-  gap: 6px;
-  height: 70px;
+  gap: 4px;
+  height: 52px;
 }
 
 .audio-trace i {
   width: 1px;
-  height: 18px;
+  height: 14px;
   background: currentColor;
   transform-origin: center;
   animation: project-audio-life 2.8s ease-in-out infinite alternate;
 }
 
 .audio-trace i:nth-child(2),
-.audio-trace i:nth-child(10) { height: 28px; }
+.audio-trace i:nth-child(10) { height: 21px; }
 .audio-trace i:nth-child(3),
-.audio-trace i:nth-child(9) { height: 42px; }
+.audio-trace i:nth-child(9) { height: 31px; }
 .audio-trace i:nth-child(4),
-.audio-trace i:nth-child(8) { height: 24px; }
+.audio-trace i:nth-child(8) { height: 18px; }
 .audio-trace i:nth-child(5),
-.audio-trace i:nth-child(7) { height: 54px; }
-.audio-trace i:nth-child(6) { height: 66px; }
+.audio-trace i:nth-child(7) { height: 40px; }
+.audio-trace i:nth-child(6) { height: 49px; }
 
 .audio-trace i:nth-child(3n + 1) { animation-delay: -0.7s; }
 .audio-trace i:nth-child(3n + 2) { animation-delay: -1.6s; }
@@ -1244,6 +1331,245 @@ main,
   color: rgba(255, 79, 31, 0.72);
   transform: rotate(-3deg) scale(0.58);
 }
+
+.audio-trace-d {
+  top: 6%;
+  left: 27%;
+  color: #d84c25;
+  transform: rotate(7deg) scale(0.52);
+}
+
+.audio-trace-e {
+  top: 31%;
+  right: 2%;
+  color: #2a8a6e;
+  transform: rotate(-11deg) scale(0.66);
+}
+
+.audio-trace-f {
+  bottom: 23%;
+  left: 9%;
+  color: #174fa3;
+  transform: rotate(3deg) scale(0.46);
+}
+
+.audio-trace-g {
+  right: 39%;
+  bottom: 4%;
+  color: #d84c25;
+  transform: rotate(-6deg) scale(0.42);
+}
+
+.project-atmosphere-pov,
+.project-atmosphere-locks {
+  left: 48%;
+  opacity: 0.8;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.3) 26%, #000 58%, rgba(0, 0, 0, 0.72) 84%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.3) 26%, #000 58%, rgba(0, 0, 0, 0.72) 84%, transparent 100%);
+}
+
+.project-atmosphere-pov {
+  color: #c84428;
+}
+
+.pov-camera,
+.pov-glasses,
+.mini-lock,
+.mini-key {
+  --object-angle: 0deg;
+  --object-scale: 1;
+  --object-x: 6px;
+  --object-y: -5px;
+  position: absolute;
+  border: 1px solid currentColor;
+  animation: project-object-drift 8.5s ease-in-out infinite alternate;
+}
+
+.pov-camera {
+  width: 42px;
+  height: 29px;
+  border-radius: 4px;
+}
+
+.pov-camera::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  right: 7px;
+  width: 12px;
+  height: 12px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+}
+
+.pov-camera::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: -6px;
+  width: 6px;
+  height: 11px;
+  border: 1px solid currentColor;
+  border-right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.pov-camera i {
+  position: absolute;
+  top: 4px;
+  left: 7px;
+  width: 8px;
+  height: 2px;
+  background: currentColor;
+}
+
+.pov-glasses {
+  display: flex;
+  gap: 4px;
+  width: 41px;
+  height: 17px;
+  border: 0;
+  animation-duration: 9.1s;
+}
+
+.pov-glasses::before,
+.pov-glasses::after,
+.pov-glasses i {
+  content: "";
+  position: absolute;
+  top: 4px;
+  width: 15px;
+  height: 10px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+}
+
+.pov-glasses::before { left: 0; }
+.pov-glasses::after { right: 0; }
+.pov-glasses i:first-child {
+  top: 8px;
+  left: 15px;
+  width: 11px;
+  height: 1px;
+  border: 0;
+  background: currentColor;
+}
+.pov-glasses i:last-child {
+  top: -7px;
+  right: 1px;
+  width: 5px;
+  height: 5px;
+  border: 0;
+  border-radius: 50%;
+  background: #e6432d;
+  box-shadow: 8px 0 0 -2px currentColor;
+}
+
+.pov-camera-a { top: 7%; right: 10%; --object-angle: -8deg; }
+.pov-camera-b { top: 38%; left: 12%; --object-angle: 7deg; --object-scale: 0.66; animation-delay: -3.2s; }
+.pov-glasses-a { top: 4%; left: 35%; --object-angle: 4deg; --object-scale: 0.64; animation-delay: -4.5s; }
+.pov-glasses-b { top: 58%; right: 4%; --object-angle: -6deg; --object-scale: 0.58; animation-delay: -2.5s; }
+.pov-glasses-c { left: 17%; bottom: 15%; --object-angle: 8deg; --object-scale: 0.46; animation-delay: -6.2s; }
+.pov-glasses-d { top: 21%; right: 39%; --object-angle: 10deg; --object-scale: 0.5; animation-delay: -1.7s; }
+.pov-glasses-e { right: 27%; bottom: 4%; --object-angle: -4deg; --object-scale: 0.42; animation-delay: -5.3s; }
+
+.project-atmosphere-locks {
+  color: #1c6d62;
+}
+
+.kv-node,
+.kv-route {
+  position: absolute;
+}
+
+.kv-node {
+  width: 25px;
+  height: 25px;
+  border: 1px solid currentColor;
+  box-shadow: inset 0 0 0 4px rgba(28, 109, 98, 0.08);
+}
+
+.kv-node::before,
+.kv-node::after {
+  content: "";
+  position: absolute;
+  background: currentColor;
+}
+
+.kv-node::before {
+  top: 7px;
+  right: 7px;
+  left: 7px;
+  height: 1px;
+}
+
+.kv-node::after {
+  top: 12px;
+  right: 7px;
+  left: 7px;
+  height: 1px;
+}
+
+.kv-route {
+  width: 47px;
+  height: 1px;
+  border-top: 1px solid currentColor;
+  transform-origin: left center;
+  opacity: 0.46;
+}
+
+.kv-route::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  right: -1px;
+  width: 0;
+  height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 6px solid currentColor;
+}
+
+.kv-node-a { top: 6%; left: 6%; }
+.kv-node-b { top: 6%; left: 44%; }
+.kv-node-c { top: 6%; right: 6%; }
+.kv-node-d { top: 59%; left: 6%; }
+.kv-node-e { top: 59%; right: 6%; }
+.kv-node-f { bottom: 5%; left: 44%; }
+
+.kv-route-a { top: calc(6% + 12px); left: calc(6% + 25px); width: calc(38% - 25px); }
+.kv-route-b { top: calc(6% + 12px); left: calc(44% + 25px); width: calc(44% - 37px); }
+
+.kv-route-c,
+.kv-route-d {
+  width: 0;
+  height: 48%;
+  border-top: 0;
+  border-left: 1px solid currentColor;
+}
+
+.kv-route-c::after,
+.kv-route-d::after {
+  top: auto;
+  right: -4px;
+  bottom: -1px;
+  border-top: 6px solid currentColor;
+  border-right: 4px solid transparent;
+  border-bottom: 0;
+  border-left: 4px solid transparent;
+}
+
+.kv-route-c { top: calc(6% + 25px); left: calc(6% + 12px); }
+.kv-route-d { top: calc(6% + 25px); right: calc(6% + 12px); }
+.kv-route-e,
+.kv-route-f {
+  top: calc(59% + 12px);
+  width: 68%;
+  opacity: 0.38;
+}
+
+.kv-route-e { left: calc(6% + 12px); transform: rotate(57deg); }
+.kv-route-f { left: calc(94% - 12px); transform: rotate(124deg); }
 
 @keyframes project-object-drift {
   from {

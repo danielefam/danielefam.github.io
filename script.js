@@ -160,6 +160,7 @@ const translations = {
       },
       {
         title: "ARDA VSLNet: Efficient Video-Language Localization",
+        visual: "pov",
         text: "Enhanced VSLNet with FiLM conditioning and knowledge distillation for natural-language temporal localization in Ego4D videos.",
         meta: "Multimodal ML · PyTorch · 2025",
         metric: "88.47%",
@@ -178,6 +179,7 @@ const translations = {
       },
       {
         title: "Fault-Tolerant Key-Value Store",
+        visual: "locks",
         text: "A multi-actor distributed key-value store implementing a multi-writer, multi-reader atomic register with Akka.",
         meta: "Distributed systems · Java / Akka · 2025",
         metric: "MWMR",
@@ -393,6 +395,7 @@ const translations = {
       },
       {
         title: "ARDA VSLNet: localizzazione video-linguaggio efficiente",
+        visual: "pov",
         text: "VSLNet potenziato con FiLM conditioning e knowledge distillation per localizzare nel tempo istruzioni in linguaggio naturale nei video Ego4D.",
         meta: "Multimodal ML · PyTorch · 2025",
         metric: "88.47%",
@@ -411,6 +414,7 @@ const translations = {
       },
       {
         title: "Archivio chiave-valore tollerante ai guasti",
+        visual: "locks",
         text: "Un archivio chiave-valore distribuito basato su attori, con un registro atomico multi-scrittore e multi-lettore realizzato in Akka.",
         meta: "Sistemi distribuiti · Java / Akka · 2025",
         metric: "MWMR",
@@ -486,6 +490,10 @@ function renderProjectAtmosphere(visual) {
         <span class="mini-calculator mini-calculator-a"><span>${keys}</span></span>
         <span class="mini-calculator mini-calculator-b"><span>${keys}</span></span>
         <span class="mini-calculator mini-calculator-c"><span>${keys}</span></span>
+        <span class="mini-calculator mini-calculator-d"><span>${keys}</span></span>
+        <span class="mini-calculator mini-calculator-e"><span>${keys}</span></span>
+        <span class="mini-calculator mini-calculator-f"><span>${keys}</span></span>
+        <span class="mini-calculator mini-calculator-g"><span>${keys}</span></span>
       </div>
     `;
   }
@@ -496,6 +504,10 @@ function renderProjectAtmosphere(visual) {
         <span class="database-mark database-mark-a"></span>
         <span class="database-mark database-mark-b"></span>
         <span class="database-mark database-mark-c"></span>
+        <span class="database-mark database-mark-d"></span>
+        <span class="database-mark database-mark-e"></span>
+        <span class="database-mark database-mark-f"></span>
+        <span class="database-mark database-mark-g"></span>
         <span class="data-route data-route-a"></span>
         <span class="data-route data-route-b"></span>
         <span class="data-route data-route-c"></span>
@@ -510,6 +522,43 @@ function renderProjectAtmosphere(visual) {
         <span class="audio-trace audio-trace-a">${samples}</span>
         <span class="audio-trace audio-trace-b">${samples}</span>
         <span class="audio-trace audio-trace-c">${samples}</span>
+        <span class="audio-trace audio-trace-d">${samples}</span>
+        <span class="audio-trace audio-trace-e">${samples}</span>
+        <span class="audio-trace audio-trace-f">${samples}</span>
+        <span class="audio-trace audio-trace-g">${samples}</span>
+      </div>
+    `;
+  }
+
+  if (visual === "pov") {
+    return `
+      <div class="project-atmosphere project-atmosphere-pov" aria-hidden="true">
+        <span class="pov-camera pov-camera-a"><i></i></span>
+        <span class="pov-camera pov-camera-b"><i></i></span>
+        <span class="pov-glasses pov-glasses-a"><i></i><i></i></span>
+        <span class="pov-glasses pov-glasses-b"><i></i><i></i></span>
+        <span class="pov-glasses pov-glasses-c"><i></i><i></i></span>
+        <span class="pov-glasses pov-glasses-d"><i></i><i></i></span>
+        <span class="pov-glasses pov-glasses-e"><i></i><i></i></span>
+      </div>
+    `;
+  }
+
+  if (visual === "locks") {
+    return `
+      <div class="project-atmosphere project-atmosphere-locks" aria-hidden="true">
+        <span class="kv-node kv-node-a"></span>
+        <span class="kv-node kv-node-b"></span>
+        <span class="kv-node kv-node-c"></span>
+        <span class="kv-node kv-node-d"></span>
+        <span class="kv-node kv-node-e"></span>
+        <span class="kv-node kv-node-f"></span>
+        <span class="kv-route kv-route-a"></span>
+        <span class="kv-route kv-route-b"></span>
+        <span class="kv-route kv-route-c"></span>
+        <span class="kv-route kv-route-d"></span>
+        <span class="kv-route kv-route-e"></span>
+        <span class="kv-route kv-route-f"></span>
       </div>
     `;
   }
