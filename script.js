@@ -72,7 +72,7 @@ const translations = {
       tag: "Projects",
       title: "Five systems. Five different constraints.",
       intro:
-        "The work ranges from an 18-year-old calculator to distributed workers and egocentric video. Each project has a result you can inspect."
+        "The projects span embedded machine learning, distributed workers, and egocentric video. Each project has a result you can inspect."
     },
     motionWords: [
       "Machine learning",
@@ -307,7 +307,7 @@ const translations = {
       tag: "Progetti",
       title: "Cinque progetti. Cinque problemi concreti.",
       intro:
-        "Da una calcolatrice di 18 anni fa ai nodi distribuiti, fino ai video egocentrici: ogni progetto affronta un vincolo preciso e porta a un risultato verificabile."
+        "Dal machine learning embedded ai nodi distribuiti, fino ai video egocentrici: ogni progetto affronta un vincolo preciso e porta a un risultato verificabile."
     },
     motionWords: [
       "Machine learning",
