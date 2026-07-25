@@ -552,13 +552,10 @@ function renderProjectAtmosphere(visual) {
         <span class="kv-node kv-node-c"></span>
         <span class="kv-node kv-node-d"></span>
         <span class="kv-node kv-node-e"></span>
-        <span class="kv-node kv-node-f"></span>
         <span class="kv-route kv-route-a"></span>
         <span class="kv-route kv-route-b"></span>
         <span class="kv-route kv-route-c"></span>
         <span class="kv-route kv-route-d"></span>
-        <span class="kv-route kv-route-e"></span>
-        <span class="kv-route kv-route-f"></span>
       </div>
     `;
   }

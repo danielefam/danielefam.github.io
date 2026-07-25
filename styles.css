@@ -1535,7 +1535,6 @@ main,
 .kv-node-c { top: 6%; right: 6%; }
 .kv-node-d { top: 59%; left: 6%; }
 .kv-node-e { top: 59%; right: 6%; }
-.kv-node-f { bottom: 5%; left: 44%; }
 
 .kv-route-a { top: calc(6% + 12px); left: calc(6% + 25px); width: calc(38% - 25px); }
 .kv-route-b { top: calc(6% + 12px); left: calc(44% + 25px); width: calc(44% - 37px); }
@@ -1561,15 +1560,6 @@ main,
 
 .kv-route-c { top: calc(6% + 25px); left: calc(6% + 12px); }
 .kv-route-d { top: calc(6% + 25px); right: calc(6% + 12px); }
-.kv-route-e,
-.kv-route-f {
-  top: calc(59% + 12px);
-  width: 68%;
-  opacity: 0.38;
-}
-
-.kv-route-e { left: calc(6% + 12px); transform: rotate(57deg); }
-.kv-route-f { left: calc(94% - 12px); transform: rotate(124deg); }
 
 @keyframes project-object-drift {
   from {
