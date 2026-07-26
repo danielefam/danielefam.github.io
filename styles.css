@@ -466,6 +466,10 @@ main,
   background: var(--blue);
 }
 
+#experience-list .research-section + .research-section {
+  margin-top: 24px;
+}
+
 .research-section > :not(.research-botanical) {
   position: relative;
   z-index: 1;
@@ -972,20 +976,16 @@ main,
   transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
-.highlight-card:nth-child(2) {
+.highlight-card-accent-blue {
   --card-accent: var(--blue);
 }
 
-.highlight-card:nth-child(3) {
+.highlight-card-accent-lime {
   --card-accent: var(--lime);
 }
 
-.highlight-card:nth-child(4) {
+.highlight-card-accent-orange {
   --card-accent: var(--orange);
-}
-
-.highlight-card:nth-child(5) {
-  --card-accent: var(--blue);
 }
 
 .highlight-card-featured {
