@@ -8,7 +8,7 @@ const portfolioCatalogData = {
       href: "https://github.com/danielefam/enhance-casio-with-ai",
       content: {
         en: {
-          title: "Handwritten Digit Recognition on a Casio",
+          title: "Handwritten Digit Recognition on a calculator",
           text: "A native fixed-point neural network for handwritten digit recognition on the Casio fx-9860GIII, built from NumPy training to portable C inference.",
           meta: "Embedded ML · C / Python · 2026",
           metric: "95.47%",
@@ -21,7 +21,7 @@ const portfolioCatalogData = {
           linkLabel: "View repository"
         },
         it: {
-          title: "Riconoscimento di cifre su una Casio",
+          title: "Riconoscimento di cifre su una calcolatrice",
           text: "Una rete neurale fixed-point per riconoscere cifre scritte a mano su Casio fx-9860GIII: dall'addestramento in NumPy all'inferenza in C portabile.",
           meta: "ML embedded · C / Python · 2026",
           metric: "95.47%",
@@ -126,7 +126,7 @@ const portfolioCatalogData = {
           linkLabel: "View repository"
         },
         it: {
-          title: "Archivio chiave-valore tollerante ai guasti",
+          title: "Fault-Tolerant Key-Value Store",
           text: "Un archivio chiave-valore distribuito basato su attori, con un registro atomico multi-scrittore e multi-lettore realizzato in Akka.",
           meta: "Sistemi distribuiti · Java / Akka · 2025",
           metric: "MWMR",
@@ -189,11 +189,11 @@ const portfolioCatalogData = {
       content: {
         en: {
           tag: "Current research · 2026",
-          title: "Neural architecture search, guided by real energy.",
+          title: "Environmentally-aware Neural Architecture Search",
           text: "At T\u00e9l\u00e9com Paris, I am building BANERA: a hardware-aware neural architecture search framework that uses real energy measurements from edge devices to guide model selection and regularization. Its measurement platform benchmarks neural-network workloads on physical hardware, producing the energy signal that BANERA feeds back into the search process.",
           points: [
             "Hardware-aware architecture search guided by measured energy",
-            "Remote neural-network benchmarks on physical edge devices",
+            "Deep Learning energy consumption measure on embedded system",
             "Automated warm-up, calibration, and measured execution",
             "Energy traces and metadata fed back into the search process"
           ],
@@ -221,11 +221,11 @@ const portfolioCatalogData = {
         },
         it: {
           tag: "Ricerca attuale · 2026",
-          title: "Ricerca di architetture neurali, guidata dall'energia reale.",
-          text: "Alla T\u00e9l\u00e9com Paris sto sviluppando BANERA, un framework per la ricerca di architetture neurali consapevole dell'hardware. Usa misure energetiche reali raccolte su dispositivi edge per guidare la selezione dei modelli e la regolarizzazione. La sua piattaforma di misura esegue benchmark di carichi di lavoro neurali su hardware fisico e riporta il segnale energetico nel processo di ricerca.",
+          title: "Neural architecture search con un occhio di riguardo all'ambiente",
+          text: "Alla T\u00e9l\u00e9com Paris sto sviluppando BANERA, un framework per la ricerca di architetture neurali consapevole dei consumi. Usa misure energetiche reali raccolte su dispositivi edge per guidare la selezione dei modelli e la regolarizzazione. La sua piattaforma di misura esegue benchmark di carichi di lavoro su hardware fisico e riporta il segnale energetico nel processo di ricerca.",
           points: [
-            "Ricerca di architetture neurali guidata da misure energetiche reali",
-            "Benchmark da remoto di modelli neurali su dispositivi edge fisici",
+            "Neural architecture search, guidata dai consumi reali.",
+            "Misurazione del consumo energetico tramite deep learning su un sistema embedded",
             "Warm-up, calibrazione ed esecuzione misurata gestiti in automatico",
             "Tracce energetiche e metadati riportati nel processo di ricerca"
           ],
@@ -236,7 +236,7 @@ const portfolioCatalogData = {
             },
             {
               value: "Esperimenti controllati",
-              label: "warm-up, calibrazione e acquisizione separati in automatico"
+              label: "warm-up, calibrazione e acquisizione automatizzati e verificati"
             },
             {
               value: "Dati completi",

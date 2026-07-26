@@ -10,10 +10,10 @@ const siteContent = {
       contact: "Contact"
     },
     hero: {
-      eyebrow: "AI systems · Efficient ML · Research",
+      eyebrow: "AI systems · Frugal ML · Research",
       title: "AI systems, from training loop to physical device.",
       text:
-        "I'm Daniele Fam\u00e0, an engineer working where machine learning meets software and hardware. I build efficient models, distributed systems, and research prototypes that hold up beyond the notebook.",
+        "I'm Daniele Fam\u00e0, an engineer working where machine learning meets software and hardware. I build efficient models, distributed systems, and research prototypes designed to scale.",
       primaryCta: "See my work",
       cvCta: "Download CV",
       secondaryCta: "Get in touch",
@@ -31,7 +31,7 @@ const siteContent = {
     },
     about: {
       tag: "Profile",
-      title: "I like difficult systems with observable behavior.",
+      title: "Complex systems fascinate me, but the real magic begins when you manage to measure them.",
       text1:
         "I care about the full AI engineering loop: understanding the problem, designing the model, making inference efficient, and shipping a clear, testable solution.",
       text2:
@@ -66,7 +66,7 @@ const siteContent = {
       tag: "Contact",
       title: "Looking for the next hard system to build.",
       text:
-        "I'm currently open to AI Engineer, Machine Learning Engineer, and research-oriented opportunities. If you're building intelligent products or ambitious ML systems, I'd love to hear from you.",
+        "I'm currently open to AI Engineer, Software Engineer, and research-oriented opportunities. If you're building intelligent products or ambitious ML systems, I'd love to hear from you.",
       emailLabel: "Email",
       linkedinLabel: "LinkedIn",
       linkedinValue: "linkedin.com/in/daniele-fama",
@@ -120,10 +120,10 @@ const siteContent = {
       contact: "Contatti"
     },
     hero: {
-      eyebrow: "Sistemi AI · ML efficiente · Ricerca applicata",
-      title: "Dall'addestramento al dispositivo: sistemi AI che funzionano davvero.",
+      eyebrow: "Sistemi AI · ML frugale · Ricerca applicata",
+      title: "Dalla teoria al chip: l'IA che funziona sul serio.",
       text:
-        "Sono Daniele Fam\u00e0. Progetto sistemi all'incontro tra machine learning, software e hardware: modelli efficienti, architetture distribuite e prototipi di ricerca pensati per uscire dal notebook.",
+        "Sono Daniele Fam\u00e0. Progetto sistemi all'incontro tra machine learning, software e hardware: modelli efficienti, architetture distribuite e prototipi di ricerca pensati per scalare.",
       primaryCta: "Guarda i progetti",
       cvCta: "Scarica il CV",
       secondaryCta: "Contattami",
@@ -141,11 +141,11 @@ const siteContent = {
     },
     about: {
       tag: "Profilo",
-      title: "Mi interessano i sistemi complessi, quando il loro comportamento si pu\u00f2 misurare.",
+      title: "I sistemi complessi mi affascinano, ma la vera magia inizia quando riesci a misurarli.",
       text1:
         "Seguo l'intero percorso di progettazione di un sistema AI: dal problema al modello, dall'efficienza in inferenza a una soluzione chiara, testabile e pronta all'uso.",
       text2:
-        "Lavoro tra apprendimento multimodale, inferenza su dispositivi embedded, misure energetiche, metodi numerici e sistemi distribuiti. Il filo conduttore \u00e8 sempre lo stesso: trasformare idee complesse in sistemi concreti e misurabili."
+        "Lavoro tra apprendimento multimodale, inferenza su dispositivi embedded, misure energetiche, metodi numerici e sistemi distribuiti. Il filo conduttore \u00e8 sempre lo stesso: trasformare idee complesse in sistemi concreti, misurabili e ecologici."
     },
     focus: {
       tag: "Strumenti",
@@ -155,7 +155,7 @@ const siteContent = {
       tag: "Progetti",
       title: "Cinque progetti. Cinque problemi concreti.",
       intro:
-        "Dal machine learning embedded ai nodi distribuiti, fino ai video egocentrici: ogni progetto affronta un vincolo preciso e porta a un risultato verificabile."
+        "Dal machine learning embedded ai nodi distribuiti, fino ai video egocentrici: ogni progetto affronta vincoli differenti e porta a risultati misurabili."
     },
     motionWords: [
       "Machine learning",
@@ -176,7 +176,7 @@ const siteContent = {
       tag: "Contatti",
       title: "Cerco la prossima sfida tecnica su cui lasciare il segno.",
       text:
-        "Valuto opportunit\u00e0 come AI Engineer, Machine Learning Engineer e in contesti di ricerca applicata. Se stai costruendo prodotti intelligenti o sistemi ML ambiziosi, parliamone.",
+        "Valuto opportunit\u00e0 come AI Engineer, Software Engineer e in contesti di ricerca applicata. Se stai costruendo prodotti intelligenti, parliamone.",
       emailLabel: "Email",
       linkedinLabel: "LinkedIn",
       linkedinValue: "linkedin.com/in/daniele-fama",
