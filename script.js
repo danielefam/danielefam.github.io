@@ -399,18 +399,16 @@ function renderProjectAtmosphere(visual) {
   }
 
   if (visual === "database") {
+    const dbIcon = `<svg viewBox="0 0 48 50" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 100%; height: 100%;"><path d="M4 8 v32 c0 4.4 9 8 20 8 s20 -3.6 20 -8 v-32" /><ellipse cx="24" cy="8" rx="20" ry="5" /><path d="M4 19 c0 4.4 9 8 20 8 s20 -3.6 20 -8" /><path d="M4 30 c0 4.4 9 8 20 8 s20 -3.6 20 -8" /></svg>`;
     return `
       <div class="project-atmosphere project-atmosphere-database" aria-hidden="true">
-        <span class="database-mark database-mark-a"></span>
-        <span class="database-mark database-mark-b"></span>
-        <span class="database-mark database-mark-c"></span>
-        <span class="database-mark database-mark-d"></span>
-        <span class="database-mark database-mark-e"></span>
-        <span class="database-mark database-mark-f"></span>
-        <span class="database-mark database-mark-g"></span>
-        <span class="data-route data-route-a"></span>
-        <span class="data-route data-route-b"></span>
-        <span class="data-route data-route-c"></span>
+        <span class="database-mark database-mark-a">${dbIcon}</span>
+        <span class="database-mark database-mark-b">${dbIcon}</span>
+        <span class="database-mark database-mark-c">${dbIcon}</span>
+        <span class="database-mark database-mark-d">${dbIcon}</span>
+        <span class="database-mark database-mark-e">${dbIcon}</span>
+        <span class="database-mark database-mark-f">${dbIcon}</span>
+        <span class="database-mark database-mark-g">${dbIcon}</span>
       </div>
     `;
   }

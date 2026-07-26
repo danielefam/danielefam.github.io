@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+<style>
+body { background: #222; color: #fff; padding: 50px; }
+.database-mark {
+  position: absolute;
+  width: 48px;
+  height: 41px;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  border-left: 1px solid currentColor;
+  border-radius: 0 0 50% 50% / 0 0 18% 18%;
+  background:
+    radial-gradient(circle at 11px 7px, transparent 1.5px, currentColor 2px, currentColor 3px, transparent 3.5px),
+    radial-gradient(circle at 11px 20px, transparent 1.5px, currentColor 2px, currentColor 3px, transparent 3.5px),
+    radial-gradient(circle at 11px 33px, transparent 1.5px, currentColor 2px, currentColor 3px, transparent 3.5px),
+    linear-gradient(currentColor, currentColor) 22px 6px / 14px 2px no-repeat,
+    linear-gradient(currentColor, currentColor) 22px 19px / 14px 2px no-repeat,
+    linear-gradient(currentColor, currentColor) 22px 32px / 14px 2px no-repeat;
+}
+.database-mark::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  right: -1px;
+  left: -1px;
+  height: 11px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+}
+.database-mark::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  right: -1px;
+  left: -1px;
+  height: 11px;
+  border-bottom: 1px solid currentColor;
+  border-radius: 50%;
+  box-shadow: 0 13px 0 0 currentColor;
+}
+</style>
+<body>
+  <div class="database-mark"></div>
+</body>
+</html>
