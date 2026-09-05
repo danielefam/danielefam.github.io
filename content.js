@@ -178,76 +178,76 @@ const portfolioCatalogData = {
   ],
   experiences: [
     {
-      id: "banera",
-      state: "BANERA / ACTIVE",
+      id: "joulenas",
+      state: "JOULE / COMPLETED",
       device: "INA226EVM",
       signalLabel: "ENERGY SIGNAL",
-      signalValue: "LIVE",
-      consoleLabel: "BANERA workflow",
-      outcomesLabel: "Current research outcomes",
-      activeStep: 2,
+      signalValue: "COMPLETED",
+      consoleLabel: "Joule ecosystem workflow",
+      outcomesLabel: "Research outcomes",
+      activeStep: 3,
       content: {
         en: {
-          tag: "Current research · 2026",
-          title: "Environmentally-aware Neural Architecture Search",
-          text: "At T\u00e9l\u00e9com Paris, I am building BANERA: a hardware-aware neural architecture search framework that uses real energy measurements from edge devices to guide model selection and regularization. Its measurement platform benchmarks neural-network workloads on physical hardware, producing the energy signal that BANERA feeds back into the search process.",
+          tag: "Research internship · 2026",
+          title: "Joule: Energy-Aware AI from Physical Profiling to NAS",
+          text: "At Télécom Paris (LTCI), I engineered the Joule ecosystem, an end-to-end framework to measure, model, and minimize neural network energy consumption on edge hardware. Rather than treating NAS as an isolated search, I developed the full pipeline: I created JouleQuest to automate physical sensor profiling (INA226EVM) across edge boards (Jetson, Raspberry Pi); I re-architected JouleGrad, completely rewriting the differentiable estimation layer in PyTorch with vectorized interpolation and autograd support; and I developed JouleNAS, modifying a channel pruning algorithm to directly regularize networks with empirical hardware energy. Across 2,000+ layer configurations, the system achieved up to 43% energy reduction on ResNet-18 with zero accuracy loss.",
           points: [
-            "Hardware-aware architecture search guided by measured energy",
-            "Deep Learning energy consumption measure on embedded system",
-            "Automated warm-up, calibration, and measured execution",
-            "Energy traces and metadata fed back into the search process"
+            "JouleQuest: Developed an automated measurement tool profiling AI workloads with an INA226EVM sensor across 2,000+ configurations on Jetson and Raspberry Pi boards",
+            "JouleGrad: Re-engineered and rewrote the differentiable energy estimator in PyTorch, replacing heuristic tables with exact multilinear interpolation and autograd gradients",
+            "JouleNAS: Adapted a structured pruning algorithm to penalize empirical hardware energy during training via straight-through estimator gradients",
+            "Validated results: Achieved up to 43% energy reduction on ResNet-18 deployed on NVIDIA Jetson with zero accuracy loss on CIFAR-10 and Imagenette"
           ],
           outcomes: [
             {
-              value: "Physical traces",
-              label: "energy measured on the device, not estimated from FLOPs"
+              value: "43%",
+              label: "energy reduction on ResNet-18 on Jetson with zero accuracy loss"
             },
             {
-              value: "Controlled runs",
-              label: "warm-up, calibration, and capture separated automatically"
+              value: "2,000+",
+              label: "layer configurations profiled with physical sensor telemetry"
             },
             {
-              value: "Paired evidence",
-              label: "raw traces and metadata stored for each experiment"
+              value: "3 tools",
+              label: "JouleQuest (measure), JouleGrad (estimate), JouleNAS (search)"
             }
           ],
           console: {
-            overviewLabel: "Architecture search loop",
-            detailLabel: "Measurement loop",
+            overviewLabel: "Joule ecosystem workflow",
+            detailLabel: "JouleQuest measurement loop",
             backLabel: "Back",
             overviewSteps: ["Search", "Deploy", "Measure", "Regularize"],
             detailSteps: ["Run", "Calibrate", "Capture", "Analyze"]
           }
         },
         it: {
-          tag: "Ricerca attuale · 2026",
-          title: "Neural architecture search con un occhio di riguardo all'ambiente",
-          text: "Alla T\u00e9l\u00e9com Paris sto sviluppando BANERA, un framework per la ricerca di architetture neurali consapevole dei consumi. Usa misure energetiche reali raccolte su dispositivi edge per guidare la selezione dei modelli e la regolarizzazione. La sua piattaforma di misura esegue benchmark di carichi di lavoro su hardware fisico e riporta il segnale energetico nel processo di ricerca.",
+          tag: "Tirocinio di ricerca · 2026",
+          title: "Ecosistema Joule: Dalla profilazione fisica al Neural Architecture Search",
+          text: "Presso Télécom Paris (LTCI), ho progettato e sviluppato l'ecosistema Joule: un framework di ricerca end-to-end per misurare, modellare e ridurre l'energia delle reti neurali su hardware edge. Il progetto ha coperto l'intera filiera: ho sviluppato JouleQuest per automatizzare la profilazione fisica su schede reali (Jetson, Raspberry Pi) con sensore INA226EVM; ho reingegnerizzato JouleGrad, riscrivendo il livello di stima differenziabile in PyTorch con interpolazione vettorializzata e autograd; e ho sviluppato JouleNAS, modificando un algoritmo di pruning strutturato per regolarizzare i canali in base ai consumi reali misurati. Su oltre 2.000 configurazioni, il sistema ha ridotto l'energia su ResNet-18 fino al 43% senza perdita di accuratezza.",
           points: [
-            "Neural architecture search, guidata dai consumi reali.",
-            "Misurazione del consumo energetico tramite deep learning su un sistema embedded",
-            "Warm-up, calibrazione ed esecuzione misurata gestiti in automatico",
-            "Tracce energetiche e metadati riportati nel processo di ricerca"
+            "JouleQuest: Ho sviluppato il tool di misura automatizzato per carichi AI con sensore INA226EVM su oltre 2.000 configurazioni su Jetson e Raspberry Pi",
+            "JouleGrad: Ho reingegnerizzato e riscritto da zero lo stimatore differenziabile in PyTorch con interpolazione multilineare esatta e supporto autograd",
+            "JouleNAS: Ho modificato un algoritmo di pruning strutturato per integrare i consumi reali dell'hardware come penalità nella funzione di costo",
+            "Risultati validati: Fino al 43% di riduzione energetica su ResNet-18 su NVIDIA Jetson a parità di accuratezza su CIFAR-10 e Imagenette"
           ],
           outcomes: [
             {
-              value: "Misure reali",
-              label: "energia rilevata sul dispositivo, non stimata dai FLOPs"
+              value: "-43%",
+              label: "energia su ResNet-18 su NVIDIA Jetson senza perdita di accuratezza"
             },
             {
-              value: "Esperimenti controllati",
-              label: "warm-up, calibrazione e acquisizione automatizzati e verificati"
+              value: "2.000+",
+              label: "configurazioni di layer profilate con telemetria da sensori fisici"
             },
             {
-              value: "Dati completi",
-              label: "tracce grezze e metadati archiviati per ogni esperimento"
+              value: "3 moduli",
+              label: "JouleQuest (misura), JouleGrad (stima), JouleNAS (ricerca)"
             }
           ],
           console: {
-            overviewLabel: "Ciclo di ricerca dell'architettura",
-            detailLabel: "Ciclo di misura",
+            overviewLabel: "Workflow dell'ecosistema Joule",
+            detailLabel: "Ciclo di misura JouleQuest",
             backLabel: "Indietro",
-            overviewSteps: ["Ricerca", "Esecuzione", "Misura", "Ottimizzazione"],
+            overviewSteps: ["Ricerca", "Esecuzione", "Misura", "Regolarizzazione"],
             detailSteps: ["Esegui", "Calibra", "Acquisisci", "Analizza"]
           }
         }

@@ -9,6 +9,7 @@
       name="description"
       content="Daniele Fam&#224; is an AI systems engineer and researcher building efficient machine learning, embedded inference, and distributed software."
     />
+    <meta name="google-site-verification" content="googlefd165f027d2fa17a" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -90,52 +91,49 @@
           </span>
         </div>
         <div class="section-kicker-row">
-          <p class="section-tag" data-i18n="experience.tag">Current research · 2026</p>
-          <span class="research-state"><span aria-hidden="true"></span> BANERA / ACTIVE</span>
+          <p class="section-tag" data-i18n="experience.tag">Research internship · 2026</p>
+          <span class="research-state"><span aria-hidden="true"></span> JOULE / COMPLETED</span>
         </div>
 
         <div class="research-grid">
           <div class="research-copy">
             <h2 id="research-title" class="section-title" data-i18n="experience.title">
-              Neural architecture search, guided by real energy.
+              Joule: Energy-Aware AI from Physical Profiling to NAS
             </h2>
             <p class="section-text" data-i18n="experience.text">
-              At T&#233;l&#233;com Paris, I am building BANERA: a hardware-aware neural architecture search framework
-              that uses real energy measurements from edge devices to guide model selection and regularization. Its
-              measurement platform benchmarks neural-network workloads on physical hardware, producing the energy
-              signal that BANERA feeds back into the search process.
+              At T&#233;l&#233;com Paris (LTCI), I engineered the Joule ecosystem, an end-to-end framework to measure, model, and minimize neural network energy consumption on edge hardware. Rather than treating NAS as an isolated search, I developed the full pipeline: I created JouleQuest to automate physical sensor profiling (INA226EVM) across edge boards (Jetson, Raspberry Pi); I re-architected JouleGrad, completely rewriting the differentiable estimation layer in PyTorch with vectorized interpolation and autograd support; and I developed JouleNAS, modifying a channel pruning algorithm to directly regularize networks with empirical hardware energy. Across 2,000+ layer configurations, the system achieved up to 43% energy reduction on ResNet-18 with zero accuracy loss.
             </p>
             <ul class="research-points">
-              <li data-i18n="experience.point1">Hardware-aware architecture search guided by measured energy</li>
-              <li data-i18n="experience.point2">Remote neural-network benchmarks on physical edge devices</li>
-              <li data-i18n="experience.point3">Automated warm-up, calibration, and measured execution</li>
-              <li data-i18n="experience.point4">Energy traces and metadata fed back into the search process</li>
+              <li data-i18n="experience.point1">JouleQuest: Developed an automated measurement tool profiling AI workloads with an INA226EVM sensor across 2,000+ configurations on Jetson and Raspberry Pi boards</li>
+              <li data-i18n="experience.point2">JouleGrad: Re-engineered and rewrote the differentiable energy estimator in PyTorch, replacing heuristic tables with exact multilinear interpolation and autograd gradients</li>
+              <li data-i18n="experience.point3">JouleNAS: Adapted a structured pruning algorithm to penalize empirical hardware energy during training via straight-through estimator gradients</li>
+              <li data-i18n="experience.point4">Validated results: Achieved up to 43% energy reduction on ResNet-18 deployed on NVIDIA Jetson with zero accuracy loss on CIFAR-10 and Imagenette</li>
             </ul>
           </div>
 
-          <div class="research-console" aria-label="BANERA workflow" aria-live="polite">
+          <div class="research-console" aria-label="Joule ecosystem workflow" aria-live="polite">
             <div class="console-view" data-console-view="overview">
               <div class="console-header">
-                <span data-i18n="experience.overviewLabel">Architecture search loop</span>
+                <span data-i18n="experience.overviewLabel">Joule ecosystem workflow</span>
                 <span>INA226EVM</span>
               </div>
               <ol class="console-flow">
                 <li><span>01</span><strong data-i18n="experience.overview1">Search</strong></li>
                 <li><span>02</span><strong data-i18n="experience.overview2">Deploy</strong></li>
-                <li class="console-step-active">
+                <li>
                   <span>03</span>
                   <button class="console-step-button" type="button" data-console-open="measure">
                     <span data-i18n="experience.overview3">Measure</span><span aria-hidden="true">&rarr;</span>
                   </button>
                 </li>
-                <li><span>04</span><strong data-i18n="experience.overview4">Regularize</strong></li>
+                <li class="console-step-active"><span>04</span><strong data-i18n="experience.overview4">Regularize</strong></li>
               </ol>
-              <div class="console-readout"><span>ENERGY SIGNAL</span><strong>LIVE</strong></div>
+              <div class="console-readout"><span>ENERGY SIGNAL</span><strong>COMPLETED</strong></div>
             </div>
 
             <div class="console-view" data-console-view="measure" hidden>
               <div class="console-header">
-                <span data-i18n="experience.deviceLabel">Measurement loop</span>
+                <span data-i18n="experience.deviceLabel">JouleQuest measurement loop</span>
                 <button class="console-back" type="button" data-console-back>
                   <span aria-hidden="true">&larr;</span> <span data-i18n="experience.consoleBack">Back</span>
                 </button>
@@ -143,26 +141,26 @@
               <ol class="console-flow">
                 <li><span>01</span><strong data-i18n="experience.device1">Run</strong></li>
                 <li><span>02</span><strong data-i18n="experience.device2">Calibrate</strong></li>
-                <li class="console-step-active"><span>03</span><strong data-i18n="experience.device3">Capture</strong></li>
-                <li><span>04</span><strong data-i18n="experience.device4">Analyze</strong></li>
+                <li><span>03</span><strong data-i18n="experience.device3">Capture</strong></li>
+                <li class="console-step-active"><span>04</span><strong data-i18n="experience.device4">Analyze</strong></li>
               </ol>
-              <div class="console-readout"><span>ENERGY SIGNAL</span><strong>LIVE</strong></div>
+              <div class="console-readout"><span>ENERGY SIGNAL</span><strong>COMPLETED</strong></div>
             </div>
           </div>
         </div>
 
-        <div class="research-outcomes" aria-label="Current research outcomes">
+        <div class="research-outcomes" aria-label="Research outcomes">
           <div class="research-outcome">
-            <strong data-i18n="experience.result1Value">Physical traces</strong>
-            <span data-i18n="experience.result1Label">energy measured on the device, not estimated from FLOPs</span>
+            <strong data-i18n="experience.result1Value">43%</strong>
+            <span data-i18n="experience.result1Label">energy reduction on ResNet-18 on Jetson with zero accuracy loss</span>
           </div>
           <div class="research-outcome">
-            <strong data-i18n="experience.result2Value">Controlled runs</strong>
-            <span data-i18n="experience.result2Label">warm-up, calibration, and capture separated automatically</span>
+            <strong data-i18n="experience.result2Value">2,000+</strong>
+            <span data-i18n="experience.result2Label">layer configurations profiled with physical sensor telemetry</span>
           </div>
           <div class="research-outcome">
-            <strong data-i18n="experience.result3Value">Paired evidence</strong>
-            <span data-i18n="experience.result3Label">raw traces and metadata stored for each experiment</span>
+            <strong data-i18n="experience.result3Value">3 tools</strong>
+            <span data-i18n="experience.result3Label">JouleQuest (measure), JouleGrad (estimate), JouleNAS (search)</span>
           </div>
         </div>
       </section>
@@ -253,7 +251,7 @@
       <span>Paris, France / 2026</span>
     </footer>
 
-    <script src="content.js?v=1"></script>
-    <script src="script.js?v=12"></script>
+    <script src="content.js?v=4"></script>
+    <script src="script.js?v=15"></script>
   </body>
 </html>

@@ -277,10 +277,12 @@ function renderConsoleSteps(steps, activeStep, interactive) {
   return steps
     .map((step, index) => {
       const number = String(index + 1).padStart(2, "0");
+      const isActive = index === activeStep;
+      const isMeasureStep = interactive && index === 2;
 
-      if (index === activeStep && interactive) {
+      if (isMeasureStep) {
         return `
-          <li class="console-step-active">
+          <li${isActive ? ' class="console-step-active"' : ""}>
             <span>${number}</span>
             <button class="console-step-button" type="button" data-console-open="measure">
               <span>${step}</span><span aria-hidden="true">&rarr;</span>
@@ -289,7 +291,7 @@ function renderConsoleSteps(steps, activeStep, interactive) {
         `;
       }
 
-      return `<li${index === activeStep ? ' class="console-step-active"' : ""}><span>${number}</span><strong>${step}</strong></li>`;
+      return `<li${isActive ? ' class="console-step-active"' : ""}><span>${number}</span><strong>${step}</strong></li>`;
     })
     .join("");
 }
@@ -316,7 +318,7 @@ function renderResearchConsole(experience, detailOpen) {
           </button>
         </div>
         <ol class="console-flow">
-          ${renderConsoleSteps(experience.console.detailSteps, experience.activeStep, false)}
+          ${renderConsoleSteps(experience.console.detailSteps, 3, false)}
         </ol>
         <div class="console-readout"><span>${experience.signalLabel}</span><strong>${experience.signalValue}</strong></div>
       </div>
