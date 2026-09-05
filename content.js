@@ -267,10 +267,10 @@ function formatProjectHeading(language, count) {
   };
   const countLabel = numberWords[language]?.[count] || String(count);
 
-  if (count === 1 && language === "it") return "Un progetto. Un problema concreto.";
-  if (count === 1) return "One system. One different constraint.";
-  if (language === "it") return `${countLabel} progetti. ${countLabel} problemi concreti.`;
-  return `${countLabel} systems. ${countLabel} different constraints.`;
+  if (count === 1 && language === "it") return "Un progetto, un problema concreto";
+  if (count === 1) return "One system, one different constraint";
+  if (language === "it") return `${countLabel} progetti, ${countLabel.toLowerCase()} problemi concreti`;
+  return `${countLabel} systems, ${countLabel.toLowerCase()} different constraints`;
 }
 
 function validatePortfolioCatalog(catalog) {

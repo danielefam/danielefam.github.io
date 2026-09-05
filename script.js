@@ -1,9 +1,9 @@
 const siteContent = {
   translations: {
     en: {
-      title: "Daniele Fam\u00e0",
+      title: "Daniele Fam\u00e0 — Systems & Frugal AI Engineer",
       nav: {
-        about: "About",
+        about: "Profile",
         focus: "Skills",
         experience: "Research",
         highlights: "Projects",
@@ -11,7 +11,7 @@ const siteContent = {
       },
       hero: {
         eyebrow: "AI systems · Frugal ML · Research",
-        title: "AI systems, from training loop to physical device.",
+        title: "AI systems, from training loop to physical device",
         text:
           "I'm Daniele Fam\u00e0, an engineer working where machine learning meets software and hardware. I build efficient models, distributed systems, and research prototypes designed to scale.",
         primaryCta: "See my work",
@@ -27,11 +27,11 @@ const siteContent = {
         stat2Value: "T\u00e9l\u00e9com Paris",
         stat3Label: "Status",
         stat3Value: "Open to opportunities",
-        cardNote: "Research depth, implementation discipline, and a bias toward measurable results."
+        cardNote: "Research depth, implementation discipline, and a bias toward measurable results"
       },
       about: {
         tag: "Profile",
-        title: "Complex systems fascinate me, but the real magic begins when you manage to measure them.",
+        title: "Complex systems fascinate me, but the real magic begins when you manage to measure them",
         text1:
           "I care about the full AI engineering loop: understanding the problem, designing the model, making inference efficient, and shipping a clear, testable solution.",
         text2:
@@ -39,11 +39,11 @@ const siteContent = {
       },
       focus: {
         tag: "Skills",
-        title: "The tools I use to build and ship."
+        title: "The tools I use to build and ship"
       },
       highlights: {
         tag: "Projects",
-        title: "Five systems. Five different constraints.",
+        title: "Five systems, five different constraints",
         intro:
           "The projects span embedded machine learning, distributed workers, and egocentric video. Each project has a result you can inspect."
       },
@@ -60,13 +60,13 @@ const siteContent = {
       ],
       timeline: {
         tag: "Education",
-        title: "Academic path across Italy and France."
+        title: "Academic path across Italy and France"
       },
       contact: {
         tag: "Contact",
-        title: "Looking for the next hard system to build.",
+        title: "Looking for the next hard system to build",
         text:
-          "I'm currently open to AI Engineer, Software Engineer, and research-oriented opportunities. If you're building intelligent products or ambitious ML systems, I'd love to hear from you.",
+          "I'm currently open to AI Engineer, Machine Learning Engineer, and research-oriented opportunities. If you're building intelligent products or ambitious ML systems, I'd love to hear from you.",
         emailLabel: "Email",
         linkedinLabel: "LinkedIn",
         linkedinValue: "linkedin.com/in/daniele-fama",
@@ -76,19 +76,19 @@ const siteContent = {
       },
       focusCards: [
         {
-          title: "Programming",
+          title: "Programming & Low-Level",
           text: "Python, Java, C/C++, Matlab, PHP, and JavaScript across coursework, projects, and research prototypes."
         },
         {
-          title: "Python ecosystem",
+          title: "AI & Numerical Ecosystem",
           text: "NumPy, Pandas, Matplotlib, scikit-learn, PyTorch, Keras, and TensorFlow for analysis, modeling, and experimentation."
         },
         {
-          title: "Data and frameworks",
+          title: "Distributed Systems & Data",
           text: "Hadoop, Spark, and Laravel, with exposure to distributed architectures for big data processing and backend-oriented thinking."
         },
         {
-          title: "Working languages",
+          title: "Spoken Protocols",
           text: "Italian native, English professional working proficiency, and French elementary proficiency."
         }
       ],
@@ -111,9 +111,9 @@ const siteContent = {
       ]
     },
     it: {
-      title: "Daniele Fam\u00e0",
+      title: "Daniele Fam\u00e0 — Ingegnere Sistemi & Frugal AI",
       nav: {
-        about: "Chi sono",
+        about: "Profilo",
         focus: "Strumenti",
         experience: "Ricerca",
         highlights: "Progetti",
@@ -121,7 +121,7 @@ const siteContent = {
       },
       hero: {
         eyebrow: "Sistemi AI · ML frugale · Ricerca applicata",
-        title: "Dalla teoria al chip: l'IA che funziona sul serio.",
+        title: "Dalla teoria al chip: l'IA che funziona sul serio",
         text:
           "Sono Daniele Fam\u00e0. Progetto sistemi all'incontro tra machine learning, software e hardware: modelli efficienti, architetture distribuite e prototipi di ricerca pensati per scalare.",
         primaryCta: "Guarda i progetti",
@@ -137,11 +137,11 @@ const siteContent = {
         stat2Value: "T\u00e9l\u00e9com Paris",
         stat3Label: "Disponibilit\u00e0",
         stat3Value: "Aperto a nuove opportunit\u00e0",
-        cardNote: "Ricerca solida, implementazione rigorosa, risultati misurabili."
+        cardNote: "Ricerca solida, implementazione rigorosa, risultati misurabili"
       },
       about: {
         tag: "Profilo",
-        title: "I sistemi complessi mi affascinano, ma la vera magia inizia quando riesci a misurarli.",
+        title: "I sistemi complessi mi affascinano, ma la vera magia inizia quando riesci a misurarli",
         text1:
           "Seguo l'intero percorso di progettazione di un sistema AI: dal problema al modello, dall'efficienza in inferenza a una soluzione chiara, testabile e pronta all'uso.",
         text2:
@@ -149,11 +149,11 @@ const siteContent = {
       },
       focus: {
         tag: "Strumenti",
-        title: "Le tecnologie con cui trasformo le idee in progetti funzionanti."
+        title: "Le tecnologie con cui trasformo le idee in progetti funzionanti"
       },
       highlights: {
         tag: "Progetti",
-        title: "Cinque progetti. Cinque problemi concreti.",
+        title: "Cinque progetti, cinque problemi concreti",
         intro:
           "Dal machine learning embedded ai nodi distribuiti, fino ai video egocentrici: ogni progetto affronta vincoli differenti e porta a risultati misurabili."
       },
@@ -170,11 +170,11 @@ const siteContent = {
       ],
       timeline: {
         tag: "Formazione",
-        title: "Un percorso di formazione tra Italia e Francia."
+        title: "Un percorso di formazione tra Italia e Francia"
       },
       contact: {
         tag: "Contatti",
-        title: "Cerco la prossima sfida tecnica su cui lasciare il segno.",
+        title: "Cerco la prossima sfida tecnica su cui lasciare il segno",
         text:
           "Valuto opportunit\u00e0 come AI Engineer, Software Engineer e in contesti di ricerca applicata. Se stai costruendo prodotti intelligenti, parliamone.",
         emailLabel: "Email",
@@ -186,15 +186,15 @@ const siteContent = {
       },
       focusCards: [
         {
-          title: "Linguaggi",
+          title: "Programmazione & Low-Level",
           text: "Python, Java, C/C++, Matlab, PHP e JavaScript: dagli esami ai prototipi di ricerca, fino ai progetti completi."
         },
         {
-          title: "Strumenti Python",
+          title: "Ecosistema AI & Calcolo Numerico",
           text: "NumPy, Pandas, Matplotlib, scikit-learn, PyTorch, Keras e TensorFlow per analisi, modellazione e sperimentazione."
         },
         {
-          title: "Dati e backend",
+          title: "Sistemi Distribuiti & Big Data",
           text: "Hadoop, Spark e Laravel, con esperienza nell'elaborazione distribuita di grandi volumi di dati e nello sviluppo backend."
         },
         {
@@ -260,19 +260,6 @@ function getLocalizedExperiences(language) {
   }));
 }
 
-function renderBotanicalAtmosphere() {
-  const sprigFive = "<i><span></span></i>".repeat(5);
-  const sprigFour = "<i><span></span></i>".repeat(4);
-
-  return `
-    <div class="research-botanical" aria-hidden="true">
-      <span class="botanical-sprig botanical-sprig-a">${sprigFive}</span>
-      <span class="botanical-sprig botanical-sprig-b">${sprigFour}</span>
-      <span class="botanical-sprig botanical-sprig-c">${sprigFive}</span>
-    </div>
-  `;
-}
-
 function renderConsoleSteps(steps, activeStep, interactive) {
   return steps
     .map((step, index) => {
@@ -282,16 +269,17 @@ function renderConsoleSteps(steps, activeStep, interactive) {
 
       if (isMeasureStep) {
         return `
-          <li${isActive ? ' class="console-step-active"' : ""}>
-            <span>${number}</span>
+          <li class="console-step-item${isActive ? " console-step-active" : ""}">
+            <span class="step-num">${number}</span>
             <button class="console-step-button" type="button" data-console-open="measure">
-              <span>${step}</span><span aria-hidden="true">&rarr;</span>
+              <span class="step-label">${step}</span>
+              <span class="step-action-tag">Probe &rarr;</span>
             </button>
           </li>
         `;
       }
 
-      return `<li${isActive ? ' class="console-step-active"' : ""}><span>${number}</span><strong>${step}</strong></li>`;
+      return `<li class="console-step-item${isActive ? " console-step-active" : ""}"><span class="step-num">${number}</span><strong class="step-label">${step}</strong></li>`;
     })
     .join("");
 }
@@ -299,19 +287,27 @@ function renderConsoleSteps(steps, activeStep, interactive) {
 function renderResearchConsole(experience, detailOpen) {
   return `
     <div class="research-console" aria-label="${experience.consoleLabel}" aria-live="polite">
+      <div class="console-hud-bar">
+        <span class="hud-label">${detailOpen ? experience.console.detailLabel : experience.console.overviewLabel}</span>
+        <span class="hud-sensor">${experience.device}</span>
+      </div>
+
       <div class="console-view" data-console-view="overview"${detailOpen ? " hidden" : ""}>
-        <div class="console-header">
-          <span>${experience.console.overviewLabel}</span>
-          <span>${experience.device}</span>
+        <div class="console-sub-header">
+          <span>Execution register</span>
+          <span class="badge-phase">Phase 4/4</span>
         </div>
         <ol class="console-flow">
           ${renderConsoleSteps(experience.console.overviewSteps, experience.activeStep, true)}
         </ol>
-        <div class="console-readout"><span>${experience.signalLabel}</span><strong>${experience.signalValue}</strong></div>
+        <div class="console-readout">
+          <span class="readout-label">${experience.signalLabel}</span>
+          <strong class="readout-value"><span class="pulse-indicator"></span> ${experience.signalValue}</strong>
+        </div>
       </div>
 
       <div class="console-view" data-console-view="measure"${detailOpen ? "" : " hidden"}>
-        <div class="console-header">
+        <div class="console-sub-header">
           <span>${experience.console.detailLabel}</span>
           <button class="console-back" type="button" data-console-back>
             <span aria-hidden="true">&larr;</span> <span>${experience.console.backLabel}</span>
@@ -320,7 +316,16 @@ function renderResearchConsole(experience, detailOpen) {
         <ol class="console-flow">
           ${renderConsoleSteps(experience.console.detailSteps, 3, false)}
         </ol>
-        <div class="console-readout"><span>${experience.signalLabel}</span><strong>${experience.signalValue}</strong></div>
+        <div class="console-readout">
+          <span class="readout-label">${experience.signalLabel}</span>
+          <strong class="readout-value"><span class="pulse-indicator"></span> ${experience.signalValue}</strong>
+        </div>
+      </div>
+
+      <div class="console-subsystems">
+        <div class="subsystem-pill"><strong>JouleQuest</strong> Physical Shunt Bench</div>
+        <div class="subsystem-pill"><strong>JouleGrad</strong> PyTorch Differentiable</div>
+        <div class="subsystem-pill"><strong>JouleNAS</strong> Hardware-Pruned Search</div>
       </div>
     </div>
   `;
@@ -345,36 +350,37 @@ function renderExperiences(language) {
       const revealVisible = visibleIds.has(experience.id) ? " reveal-visible" : "";
 
       return `
-        <section id="${sectionId}" class="research-section reveal${revealVisible}" data-experience-id="${experience.id}" aria-labelledby="${titleId}">
-          ${renderBotanicalAtmosphere()}
-          <div class="section-kicker-row">
-            <p class="section-tag">${experience.tag}</p>
-            <span class="research-state"><span aria-hidden="true"></span> ${experience.state}</span>
-          </div>
-
-          <div class="research-grid">
-            <div class="research-copy">
-              <h2 id="${titleId}" class="section-title">${experience.title}</h2>
-              <p class="section-text">${experience.text}</p>
-              <ul class="research-points">
-                ${experience.points.map((point) => `<li>${point}</li>`).join("")}
-              </ul>
+        <section id="${sectionId}" class="research-section double-bezel reveal${revealVisible}" data-experience-id="${experience.id}" aria-labelledby="${titleId}">
+          <div class="bezel-inner">
+            <div class="section-kicker-row">
+              <span class="section-tag-pill">${experience.tag}</span>
+              <span class="section-state-pill"><span class="pulse-indicator-inline" aria-hidden="true"></span> ${experience.state}</span>
             </div>
 
-            ${renderResearchConsole(experience, detailOpen)}
-          </div>
+            <div class="research-grid">
+              <div class="research-copy">
+                <h2 id="${titleId}" class="section-title">${experience.title}</h2>
+                <p class="section-text">${experience.text}</p>
+                <ul class="research-points">
+                  ${experience.points.map((point) => `<li><span class="point-bullet-pod" aria-hidden="true">&bull;</span><span>${point}</span></li>`).join("")}
+                </ul>
+              </div>
 
-          <div class="research-outcomes" aria-label="${experience.outcomesLabel}">
-            ${experience.outcomes
-          .map(
-            (outcome) => `
-                  <div class="research-outcome">
-                    <strong>${outcome.value}</strong>
-                    <span>${outcome.label}</span>
-                  </div>
-                `
-          )
-          .join("")}
+              ${renderResearchConsole(experience, detailOpen)}
+            </div>
+
+            <div class="research-outcomes" aria-label="${experience.outcomesLabel}">
+              ${experience.outcomes
+                .map(
+                  (outcome) => `
+                    <div class="research-outcome">
+                      <strong>${outcome.value}</strong>
+                      <span>${outcome.label}</span>
+                    </div>
+                  `
+                )
+                .join("")}
+            </div>
           </div>
         </section>
       `;
@@ -386,76 +392,92 @@ function renderExperiences(language) {
 
 function renderProjectAtmosphere(visual) {
   if (visual === "calculator") {
-    const keys = "<i></i>".repeat(9);
     return `
-      <div class="project-atmosphere project-atmosphere-calculator" aria-hidden="true">
-        <span class="mini-calculator mini-calculator-a"><span>${keys}</span></span>
-        <span class="mini-calculator mini-calculator-b"><span>${keys}</span></span>
-        <span class="mini-calculator mini-calculator-c"><span>${keys}</span></span>
-        <span class="mini-calculator mini-calculator-d"><span>${keys}</span></span>
-        <span class="mini-calculator mini-calculator-e"><span>${keys}</span></span>
-        <span class="mini-calculator mini-calculator-f"><span>${keys}</span></span>
-        <span class="mini-calculator mini-calculator-g"><span>${keys}</span></span>
+      <div class="project-schematic schematic-calculator" aria-hidden="true">
+        <div class="schematic-top">
+          <span class="schematic-badge">CASIO fx-9860GIII</span>
+          <span class="schematic-arch">SH3A · 64KB RAM · Zero-Float</span>
+        </div>
+        <div class="lcd-screen">
+          <div class="lcd-header">INT8 TENSOR [256-32-10]</div>
+          <div class="lcd-digit-grid">
+            <span>[8]</span><span>[9]</span><span>[3]</span><span>[5]</span>
+            <span class="lcd-pred">&rarr; 95.47%</span>
+          </div>
+          <div class="lcd-status">1,000 / 1,000 Golden vectors verified</div>
+        </div>
       </div>
     `;
   }
 
   if (visual === "database") {
-    const dbIcon = `<svg viewBox="0 0 48 50" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 100%; height: 100%;"><path d="M4 8 v32 c0 4.4 9 8 20 8 s20 -3.6 20 -8 v-32" /><ellipse cx="24" cy="8" rx="20" ry="5" /><path d="M4 19 c0 4.4 9 8 20 8 s20 -3.6 20 -8" /><path d="M4 30 c0 4.4 9 8 20 8 s20 -3.6 20 -8" /></svg>`;
     return `
-      <div class="project-atmosphere project-atmosphere-database" aria-hidden="true">
-        <span class="database-mark database-mark-a">${dbIcon}</span>
-        <span class="database-mark database-mark-b">${dbIcon}</span>
-        <span class="database-mark database-mark-c">${dbIcon}</span>
-        <span class="database-mark database-mark-d">${dbIcon}</span>
-        <span class="database-mark database-mark-e">${dbIcon}</span>
-        <span class="database-mark database-mark-f">${dbIcon}</span>
-        <span class="database-mark database-mark-g">${dbIcon}</span>
-      </div>
-    `;
-  }
-
-  if (visual === "audio") {
-    const samples = "<i></i>".repeat(11);
-    return `
-      <div class="project-atmosphere project-atmosphere-audio" aria-hidden="true">
-        <span class="audio-trace audio-trace-a">${samples}</span>
-        <span class="audio-trace audio-trace-b">${samples}</span>
-        <span class="audio-trace audio-trace-c">${samples}</span>
-        <span class="audio-trace audio-trace-d">${samples}</span>
-        <span class="audio-trace audio-trace-e">${samples}</span>
-        <span class="audio-trace audio-trace-f">${samples}</span>
-        <span class="audio-trace audio-trace-g">${samples}</span>
+      <div class="project-schematic schematic-database" aria-hidden="true">
+        <div class="schematic-top">
+          <span class="schematic-badge">Cluster topology</span>
+          <span class="schematic-arch">64 Nodes · Go / HTTP / SSH</span>
+        </div>
+        <div class="cluster-grid">
+          <div class="cluster-node">Coordinator :8080</div>
+          <div class="cluster-links">&rarr;</div>
+          <div class="cluster-workers">
+            <span class="worker-pill w-active">W01..16</span>
+            <span class="worker-pill w-active">W17..32</span>
+            <span class="worker-pill w-active">W33..48</span>
+            <span class="worker-pill w-spare">Cold-Spare</span>
+          </div>
+        </div>
       </div>
     `;
   }
 
   if (visual === "pov") {
     return `
-      <div class="project-atmosphere project-atmosphere-pov" aria-hidden="true">
-        <span class="pov-camera pov-camera-a"><i></i></span>
-        <span class="pov-camera pov-camera-b"><i></i></span>
-        <span class="pov-glasses pov-glasses-a"><i></i><i></i></span>
-        <span class="pov-glasses pov-glasses-b"><i></i><i></i></span>
-        <span class="pov-glasses pov-glasses-c"><i></i><i></i></span>
-        <span class="pov-glasses pov-glasses-d"><i></i><i></i></span>
-        <span class="pov-glasses pov-glasses-e"><i></i><i></i></span>
+      <div class="project-schematic schematic-pov" aria-hidden="true">
+        <div class="schematic-top">
+          <span class="schematic-badge">Multimodal localization</span>
+          <span class="schematic-arch">Ego4D NLQ · FiLM</span>
+        </div>
+        <div class="timeline-schematic">
+          <div class="time-track"><span class="query-window">[ t_start &larr;&mdash;&mdash;&rarr; t_end ]</span></div>
+          <div class="distill-stats"><span>Block KD: -88.47% size</span><span>+19.73% mIoU</span></div>
+        </div>
       </div>
     `;
   }
 
   if (visual === "locks") {
     return `
-      <div class="project-atmosphere project-atmosphere-locks" aria-hidden="true">
-        <span class="kv-node kv-node-a"></span>
-        <span class="kv-node kv-node-b"></span>
-        <span class="kv-node kv-node-c"></span>
-        <span class="kv-node kv-node-d"></span>
-        <span class="kv-node kv-node-e"></span>
-        <span class="kv-route kv-route-a"></span>
-        <span class="kv-route kv-route-b"></span>
-        <span class="kv-route kv-route-c"></span>
-        <span class="kv-route kv-route-d"></span>
+      <div class="project-schematic schematic-locks" aria-hidden="true">
+        <div class="schematic-top">
+          <span class="schematic-badge">Atomic register</span>
+          <span class="schematic-arch">Akka Actors · MWMR</span>
+        </div>
+        <div class="register-schematic">
+          <div class="register-states">
+            <span class="reg-state">READ(ts, val)</span>
+            <span class="reg-arrow">&harr;</span>
+            <span class="reg-state">WRITE(ts+1, val)</span>
+          </div>
+          <div class="linear-check">Linearizability history: verified</div>
+        </div>
+      </div>
+    `;
+  }
+
+  if (visual === "audio") {
+    return `
+      <div class="project-schematic schematic-audio" aria-hidden="true">
+        <div class="schematic-top">
+          <span class="schematic-badge">Acoustic feature regression</span>
+          <span class="schematic-arch">Mel-Spectra · CatBoost</span>
+        </div>
+        <div class="spectrum-bars">
+          <span style="height: 35%"></span><span style="height: 70%"></span><span style="height: 45%"></span>
+          <span style="height: 85%"></span><span style="height: 60%"></span><span style="height: 95%"></span>
+          <span style="height: 50%"></span><span style="height: 75%"></span><span style="height: 40%"></span>
+        </div>
+        <div class="audio-rank">1st on class public leaderboard</div>
       </div>
     `;
   }
@@ -473,8 +495,10 @@ function applyTranslations(language) {
 
   document.querySelectorAll("[data-i18n]").forEach((node) => {
     const path = node.dataset.i18n.split(".");
-    const value = path.reduce((current, key) => current[key], content);
-    node.textContent = value;
+    const value = path.reduce((current, key) => (current ? current[key] : undefined), content);
+    if (value !== undefined) {
+      node.textContent = value;
+    }
   });
 
   document.getElementById("projects-title").textContent = window.formatProjectHeading(language, projects.length);
@@ -482,10 +506,16 @@ function applyTranslations(language) {
   renderList(
     focusGrid,
     content.focusCards,
-    (item) => `
-      <article class="focus-card">
-        <h3>${item.title}</h3>
-        <p>${item.text}</p>
+    (item, index) => `
+      <article class="focus-card double-bezel">
+        <div class="bezel-inner">
+          <div class="focus-card-header">
+            <span class="focus-pill">0${index + 1}</span>
+            <span class="focus-status"><span class="status-pulse-dot"></span> Active</span>
+          </div>
+          <h3 class="focus-name">${item.title}</h3>
+          <p class="focus-body">${item.text}</p>
+        </div>
       </article>
     `
   );
@@ -494,35 +524,41 @@ function applyTranslations(language) {
     highlightGrid,
     projects,
     (item, index) => `
-      <article class="highlight-card highlight-card-accent-${item.accent} ${item.featured ? "highlight-card-featured" : ""}">
-        ${renderProjectAtmosphere(item.visual)}
-        <div class="highlight-topline">
-          <span class="project-index">${String(index + 1).padStart(2, "0")}</span>
-          <span class="highlight-meta">${item.meta}</span>
-        </div>
-        <div class="highlight-body">
-          <div class="highlight-copy">
-            <div class="highlight-header">
-              <h3>${item.title}</h3>
+      <article class="highlight-card double-bezel highlight-card-accent-${item.accent} ${item.featured ? "highlight-card-featured" : ""}">
+        <div class="bezel-inner">
+          <div class="spec-card-header">
+            <div class="spec-id-group">
+              <span class="spec-pill">0${index + 1}</span>
+              <span class="spec-meta">${item.meta}</span>
             </div>
-            <p>${item.text}</p>
-            <ul class="highlight-points">
-              ${item.bullets.map((bullet) => `<li>${bullet}</li>`).join("")}
+            <div class="spec-metric-tag" aria-label="${item.metric} ${item.metricLabel}">
+              <strong class="metric-num">${item.metric}</strong>
+              <span class="metric-desc">${item.metricLabel}</span>
+            </div>
+          </div>
+
+          ${renderProjectAtmosphere(item.visual)}
+
+          <div class="spec-body">
+            <h3 class="spec-title">${item.title}</h3>
+            <p class="spec-text">${item.text}</p>
+            <ul class="spec-points">
+              ${item.bullets.map((bullet) => `<li><span class="bullet-pod" aria-hidden="true">&bull;</span><span>${bullet}</span></li>`).join("")}
             </ul>
           </div>
-          <div class="project-metric" aria-label="${item.metric} ${item.metricLabel}">
-            <strong>${item.metric}</strong>
-            <span>${item.metricLabel}</span>
+
+          <div class="spec-footer">
+            ${item.links
+              .map(
+                (link) => `
+                  <a class="island-button island-button-sm" href="${link.href}" target="_blank" rel="noreferrer">
+                    <span>${link.label}</span>
+                    <span class="button-icon-pod" aria-hidden="true">&nearr;</span>
+                  </a>
+                `
+              )
+              .join("")}
           </div>
-        </div>
-        <div class="highlight-links">
-          ${item.links
-        .map(
-          (link) => `
-                <a class="project-link" href="${link.href}" target="_blank" rel="noreferrer">${link.label}<span aria-hidden="true">&nearr;</span></a>
-              `
-        )
-        .join("")}
         </div>
       </article>
     `
@@ -531,11 +567,16 @@ function applyTranslations(language) {
   renderList(
     timeline,
     content.timelineSteps,
-    (item) => `
-      <article class="timeline-step">
-        <h3>${item.title}</h3>
-        <p>${item.text}</p>
-        <span>${item.step}</span>
+    (item, index) => `
+      <article class="timeline-step double-bezel">
+        <div class="bezel-inner">
+          <div class="timeline-step-header">
+            <span class="timeline-year-pill">${item.step}</span>
+            <span class="timeline-station-tag">Stage 0${index + 1}</span>
+          </div>
+          <h3 class="timeline-inst">${item.title}</h3>
+          <p class="timeline-desc">${item.text}</p>
+        </div>
       </article>
     `
   );
@@ -603,14 +644,23 @@ function setupResearchConsole() {
     const button = event.target.closest("[data-console-open], [data-console-back]");
     if (!button) return;
 
-    const console = button.closest(".research-console");
-    const overview = console.querySelector('[data-console-view="overview"]');
-    const measure = console.querySelector('[data-console-view="measure"]');
+    const consoleElem = button.closest(".research-console");
+    const overview = consoleElem.querySelector('[data-console-view="overview"]');
+    const measure = consoleElem.querySelector('[data-console-view="measure"]');
+    const hudLabel = consoleElem.querySelector(".console-hud-bar span:first-child");
     const showMeasure = button.hasAttribute("data-console-open");
 
     overview.hidden = showMeasure;
     measure.hidden = !showMeasure;
-    console.querySelector(showMeasure ? "[data-console-back]" : "[data-console-open]").focus();
+
+    const currentLang = document.documentElement.lang || "en";
+    const expData = portfolioCatalog.experiences[0]?.content[currentLang]?.console;
+    if (expData && hudLabel) {
+      hudLabel.textContent = showMeasure ? expData.detailLabel : expData.overviewLabel;
+    }
+
+    const nextFocus = consoleElem.querySelector(showMeasure ? "[data-console-back]" : "[data-console-open]");
+    if (nextFocus) nextFocus.focus();
   });
 }
 
