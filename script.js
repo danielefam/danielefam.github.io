@@ -11,7 +11,7 @@ const siteContent = {
       },
       hero: {
         eyebrow: "AI systems · Frugal ML · Research",
-        title: "AI systems, from training loop to physical device.",
+        title: "AI systems, from training loop to physical device",
         text:
           "I'm Daniele Fam\u00e0, an engineer working where machine learning meets software and hardware. I build efficient models, distributed systems, and research prototypes designed to scale.",
         primaryCta: "See my work",
@@ -27,11 +27,11 @@ const siteContent = {
         stat2Value: "T\u00e9l\u00e9com Paris",
         stat3Label: "Status",
         stat3Value: "Open to opportunities",
-        cardNote: "Research depth, implementation discipline, and a bias toward measurable results."
+        cardNote: "Research depth, implementation discipline, and a bias toward measurable results"
       },
       about: {
         tag: "Profile",
-        title: "Complex systems fascinate me, but the real magic begins when you manage to measure them.",
+        title: "Complex systems fascinate me, but the real magic begins when you manage to measure them",
         text1:
           "I care about the full AI engineering loop: understanding the problem, designing the model, making inference efficient, and shipping a clear, testable solution.",
         text2:
@@ -39,11 +39,11 @@ const siteContent = {
       },
       focus: {
         tag: "Skills",
-        title: "The tools I use to build and ship."
+        title: "The tools I use to build and ship"
       },
       highlights: {
         tag: "Projects",
-        title: "Five systems. Five different constraints.",
+        title: "Five systems, five different constraints",
         intro:
           "The projects span embedded machine learning, distributed workers, and egocentric video. Each project has a result you can inspect."
       },
@@ -60,11 +60,11 @@ const siteContent = {
       ],
       timeline: {
         tag: "Education",
-        title: "Academic path across Italy and France."
+        title: "Academic path across Italy and France"
       },
       contact: {
         tag: "Contact",
-        title: "Looking for the next hard system to build.",
+        title: "Looking for the next hard system to build",
         text:
           "I'm currently open to AI Engineer, Software Engineer, and research-oriented opportunities. If you're building intelligent products or ambitious ML systems, I'd love to hear from you.",
         emailLabel: "Email",
@@ -121,7 +121,7 @@ const siteContent = {
       },
       hero: {
         eyebrow: "Sistemi AI · ML frugale · Ricerca applicata",
-        title: "Dalla teoria al chip: l'IA che funziona sul serio.",
+        title: "Dalla teoria al chip: l'IA che funziona sul serio",
         text:
           "Sono Daniele Fam\u00e0. Progetto sistemi all'incontro tra machine learning, software e hardware: modelli efficienti, architetture distribuite e prototipi di ricerca pensati per scalare.",
         primaryCta: "Guarda i progetti",
@@ -137,11 +137,11 @@ const siteContent = {
         stat2Value: "T\u00e9l\u00e9com Paris",
         stat3Label: "Disponibilit\u00e0",
         stat3Value: "Aperto a nuove opportunit\u00e0",
-        cardNote: "Ricerca solida, implementazione rigorosa, risultati misurabili."
+        cardNote: "Ricerca solida, implementazione rigorosa, risultati misurabili"
       },
       about: {
         tag: "Profilo",
-        title: "I sistemi complessi mi affascinano, ma la vera magia inizia quando riesci a misurarli.",
+        title: "I sistemi complessi mi affascinano, ma la vera magia inizia quando riesci a misurarli",
         text1:
           "Seguo l'intero percorso di progettazione di un sistema AI: dal problema al modello, dall'efficienza in inferenza a una soluzione chiara, testabile e pronta all'uso.",
         text2:
@@ -149,11 +149,11 @@ const siteContent = {
       },
       focus: {
         tag: "Strumenti",
-        title: "Le tecnologie con cui trasformo le idee in progetti funzionanti."
+        title: "Le tecnologie con cui trasformo le idee in progetti funzionanti"
       },
       highlights: {
         tag: "Progetti",
-        title: "Cinque progetti. Cinque problemi concreti.",
+        title: "Cinque progetti, cinque problemi concreti",
         intro:
           "Dal machine learning embedded ai nodi distribuiti, fino ai video egocentrici: ogni progetto affronta vincoli differenti e porta a risultati misurabili."
       },
@@ -170,11 +170,11 @@ const siteContent = {
       ],
       timeline: {
         tag: "Formazione",
-        title: "Un percorso di formazione tra Italia e Francia."
+        title: "Un percorso di formazione tra Italia e Francia"
       },
       contact: {
         tag: "Contatti",
-        title: "Cerco la prossima sfida tecnica su cui lasciare il segno.",
+        title: "Cerco la prossima sfida tecnica su cui lasciare il segno",
         text:
           "Valuto opportunit\u00e0 come AI Engineer, Software Engineer e in contesti di ricerca applicata. Se stai costruendo prodotti intelligenti, parliamone.",
         emailLabel: "Email",
