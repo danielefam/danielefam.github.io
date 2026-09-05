@@ -21,15 +21,15 @@ const portfolioCatalogData = {
           linkLabel: "View repository"
         },
         it: {
-          title: "Riconoscimento di cifre su una calcolatrice",
-          text: "Una rete neurale fixed-point per riconoscere cifre scritte a mano su Casio fx-9860GIII: dall'addestramento in NumPy all'inferenza in C portabile",
+          title: "Riconoscimento di cifre scritte a mano su calcolatrice",
+          text: "Una rete neurale fixed-point nativa per il riconoscimento di cifre scritte a mano su Casio fx-9860GIII: dall'addestramento in NumPy all'inferenza portabile in C puro",
           meta: "ML embedded · C / Python · 2026",
           metric: "95.47%",
           metricLabel: "accuratezza INT8 su MNIST",
           bullets: [
-            "Una MLP 256-32-10 quantizzata in INT8, con appena 0,06 punti percentuali di accuratezza in meno",
-            "Parità esatta tra NumPy e C verificata su 1.000 vettori di riferimento",
-            "Inferenza senza floating-point, allocazioni dinamiche o runtime Python"
+            "Quantizzazione INT8 di un MLP 256-32-10 con appena 0,06 punti percentuali di scarto rispetto al modello floating point",
+            "Verifica della perfetta parità numerica tra NumPy e C su 1.000 vettori di riferimento",
+            "Inferenza autonoma priva di aritmetica floating point, allocazioni dinamiche o runtime Python"
           ],
           linkLabel: "Apri il repository"
         }
@@ -57,14 +57,14 @@ const portfolioCatalogData = {
         },
         it: {
           title: "MapReduce distribuito su macchine di laboratorio",
-          text: "Un framework MapReduce fault-aware in Go: coordina worker remoti, elabora dati Common Crawl e supporta job analitici estendibili, senza privilegi root né container",
+          text: "Un framework MapReduce fault-tolerant in Go che coordina worker remoti, elabora dump Common Crawl ed esegue job analitici modulari senza privilegi di root né container",
           meta: "Sistemi distribuiti · Go · 2026",
           metric: "64 nodi",
-          metricLabel: "benchmark su Common Crawl",
+          metricLabel: "benchmark con dataset Common Crawl",
           bullets: [
-            "Pipeline completa di load, map, shuffle, reduce e collect, orchestrata via HTTP e SSH",
-            "Sostituzione automatica dei worker con cold spare, health monitoring e recovery basato su epoch",
-            "Quattro job validati da 89 test Go e un benchmark su Common Crawl a workload fisso fino a 64 nodi"
+            "Implementazione dell'intera pipeline di load, map, shuffle, reduce e collect orchestrata via HTTP e SSH",
+            "Tolleranza ai guasti con rimpiazzo automatico tramite cold spare, heartbeat e ripristino basato su epoche",
+            "Quattro job analitici validati da 89 test unitari in Go e benchmark su Common Crawl fino a 64 nodi"
           ],
           linkLabel: "Apri il repository"
         }
@@ -92,14 +92,14 @@ const portfolioCatalogData = {
         },
         it: {
           title: "ARDA VSLNet: localizzazione video-linguaggio efficiente",
-          text: "VSLNet potenziato con FiLM conditioning e knowledge distillation per localizzare nel tempo istruzioni in linguaggio naturale nei video Ego4D",
+          text: "Estensione di VSLNet con FiLM conditioning e knowledge distillation per la localizzazione temporale di query in linguaggio naturale nei video Ego4D",
           meta: "Multimodal ML · PyTorch · 2025",
           metric: "88.47%",
-          metricLabel: "modello più compatto",
+          metricLabel: "riduzione della dimensione del modello",
           bullets: [
-            "Prestazioni migliori del 19,73% rispetto a una baseline di dimensioni comparabili",
-            "Con la distillazione a blocchi: 47,62% di parametri e 80,6% di GFLOPs in meno",
-            "Language conditioning, localizzazione temporale ed efficienza riuniti in un'unica pipeline"
+            "Prestazioni superiori del 19,73% rispetto a una baseline di pari dimensioni grazie alla distillazione",
+            "Distillazione strutturata a blocchi con riduzione del 47,62% dei parametri e dell'80,6% dei GFLOP",
+            "Integrazione coerente tra condizionamento linguistico, localizzazione temporale ed efficienza computazionale"
           ],
           linkLabel: "Apri il repository"
         }
@@ -126,15 +126,15 @@ const portfolioCatalogData = {
           linkLabel: "View repository"
         },
         it: {
-          title: "Fault-Tolerant Key-Value Store",
-          text: "Un archivio chiave-valore distribuito basato su attori, con un registro atomico multi-scrittore e multi-lettore realizzato in Akka",
+          title: "Key-Value Store distribuito e fault-tolerant",
+          text: "Uno storage chiave-valore distribuito basato sul modello ad attori, che implementa un registro atomico multi-writer multi-reader (MWMR) in Akka",
           meta: "Sistemi distribuiti · Java / Akka · 2025",
           metric: "MWMR",
           metricLabel: "registro atomico",
           bullets: [
-            "Architettura ad attori e scambio di messaggi, senza blocchi sullo stato condiviso",
-            "Test in scenari di tolleranza ai guasti e di carico",
-            "Controllo automatico della cronologia delle operazioni per verificare la linearizzabilità"
+            "Architettura ad attori e passaggio di messaggi asincrono, evitando lock su stato condiviso",
+            "Verifica rigorosa del comportamento sotto stress di carico e simulazioni di guasto di nodi e partizioni di rete",
+            "Controllo automatico della storia di esecuzione per garantire la linearizzabilità delle operazioni"
           ],
           linkLabel: "Apri il repository"
         }
@@ -161,15 +161,15 @@ const portfolioCatalogData = {
           linkLabel: "View repository"
         },
         it: {
-          title: "Stima dell'età dalla voce",
-          text: "Una pipeline di regressione end-to-end che unisce caratteristiche acustiche, preprocessing tabulare e modelli ensemble ottimizzati",
+          title: "Stima dell'età da segnali vocali",
+          text: "Una pipeline di regressione end-to-end che combina estrazione di feature acustiche, preprocessing tabulare e modelli ensemble ottimizzati",
           meta: "Audio ML · Python · 2025",
           metric: "1°",
-          metricLabel: "nella classifica pubblica del corso",
+          metricLabel: "posto nella classifica pubblica del corso",
           bullets: [
-            "Estrazione di caratteristiche tempo-frequenza, Mel-spettrogrammi e statistiche del segnale vocale",
-            "Confronto tra CatBoost, Random Forest, riduzione dimensionale e strategie di preprocessing",
-            "Dall'audio grezzo alla valutazione finale della regressione, in un'unica pipeline"
+            "Estrazione di feature tempo-frequenza, spettrogrammi in scala Mel e descrittori statistici del segnale",
+            "Analisi comparativa tra CatBoost, Random Forest, riduzione della dimensionalità e strategie di preprocessing",
+            "Sviluppo dell'intero flusso elaborativo, dalla forma d'onda grezza alla stima quantitativa dell'età"
           ],
           linkLabel: "Apri il repository"
         }
@@ -221,34 +221,34 @@ const portfolioCatalogData = {
         },
         it: {
           tag: 'Tirocinio di ricerca · <a href="https://anr.fr/Projet-ANR-24-CE23-4369" target="_blank" rel="noreferrer" class="research-fund-link" title="Progetto ANR BANERA">BANERA</a> · 2026',
-          title: "Neural architecture search con un occhio di riguardo all'ambiente",
-          text: "Presso Télécom Paris (LTCI), ho sviluppato l'ecosistema Joule: un framework di ricerca end-to-end per misurare, modellare e ridurre i consumi energetici delle reti neurali su hardware edge, integrando telemetria fisica, stima differenziabile e potatura vincolata all'hardware.",
+          title: "Neural Architecture Search per l'efficienza energetica",
+          text: "Presso il laboratorio LTCI di Télécom Paris, ho sviluppato l'ecosistema Joule: un framework di ricerca end-to-end per misurare, modellare e ridurre il consumo energetico delle reti neurali su hardware edge, combinando telemetria fisica da sensore, stima differenziabile e pruning strutturato vincolato all'hardware.",
           points: [
-            "JouleQuest: Ho sviluppato il tool di misura automatizzato per carichi AI con sensore INA226EVM su oltre 2.000 configurazioni su Jetson e Raspberry Pi",
-            "JouleGrad: Ho reingegnerizzato e riscritto da zero lo stimatore differenziabile in PyTorch con interpolazione multilineare esatta e supporto autograd",
-            "JouleNAS: Ho modificato un algoritmo di pruning strutturato per integrare i consumi reali dell'hardware come penalità nella funzione di costo",
-            "Risultati validati: Fino al 43% di riduzione energetica su ResNet-18 su NVIDIA Jetson a parità di accuratezza su CIFAR-10 e Imagenette"
+            "JouleQuest: Sviluppato un tool di misurazione automatizzato per carichi AI con sensore INA226EVM, profilando oltre 2.000 configurazioni di layer su schede Jetson e Raspberry Pi",
+            "JouleGrad: Riprogettato e riscritto in PyTorch lo stimatore differenziabile dei consumi energetici, sostituendo le tabelle euristiche con interpolazione multilineare esatta e gradienti autograd",
+            "JouleNAS: Adattato un algoritmo di pruning strutturato per penalizzare direttamente l'energia hardware misurata durante il training tramite gradienti straight-through estimator",
+            "Risultati validati: Riduzione fino al 43% dei consumi energetici su ResNet-18 distribuita su NVIDIA Jetson a parità di accuratezza su CIFAR-10 e Imagenette"
           ],
           outcomes: [
             {
-              value: "-43%",
-              label: "energia su ResNet-18 su NVIDIA Jetson senza perdita di accuratezza"
+              value: "43%",
+              label: "riduzione dei consumi su ResNet-18 su Jetson senza perdita di accuratezza"
             },
             {
               value: "2.000+",
-              label: "configurazioni di layer profilate con telemetria da sensori fisici"
+              label: "configurazioni di layer profilate con telemetria da sensore fisico"
             },
             {
               value: "3 moduli",
-              label: "JouleQuest (misura), JouleGrad (stima), JouleNAS (ricerca)"
+              label: "JouleQuest (misura), JouleGrad (stima), JouleNAS (ottimizzazione)"
             }
           ],
           console: {
-            overviewLabel: "Workflow dell'ecosistema Joule",
-            detailLabel: "Ciclo di misura JouleQuest",
+            overviewLabel: "Flusso dell'ecosistema Joule",
+            detailLabel: "Ciclo di misurazione JouleQuest",
             backLabel: "Indietro",
-            overviewSteps: ["Ricerca", "Esecuzione", "Misura", "Regolarizzazione"],
-            detailSteps: ["Esegui", "Calibra", "Acquisisci", "Analizza"]
+            overviewSteps: ["Ricerca", "Deploy", "Misura", "Regolarizzazione"],
+            detailSteps: ["Esecuzione", "Calibrazione", "Campionamento", "Analisi"]
           }
         }
       }
@@ -268,9 +268,9 @@ function formatProjectHeading(language, count) {
   const countLabel = numberWords[language]?.[count] || String(count);
   const countLabelLower = countLabel.toLowerCase();
 
-  if (count === 1 && language === "it") return "Un progetto, un problema concreto";
+  if (count === 1 && language === "it") return "Un sistema, un vincolo reale";
   if (count === 1) return "One system, one different constraint";
-  if (language === "it") return `${countLabel} progetti, ${countLabelLower} problemi concreti`;
+  if (language === "it") return `${countLabel} sistemi, ${countLabelLower} vincoli differenti`;
   return `${countLabel} systems, ${countLabelLower} different constraints`;
 }
 

@@ -114,69 +114,69 @@ const siteContent = {
       title: "Daniele Fam\u00e0",
       nav: {
         about: "Chi sono",
-        focus: "Strumenti",
+        focus: "Competenze",
         experience: "Ricerca",
         highlights: "Progetti",
         contact: "Contatti"
       },
       hero: {
-        eyebrow: "Sistemi AI · ML frugale · Ricerca applicata",
-        title: "Dalla teoria al chip: l'IA che funziona sul serio",
+        eyebrow: "Sistemi AI · Frugal ML · Ricerca applicata",
+        title: "Sistemi AI, dal ciclo di addestramento all'hardware",
         text:
-          "Sono Daniele Fam\u00e0. Progetto sistemi all'incontro tra machine learning, software e hardware: modelli efficienti, architetture distribuite e prototipi di ricerca pensati per scalare.",
-        primaryCta: "Guarda i progetti",
+          "Sono Daniele Fam\u00e0, ingegnere al lavoro all'intersezione tra machine learning, software e hardware. Progetto modelli efficienti, architetture distribuite e prototipi di ricerca capaci di scalare oltre il notebook.",
+        primaryCta: "Scopri i progetti",
         cvCta: "Scarica il CV",
         secondaryCta: "Contattami",
-        proof1: "accuratezza MNIST INT8",
-        proof2: "e lode",
-        proof3: "VSLNet pi\u00f9 piccolo",
-        cardLabel: "Profilo tecnico",
-        stat1Label: "Mi occupo di",
+        proof1: "accuratezza INT8 su MNIST",
+        proof2: "con lode",
+        proof3: "compressione VSLNet",
+        cardLabel: "Profilo ingegneristico",
+        stat1Label: "Focus",
         stat1Value: "Sistemi AI efficienti",
         stat2Label: "Attualmente",
         stat2Value: "T\u00e9l\u00e9com Paris",
-        stat3Label: "Disponibilit\u00e0",
+        stat3Label: "Stato",
         stat3Value: "Aperto a nuove opportunit\u00e0",
-        cardNote: "Ricerca solida, implementazione rigorosa, risultati misurabili"
+        cardNote: "Ricerca approfondita, rigore ingegneristico e risultati misurabili"
       },
       about: {
         tag: "Profilo",
-        title: "I sistemi complessi mi affascinano, ma la vera magia inizia quando riesci a misurarli",
+        title: "I sistemi complessi mi affascinano, soprattutto quando il loro comportamento \u00e8 direttamente misurabile",
         text1:
-          "Seguo l'intero percorso di progettazione di un sistema AI: dal problema al modello, dall'efficienza in inferenza a una soluzione chiara, testabile e pronta all'uso.",
+          "Mi dedico all'intero ciclo di ingegneria dell'IA: comprensione del problema, progettazione dell'architettura, efficienza nell'inferenza e sviluppo di soluzioni chiare, robuste e verificabili.",
         text2:
-          "Lavoro tra apprendimento multimodale, inferenza su dispositivi embedded, misure energetiche, metodi numerici e sistemi distribuiti. Il filo conduttore \u00e8 sempre lo stesso: trasformare idee complesse in sistemi concreti, misurabili e ecologici."
+          "I miei interessi spaziano tra deep learning multimodale, inferenza su sistemi embedded, profilazione energetica e sistemi distribuiti. L'obiettivo comune resta sempre lo stesso: trasformare la ricerca in sistemi concreti, misurabili ed efficienti."
       },
       focus: {
-        tag: "Strumenti",
-        title: "Le tecnologie con cui trasformo le idee in progetti funzionanti"
+        tag: "Competenze",
+        title: "Gli strumenti con cui progetto, sviluppo e rilascio"
       },
       highlights: {
         tag: "Progetti",
-        title: "Cinque progetti, cinque problemi concreti",
+        title: "Cinque sistemi, cinque vincoli differenti",
         intro:
-          "Dal machine learning embedded ai nodi distribuiti, fino ai video egocentrici: ogni progetto affronta vincoli differenti e porta a risultati misurabili."
+          "Dal machine learning embedded ai sistemi distribuiti fino alla visione egocentrica: ciascun progetto affronta vincoli reali e produce risultati empirici verificabili."
       },
       motionWords: [
         "Machine learning",
         "Sistemi distribuiti",
-        "Elaborazione del segnale",
+        "Elaborazione dei segnali",
         "PyTorch",
         "Modelli efficienti",
-        "Visione artificiale",
+        "Computer vision",
         "Audio ML",
         "Python · C++",
         "Italiano / Inglese"
       ],
       timeline: {
         tag: "Formazione",
-        title: "Un percorso di formazione tra Italia e Francia"
+        title: "Un percorso accademico tra Italia e Francia"
       },
       contact: {
         tag: "Contatti",
-        title: "Cerco la prossima sfida tecnica su cui lasciare il segno",
+        title: "Alla ricerca del prossimo sistema complesso da costruire",
         text:
-          "Valuto opportunit\u00e0 come AI Engineer, Software Engineer e in contesti di ricerca applicata. Se stai costruendo prodotti intelligenti, parliamone.",
+          "Valuto opportunit\u00e0 come AI Engineer, Machine Learning Engineer e in ruoli di ricerca applicata. Se stai sviluppando modelli intelligenti o infrastrutture ML ambiziose, parliamone.",
         emailLabel: "Email",
         linkedinLabel: "LinkedIn",
         linkedinValue: "linkedin.com/in/daniele-fama",
@@ -187,36 +187,36 @@ const siteContent = {
       focusCards: [
         {
           title: "Linguaggi",
-          text: "Python, Java, C/C++, Matlab, PHP e JavaScript: dagli esami ai prototipi di ricerca, fino ai progetti completi."
+          text: "Python, Java, C/C++, MATLAB, PHP e JavaScript: utilizzati nello sviluppo di prototipi di ricerca, calcolo numerico e progetti software completi."
         },
         {
-          title: "Strumenti Python",
-          text: "NumPy, Pandas, Matplotlib, scikit-learn, PyTorch, Keras e TensorFlow per analisi, modellazione e sperimentazione."
+          title: "Ecosistema Python",
+          text: "PyTorch, scikit-learn, NumPy, Pandas, Matplotlib, Keras e TensorFlow per modellazione, analisi dei dati e sperimentazione empirica."
         },
         {
-          title: "Dati e backend",
-          text: "Hadoop, Spark e Laravel, con esperienza nell'elaborazione distribuita di grandi volumi di dati e nello sviluppo backend."
+          title: "Dati e sistemi distribuiti",
+          text: "Hadoop, Spark e Akka, con esperienza nelle architetture distribuite per l'elaborazione di grandi moli di dati e nello sviluppo backend."
         },
         {
-          title: "Lingue",
-          text: "Italiano madrelingua, inglese professionale e francese di base."
+          title: "Lingue operative",
+          text: "Italiano madrelingua, inglese fluente a livello professionale e nozioni di base di francese."
         }
       ],
       timelineSteps: [
         {
           step: "2025-2027",
           title: "T\u00e9l\u00e9com Paris",
-          text: "Master of Science in Engineering: algebra applicata, sistemi software distribuiti e Data Science."
+          text: "Master of Science in Engineering con corsi in algebra applicata, sistemi software distribuiti e Data Science."
         },
         {
           step: "2024-2025",
           title: "Politecnico di Torino",
-          text: "Laurea magistrale in Data Science and Engineering, con un percorso focalizzato su machine learning, deep learning e architetture distribuite per i big data."
+          text: "Laurea Magistrale in Data Science and Engineering, con focus su machine learning avanzato, deep learning e architetture distribuite per big data."
         },
         {
           step: "2021-2024",
           title: "Universit\u00e0 degli Studi di Catania",
-          text: "Laurea in Ingegneria Informatica, 110/110 e lode. Tesi sul progetto di un filtro Butterworth Tow-Thomas per applicazioni nella banda audio."
+          text: "Laurea Triennale in Ingegneria Informatica (110/110 e lode). Tesi di laurea sul progetto di un filtro analogico Tow-Thomas Butterworth per la banda audio."
         }
       ]
     }
