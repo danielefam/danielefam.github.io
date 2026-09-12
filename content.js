@@ -14,9 +14,9 @@ const portfolioCatalogData = {
           metric: "95.47%",
           metricLabel: "INT8 MNIST accuracy",
           bullets: [
-            "Quantized a 256-32-10 MLP to INT8 with a 0.06 percentage-point accuracy loss",
-            "Validated exact NumPy/C parity across 1,000 golden vectors",
-            "Designed inference without floating point, dynamic allocation, or a Python runtime"
+            "Maintained 95.47% MNIST accuracy with only 0.06 percentage-point loss vs FP32 by quantizing a 256-32-10 MLP to INT8 precision",
+            "Guaranteed 100% numerical inference parity across 1,000 golden test vectors by verifying pure C fixed-point execution against NumPy references",
+            "Eliminated runtime memory overhead on a 64 KB RAM calculator by engineering a standalone C inference engine with zero dynamic allocations or floating-point instructions"
           ],
           linkLabel: "View repository"
         },
@@ -27,9 +27,9 @@ const portfolioCatalogData = {
           metric: "95.47%",
           metricLabel: "accuratezza INT8 su MNIST",
           bullets: [
-            "Quantizzazione INT8 di un MLP 256-32-10 con appena 0,06 punti percentuali di scarto rispetto al modello floating point",
-            "Verifica della perfetta parità numerica tra NumPy e C su 1.000 vettori di riferimento",
-            "Inferenza autonoma priva di aritmetica floating point, allocazioni dinamiche o runtime Python"
+            "Mantenuta un'accuratezza del 95,47% su MNIST con appena 0,06 punti percentuali di scarto dal float32, quantizzando un MLP 256-32-10 a precisione INT8",
+            "Garantita la perfetta parità numerica (100%) su 1.000 vettori di test, validando l'inferenza fixed-point in C puro a fronte della baseline NumPy",
+            "Azzerato l'overhead di memoria su calcolatrice con 64 KB di RAM, realizzando un motore di inferenza in C autonomo senza allocazioni dinamiche né istruzioni floating-point"
           ],
           linkLabel: "Apri il repository"
         }
@@ -49,9 +49,9 @@ const portfolioCatalogData = {
           metric: "64 nodes",
           metricLabel: "measured Common Crawl benchmark",
           bullets: [
-            "Built the complete load, map, shuffle, reduce, and collect pipeline over HTTP and SSH",
-            "Added cold-spare worker replacement, health monitoring, and epoch-based recovery",
-            "Validated four jobs with 89 Go tests and benchmarked a fixed Common Crawl workload up to 64 nodes"
+            "Scaled distributed analytical processing up to 64 unprivileged lab nodes by architecting an automated load-map-shuffle-reduce pipeline over HTTP and SSH",
+            "Achieved continuous job availability with zero data loss during worker node crashes by implementing cold-spare replacement, heartbeats, and epoch-based recovery",
+            "Validated distributed reliability across 4 analytical jobs with 89 automated Go unit tests by benchmarking high-throughput Common Crawl workloads"
           ],
           linkLabel: "View repository"
         },
@@ -62,9 +62,9 @@ const portfolioCatalogData = {
           metric: "64 nodi",
           metricLabel: "benchmark con dataset Common Crawl",
           bullets: [
-            "Implementazione dell'intera pipeline di load, map, shuffle, reduce e collect orchestrata via HTTP e SSH",
-            "Tolleranza ai guasti con rimpiazzo automatico tramite cold spare, heartbeat e ripristino basato su epoche",
-            "Quattro job analitici validati da 89 test unitari in Go e benchmark su Common Crawl fino a 64 nodi"
+            "Scalata l'elaborazione distribuita fino a 64 nodi di laboratorio senza privilegi di root, realizzando una pipeline MapReduce modulare coordinata via HTTP e SSH",
+            "Garantita la continuità del servizio a fronte di crash dei nodi senza perdita di dati, implementando cold spare, monitoraggio heartbeat e ripristino su epoche",
+            "Validata l'affidabilità su 4 job analitici tramite 89 test automatici in Go, eseguendo benchmark prestazionali su dataset Common Crawl"
           ],
           linkLabel: "Apri il repository"
         }
@@ -84,9 +84,9 @@ const portfolioCatalogData = {
           metric: "88.47%",
           metricLabel: "model size reduction",
           bullets: [
-            "Outperformed a similarly sized baseline by 19.73% after distillation",
-            "Used block-wise distillation to reduce parameters by 47.62% and GFLOPs by 80.6%",
-            "Connected language conditioning, temporal localization, and model efficiency in one pipeline"
+            "Outperformed an equal-sized baseline by 19.73% on Ego4D NLQ localization by transferring multimodal representations through knowledge distillation",
+            "Reduced model parameters by 47.62% and compute by 80.6% GFLOPs by designing a structured block-wise distillation strategy",
+            "Enhanced cross-modal grounding under tight parameter constraints by integrating FiLM conditioning directly into the compact temporal backbone"
           ],
           linkLabel: "View repository"
         },
@@ -97,9 +97,9 @@ const portfolioCatalogData = {
           metric: "88.47%",
           metricLabel: "riduzione della dimensione del modello",
           bullets: [
-            "Prestazioni superiori del 19,73% rispetto a una baseline di pari dimensioni grazie alla distillazione",
-            "Distillazione strutturata a blocchi con riduzione del 47,62% dei parametri e dell'80,6% dei GFLOP",
-            "Integrazione coerente tra condizionamento linguistico, localizzazione temporale ed efficienza computazionale"
+            "Superata del 19,73% una baseline di pari dimensioni su Ego4D NLQ, trasferendo rappresentazioni multimodali tramite knowledge distillation",
+            "Ridotti i parametri del 47,62% e la complessità computazionale dell'80,6% dei GFLOP, progettando una distillazione strutturata a blocchi",
+            "Migliorato il condizionamento video-linguaggio con risorse computazionali ridotte, integrando moduli FiLM direttamente nella dorsale temporale compatta"
           ],
           linkLabel: "Apri il repository"
         }
@@ -119,9 +119,9 @@ const portfolioCatalogData = {
           metric: "MWMR",
           metricLabel: "atomic register",
           bullets: [
-            "Built around actors and message passing instead of shared-state locking",
-            "Tested behavior across fault-tolerance and performance scenarios",
-            "Added automated history checking to verify linearizability"
+            "Eliminated lock contention and concurrency bottlenecks by implementing a Multi-Writer Multi-Reader (MWMR) atomic register using Akka actor message passing",
+            "Preserved data consistency across simulated node crashes and network splits by engineering quorum-based consensus protocols with dynamic replication",
+            "Verified strict atomic register semantics with 100% linearizable traces by building an automated history-checking verification harness analyzing read/write logs"
           ],
           linkLabel: "View repository"
         },
@@ -132,9 +132,9 @@ const portfolioCatalogData = {
           metric: "MWMR",
           metricLabel: "registro atomico",
           bullets: [
-            "Architettura ad attori e passaggio di messaggi asincrono, evitando lock su stato condiviso",
-            "Verifica rigorosa del comportamento sotto stress di carico e simulazioni di guasto di nodi e partizioni di rete",
-            "Controllo automatico della storia di esecuzione per garantire la linearizzabilità delle operazioni"
+            "Eliminati colli di bottiglia e contesa sui lock, implementando un registro atomico Multi-Writer Multi-Reader (MWMR) basato su passaggio di messaggi tra attori Akka",
+            "Preservata la consistenza dei dati sotto crash di nodi e partizioni di rete simulate, sviluppando protocolli di consenso a quorum con replicazione dinamica",
+            "Dimostrata la correttezza formale delle esecuzioni con il 100% di tracce linearizzabili, realizzando un tool automatico di verifica della cronologia read/write"
           ],
           linkLabel: "Apri il repository"
         }
@@ -154,9 +154,9 @@ const portfolioCatalogData = {
           metric: "1st",
           metricLabel: "class public leaderboard",
           bullets: [
-            "Extracted time-frequency, Mel-spectrogram, and statistical speech features",
-            "Compared CatBoost, Random Forest, dimensionality reduction, and tuned preprocessing strategies",
-            "Built the full path from raw audio to evaluated regression outputs"
+            "Secured 1st place on the course public leaderboard by engineering an end-to-end ensemble regression pipeline combining CatBoost and Random Forest",
+            "Maximized regression accuracy across diverse speaker demographics by extracting hybrid Mel-spectrogram, spectral, and statistical speech features",
+            "Minimized estimation error on out-of-distribution audio recordings by systematically tuning dimensionality reduction and robust scaling strategies"
           ],
           linkLabel: "View repository"
         },
@@ -167,9 +167,9 @@ const portfolioCatalogData = {
           metric: "1°",
           metricLabel: "posto nella classifica pubblica del corso",
           bullets: [
-            "Estrazione di feature tempo-frequenza, spettrogrammi in scala Mel e descrittori statistici del segnale",
-            "Analisi comparativa tra CatBoost, Random Forest, riduzione della dimensionalità e strategie di preprocessing",
-            "Sviluppo dell'intero flusso elaborativo, dalla forma d'onda grezza alla stima quantitativa dell'età"
+            "Conquistato il 1° posto nella classifica pubblica del corso, sviluppando una pipeline di regressione ensemble che combina CatBoost e Random Forest",
+            "Massimizzata l'accuratezza predittiva su parlanti eterogenei, estraendo feature ibride da spettrogrammi Mel, descrittori spettrali e parametri statistici",
+            "Minimizzato l'errore di stima su registrazioni vocali fuori distribuzione, ottimizzando strategie di riduzione dimensionale e scaling robusto"
           ],
           linkLabel: "Apri il repository"
         }
@@ -192,9 +192,9 @@ const portfolioCatalogData = {
           title: "Environmentally-aware Neural Architecture Search",
           text: "At Télécom Paris (LTCI), I engineered the Joule ecosystem, an end-to-end framework to measure, model, and minimize neural network energy consumption on edge hardware by coupling physical telemetry, differentiable estimation, and hardware-regularized pruning.",
           points: [
-            "JouleQuest: Developed an automated measurement tool profiling AI workloads with an INA226EVM sensor across 2,000+ configurations on Jetson and Raspberry Pi boards",
-            "JouleGrad: Re-engineered and rewrote the differentiable energy estimator in PyTorch, replacing heuristic tables with exact multilinear interpolation and autograd gradients",
-            "JouleNAS: Adapted a structured pruning algorithm to penalize empirical hardware energy during training via straight-through estimator gradients",
+            "JouleQuest: Automated hardware energy profiling across 2,000+ layer configurations on Jetson and Raspberry Pi boards by building a synchronized telemetry tool with an INA226EVM sensor",
+            "JouleGrad: Enabled exact differentiable energy optimization in PyTorch by replacing heuristic lookup tables with a multilinear interpolation autograd estimator",
+            "JouleNAS: Built a neural architecture search tool regularized by the energy consumption of the models to prune networks during training",
             "Validated results: Physically validated up to 60% energy reduction on real hardware measurements (Raspberry Pi 5, NVIDIA Jetson) on ResNet-18 with zero accuracy loss, identifying hardware-specific cache and memory bottlenecks"
           ],
           outcomes: [
@@ -239,9 +239,9 @@ const portfolioCatalogData = {
           title: "Neural Architecture Search per l'efficienza energetica",
           text: "Presso il laboratorio LTCI di Télécom Paris, ho sviluppato l'ecosistema Joule: un framework di ricerca end-to-end per misurare, modellare e ridurre il consumo energetico delle reti neurali su hardware edge, combinando telemetria fisica da sensore, stima differenziabile e pruning strutturato vincolato all'hardware.",
           points: [
-            "JouleQuest: Sviluppato un tool di misurazione automatizzato per carichi AI con sensore INA226EVM, profilando oltre 2.000 configurazioni di layer su schede Jetson e Raspberry Pi",
-            "JouleGrad: Riprogettato e riscritto in PyTorch lo stimatore differenziabile dei consumi energetici, sostituendo le tabelle euristiche con interpolazione multilineare esatta e gradienti autograd",
-            "JouleNAS: Adattato un algoritmo di pruning strutturato per penalizzare direttamente l'energia hardware misurata durante il training tramite gradienti straight-through estimator",
+            "JouleQuest: Automatizzata la profilazione energetica su oltre 2.000 configurazioni di layer su schede Jetson e Raspberry Pi, realizzando un tool di telemetria sincronizzato con sensore INA226EVM",
+            "JouleGrad: Resa possibile l'ottimizzazione energetica differenziabile in PyTorch, sostituendo tabelle euristiche con uno stimatore autograd a interpolazione multilineare esatta",
+            "JouleNAS: Sviluppato un tool di neural architecture search regolarizzato dal consumo energetico dei modelli per potare le reti durante il training",
             "Risultati validati: Validata fisicamente una riduzione dei consumi energetici fino al 60% tramite misurazioni su hardware reale (Raspberry Pi 5, NVIDIA Jetson) su ResNet-18 senza perdita di accuratezza, identificando colli di bottiglia specifici dell'hardware su cache e memoria"
           ],
           outcomes: [
