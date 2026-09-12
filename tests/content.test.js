@@ -22,12 +22,12 @@ test("the current catalog is valid", () => {
 });
 
 test("project headings preserve the current copy and support the next item", () => {
-  assert.equal(formatProjectHeading("en", 1), "One system. One different constraint.");
-  assert.equal(formatProjectHeading("it", 1), "Un progetto. Un problema concreto.");
-  assert.equal(formatProjectHeading("en", 5), "Five systems. Five different constraints.");
-  assert.equal(formatProjectHeading("it", 5), "Cinque progetti. Cinque problemi concreti.");
-  assert.equal(formatProjectHeading("en", 6), "Six systems. Six different constraints.");
-  assert.equal(formatProjectHeading("it", 6), "Sei progetti. Sei problemi concreti.");
+  assert.equal(formatProjectHeading("en", 1), "One system, one different constraint");
+  assert.equal(formatProjectHeading("it", 1), "Un sistema, un vincolo reale");
+  assert.equal(formatProjectHeading("en", 5), "Five systems, five different constraints");
+  assert.equal(formatProjectHeading("it", 5), "Cinque sistemi, cinque vincoli differenti");
+  assert.equal(formatProjectHeading("en", 6), "Six systems, six different constraints");
+  assert.equal(formatProjectHeading("it", 6), "Sei sistemi, sei vincoli differenti");
 });
 
 test("a project can be added with one catalog record", () => {
