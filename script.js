@@ -273,18 +273,18 @@ function renderBotanicalAtmosphere() {
   `;
 }
 
-function renderConsoleSteps(steps, activeStep, interactive) {
+function renderConsoleSteps(steps, activeStep, interactiveKeys = []) {
   return steps
     .map((step, index) => {
       const number = String(index + 1).padStart(2, "0");
       const isActive = index === activeStep;
-      const isMeasureStep = interactive && index === 2;
+      const workflowKey = interactiveKeys[index];
 
-      if (isMeasureStep) {
+      if (workflowKey) {
         return `
           <li${isActive ? ' class="console-step-active"' : ""}>
             <span>${number}</span>
-            <button class="console-step-button" type="button" data-console-open="measure">
+            <button class="console-step-button" type="button" data-console-open="${workflowKey}">
               <span>${step}</span><span aria-hidden="true">&rarr;</span>
             </button>
           </li>
@@ -296,41 +296,57 @@ function renderConsoleSteps(steps, activeStep, interactive) {
     .join("");
 }
 
-function renderResearchConsole(experience, detailOpen) {
+function renderResearchConsole(experience, activeView = "overview") {
+  const subWorkflows = experience.console.subWorkflows || {};
+  const subWorkflowKeys = Object.keys(subWorkflows);
+
+  const subViewsHtml = subWorkflowKeys
+    .map((key) => {
+      const workflow = subWorkflows[key];
+      const isVisible = activeView === key;
+
+      return `
+        <div class="console-view" data-console-view="${key}"${isVisible ? "" : " hidden"}>
+          <div class="console-header">
+            <span>${workflow.label}</span>
+            <button class="console-back" type="button" data-console-back>
+              <span aria-hidden="true">&larr;</span> <span>${experience.console.backLabel}</span>
+            </button>
+          </div>
+          <ol class="console-flow">
+            ${renderConsoleSteps(workflow.steps, 3)}
+          </ol>
+          <div class="console-readout"><span>${experience.signalLabel}</span><strong>${experience.signalValue}</strong></div>
+        </div>
+      `;
+    })
+    .join("");
+
   return `
     <div class="research-console" aria-label="${experience.consoleLabel}" aria-live="polite">
-      <div class="console-view" data-console-view="overview"${detailOpen ? " hidden" : ""}>
+      <div class="console-view" data-console-view="overview"${activeView === "overview" ? "" : " hidden"}>
         <div class="console-header">
           <span>${experience.console.overviewLabel}</span>
           <span>${experience.device}</span>
         </div>
         <ol class="console-flow">
-          ${renderConsoleSteps(experience.console.overviewSteps, experience.activeStep, true)}
+          ${renderConsoleSteps(experience.console.overviewSteps, experience.activeStep, subWorkflowKeys)}
         </ol>
         <div class="console-readout"><span>${experience.signalLabel}</span><strong>${experience.signalValue}</strong></div>
       </div>
 
-      <div class="console-view" data-console-view="measure"${detailOpen ? "" : " hidden"}>
-        <div class="console-header">
-          <span>${experience.console.detailLabel}</span>
-          <button class="console-back" type="button" data-console-back>
-            <span aria-hidden="true">&larr;</span> <span>${experience.console.backLabel}</span>
-          </button>
-        </div>
-        <ol class="console-flow">
-          ${renderConsoleSteps(experience.console.detailSteps, 3, false)}
-        </ol>
-        <div class="console-readout"><span>${experience.signalLabel}</span><strong>${experience.signalValue}</strong></div>
-      </div>
+      ${subViewsHtml}
     </div>
   `;
 }
 
 function renderExperiences(language) {
-  const detailOpenIds = new Set(
-    [...experienceList.querySelectorAll(".research-section")]
-      .filter((section) => !section.querySelector('[data-console-view="measure"]')?.hidden)
-      .map((section, index) => section.dataset.experienceId || portfolioCatalog.experiences[index]?.id)
+  const activeViewMap = new Map(
+    [...experienceList.querySelectorAll(".research-section")].map((section, index) => {
+      const id = section.dataset.experienceId || portfolioCatalog.experiences[index]?.id;
+      const openView = [...section.querySelectorAll("[data-console-view]")].find((view) => !view.hidden);
+      return [id, openView?.dataset.consoleView || "overview"];
+    })
   );
   const visibleIds = new Set(
     [...experienceList.querySelectorAll(".research-section.reveal-visible")]
@@ -341,7 +357,7 @@ function renderExperiences(language) {
     .map((experience, index) => {
       const sectionId = index === 0 ? "experience" : `experience-${experience.id}`;
       const titleId = index === 0 ? "research-title" : `research-title-${experience.id}`;
-      const detailOpen = detailOpenIds.has(experience.id);
+      const activeView = activeViewMap.get(experience.id) || "overview";
       const revealVisible = visibleIds.has(experience.id) ? " reveal-visible" : "";
 
       return `
@@ -361,7 +377,7 @@ function renderExperiences(language) {
               </ul>
             </div>
 
-            ${renderResearchConsole(experience, detailOpen)}
+            ${renderResearchConsole(experience, activeView)}
           </div>
 
           <div class="research-outcomes" aria-label="${experience.outcomesLabel}">
@@ -603,14 +619,34 @@ function setupResearchConsole() {
     const button = event.target.closest("[data-console-open], [data-console-back]");
     if (!button) return;
 
-    const console = button.closest(".research-console");
-    const overview = console.querySelector('[data-console-view="overview"]');
-    const measure = console.querySelector('[data-console-view="measure"]');
-    const showMeasure = button.hasAttribute("data-console-open");
+    const consoleEl = button.closest(".research-console");
+    if (!consoleEl) return;
 
-    overview.hidden = showMeasure;
-    measure.hidden = !showMeasure;
-    console.querySelector(showMeasure ? "[data-console-back]" : "[data-console-open]").focus();
+    const targetKey = button.getAttribute("data-console-open");
+    if (targetKey) {
+      const targetView = consoleEl.querySelector(`[data-console-view="${targetKey}"]`);
+      if (targetView) {
+        consoleEl.querySelectorAll("[data-console-view]").forEach((v) => {
+          v.hidden = true;
+        });
+        targetView.hidden = false;
+        targetView.querySelector("[data-console-back]")?.focus();
+      }
+    } else if (button.hasAttribute("data-console-back")) {
+      const currentView = button.closest("[data-console-view]");
+      const currentKey = currentView?.dataset.consoleView;
+      consoleEl.querySelectorAll("[data-console-view]").forEach((v) => {
+        v.hidden = true;
+      });
+      const overview = consoleEl.querySelector('[data-console-view="overview"]');
+      if (overview) {
+        overview.hidden = false;
+        const trigger = currentKey
+          ? consoleEl.querySelector(`[data-console-open="${currentKey}"]`)
+          : null;
+        (trigger || consoleEl.querySelector("[data-console-open]"))?.focus();
+      }
+    }
   });
 }
 

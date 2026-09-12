@@ -107,42 +107,84 @@
               <li data-i18n="experience.point1">JouleQuest: Developed an automated measurement tool profiling AI workloads with an INA226EVM sensor across 2,000+ configurations on Jetson and Raspberry Pi boards</li>
               <li data-i18n="experience.point2">JouleGrad: Re-engineered and rewrote the differentiable energy estimator in PyTorch, replacing heuristic tables with exact multilinear interpolation and autograd gradients</li>
               <li data-i18n="experience.point3">JouleNAS: Adapted a structured pruning algorithm to penalize empirical hardware energy during training via straight-through estimator gradients</li>
-              <li data-i18n="experience.point4">Validated results: Achieved up to 43% energy reduction on ResNet-18 deployed on NVIDIA Jetson with zero accuracy loss on CIFAR-10 and Imagenette</li>
+              <li data-i18n="experience.point4">Validated results: Physically validated up to 60% energy reduction on real hardware measurements (Raspberry Pi 5, NVIDIA Jetson) on ResNet-18 with zero accuracy loss, identifying hardware-specific cache and memory bottlenecks</li>
             </ul>
           </div>
 
           <div class="research-console" aria-label="Joule ecosystem workflow" aria-live="polite">
             <div class="console-view" data-console-view="overview">
               <div class="console-header">
-                <span data-i18n="experience.overviewLabel">Joule ecosystem workflow</span>
+                <span>Joule ecosystem workflow</span>
                 <span>INA226EVM</span>
               </div>
               <ol class="console-flow">
-                <li><span>01</span><strong data-i18n="experience.overview1">Search</strong></li>
-                <li><span>02</span><strong data-i18n="experience.overview2">Deploy</strong></li>
                 <li>
-                  <span>03</span>
+                  <span>01</span>
                   <button class="console-step-button" type="button" data-console-open="measure">
-                    <span data-i18n="experience.overview3">Measure</span><span aria-hidden="true">&rarr;</span>
+                    <span>Measure</span><span aria-hidden="true">&rarr;</span>
                   </button>
                 </li>
-                <li class="console-step-active"><span>04</span><strong data-i18n="experience.overview4">Regularize</strong></li>
+                <li>
+                  <span>02</span>
+                  <button class="console-step-button" type="button" data-console-open="model">
+                    <span>Model</span><span aria-hidden="true">&rarr;</span>
+                  </button>
+                </li>
+                <li>
+                  <span>03</span>
+                  <button class="console-step-button" type="button" data-console-open="train">
+                    <span>Train</span><span aria-hidden="true">&rarr;</span>
+                  </button>
+                </li>
+                <li class="console-step-active"><span>04</span><strong>Deploy</strong></li>
               </ol>
               <div class="console-readout"><span>ENERGY SIGNAL</span><strong>COMPLETED</strong></div>
             </div>
 
             <div class="console-view" data-console-view="measure" hidden>
               <div class="console-header">
-                <span data-i18n="experience.deviceLabel">JouleQuest measurement loop</span>
+                <span>JouleQuest measurement loop</span>
                 <button class="console-back" type="button" data-console-back>
-                  <span aria-hidden="true">&larr;</span> <span data-i18n="experience.consoleBack">Back</span>
+                  <span aria-hidden="true">&larr;</span> <span>Back</span>
                 </button>
               </div>
               <ol class="console-flow">
-                <li><span>01</span><strong data-i18n="experience.device1">Run</strong></li>
-                <li><span>02</span><strong data-i18n="experience.device2">Calibrate</strong></li>
-                <li><span>03</span><strong data-i18n="experience.device3">Capture</strong></li>
-                <li class="console-step-active"><span>04</span><strong data-i18n="experience.device4">Analyze</strong></li>
+                <li><span>01</span><strong>Run</strong></li>
+                <li><span>02</span><strong>Calibrate</strong></li>
+                <li><span>03</span><strong>Capture</strong></li>
+                <li class="console-step-active"><span>04</span><strong>Analyze</strong></li>
+              </ol>
+              <div class="console-readout"><span>ENERGY SIGNAL</span><strong>COMPLETED</strong></div>
+            </div>
+
+            <div class="console-view" data-console-view="model" hidden>
+              <div class="console-header">
+                <span>JouleGrad differentiable estimator</span>
+                <button class="console-back" type="button" data-console-back>
+                  <span aria-hidden="true">&larr;</span> <span>Back</span>
+                </button>
+              </div>
+              <ol class="console-flow">
+                <li><span>01</span><strong>Tabulate</strong></li>
+                <li><span>02</span><strong>Bracket</strong></li>
+                <li><span>03</span><strong>Interpolate</strong></li>
+                <li class="console-step-active"><span>04</span><strong>Differentiate</strong></li>
+              </ol>
+              <div class="console-readout"><span>ENERGY SIGNAL</span><strong>COMPLETED</strong></div>
+            </div>
+
+            <div class="console-view" data-console-view="train" hidden>
+              <div class="console-header">
+                <span>JouleNAS training loop</span>
+                <button class="console-back" type="button" data-console-back>
+                  <span aria-hidden="true">&larr;</span> <span>Back</span>
+                </button>
+              </div>
+              <ol class="console-flow">
+                <li><span>01</span><strong>Mask</strong></li>
+                <li><span>02</span><strong>Penalize</strong></li>
+                <li><span>03</span><strong>Step</strong></li>
+                <li class="console-step-active"><span>04</span><strong>Harvest</strong></li>
               </ol>
               <div class="console-readout"><span>ENERGY SIGNAL</span><strong>COMPLETED</strong></div>
             </div>
@@ -151,8 +193,8 @@
 
         <div class="research-outcomes" aria-label="Research outcomes">
           <div class="research-outcome">
-            <strong data-i18n="experience.result1Value">43%</strong>
-            <span data-i18n="experience.result1Label">energy reduction on ResNet-18 on Jetson with zero accuracy loss</span>
+            <strong data-i18n="experience.result1Value">60%</strong>
+            <span data-i18n="experience.result1Label">energy reduction validated on real hardware (Pi 5 / Jetson) with zero accuracy loss</span>
           </div>
           <div class="research-outcome">
             <strong data-i18n="experience.result2Value">2,000+</strong>
@@ -251,7 +293,7 @@
       <span>Paris, France / 2026</span>
     </footer>
 
-    <script src="content.js?v=8"></script>
-    <script src="script.js?v=20"></script>
+    <script src="content.js?v=10"></script>
+    <script src="script.js?v=21"></script>
   </body>
 </html>

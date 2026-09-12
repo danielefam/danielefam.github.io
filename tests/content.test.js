@@ -86,6 +86,12 @@ test("validation reports the exact invalid field", () => {
         catalog.experiences[0].content.en.outcomes.pop();
       },
       message: "experiences[0].content.en.outcomes must contain exactly 3 items"
+    },
+    {
+      mutate(catalog) {
+        delete catalog.experiences[0].content.en.console.subWorkflows;
+      },
+      message: "experiences[0].content.en.console.subWorkflows must be an object"
     }
   ];
 

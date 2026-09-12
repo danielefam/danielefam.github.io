@@ -195,12 +195,12 @@ const portfolioCatalogData = {
             "JouleQuest: Developed an automated measurement tool profiling AI workloads with an INA226EVM sensor across 2,000+ configurations on Jetson and Raspberry Pi boards",
             "JouleGrad: Re-engineered and rewrote the differentiable energy estimator in PyTorch, replacing heuristic tables with exact multilinear interpolation and autograd gradients",
             "JouleNAS: Adapted a structured pruning algorithm to penalize empirical hardware energy during training via straight-through estimator gradients",
-            "Validated results: Achieved up to 43% energy reduction on ResNet-18 deployed on NVIDIA Jetson with zero accuracy loss on CIFAR-10 and Imagenette"
+            "Validated results: Physically validated up to 60% energy reduction on real hardware measurements (Raspberry Pi 5, NVIDIA Jetson) on ResNet-18 with zero accuracy loss, identifying hardware-specific cache and memory bottlenecks"
           ],
           outcomes: [
             {
-              value: "43%",
-              label: "energy reduction on ResNet-18 on Jetson with zero accuracy loss"
+              value: "60%",
+              label: "energy reduction validated on real hardware (Pi 5 / Jetson) with zero accuracy loss"
             },
             {
               value: "2,000+",
@@ -213,10 +213,25 @@ const portfolioCatalogData = {
           ],
           console: {
             overviewLabel: "Joule ecosystem workflow",
-            detailLabel: "JouleQuest measurement loop",
             backLabel: "Back",
-            overviewSteps: ["Search", "Deploy", "Measure", "Regularize"],
-            detailSteps: ["Run", "Calibrate", "Capture", "Analyze"]
+            overviewSteps: ["Measure", "Model", "Train", "Deploy"],
+            subWorkflows: {
+              measure: {
+                label: "JouleQuest measurement loop",
+                tool: "JouleQuest",
+                steps: ["Run", "Calibrate", "Capture", "Analyze"]
+              },
+              model: {
+                label: "JouleGrad differentiable estimator",
+                tool: "JouleGrad",
+                steps: ["Tabulate", "Bracket", "Interpolate", "Differentiate"]
+              },
+              train: {
+                label: "JouleNAS training loop",
+                tool: "JouleNAS",
+                steps: ["Mask", "Penalize", "Step", "Harvest"]
+              }
+            }
           }
         },
         it: {
@@ -227,12 +242,12 @@ const portfolioCatalogData = {
             "JouleQuest: Sviluppato un tool di misurazione automatizzato per carichi AI con sensore INA226EVM, profilando oltre 2.000 configurazioni di layer su schede Jetson e Raspberry Pi",
             "JouleGrad: Riprogettato e riscritto in PyTorch lo stimatore differenziabile dei consumi energetici, sostituendo le tabelle euristiche con interpolazione multilineare esatta e gradienti autograd",
             "JouleNAS: Adattato un algoritmo di pruning strutturato per penalizzare direttamente l'energia hardware misurata durante il training tramite gradienti straight-through estimator",
-            "Risultati validati: Riduzione fino al 43% dei consumi energetici su ResNet-18 distribuita su NVIDIA Jetson a parità di accuratezza su CIFAR-10 e Imagenette"
+            "Risultati validati: Validata fisicamente una riduzione dei consumi energetici fino al 60% tramite misurazioni su hardware reale (Raspberry Pi 5, NVIDIA Jetson) su ResNet-18 senza perdita di accuratezza, identificando colli di bottiglia specifici dell'hardware su cache e memoria"
           ],
           outcomes: [
             {
-              value: "43%",
-              label: "riduzione dei consumi su ResNet-18 su Jetson senza perdita di accuratezza"
+              value: "60%",
+              label: "riduzione dei consumi validata su hardware reale (Pi 5 / Jetson) senza perdita di accuratezza"
             },
             {
               value: "2.000+",
@@ -245,10 +260,25 @@ const portfolioCatalogData = {
           ],
           console: {
             overviewLabel: "Flusso dell'ecosistema Joule",
-            detailLabel: "Ciclo di misurazione JouleQuest",
             backLabel: "Indietro",
-            overviewSteps: ["Ricerca", "Deploy", "Misura", "Regolarizzazione"],
-            detailSteps: ["Esecuzione", "Calibrazione", "Campionamento", "Analisi"]
+            overviewSteps: ["Misura", "Modellazione", "Training", "Deploy"],
+            subWorkflows: {
+              measure: {
+                label: "Ciclo di misurazione JouleQuest",
+                tool: "JouleQuest",
+                steps: ["Esecuzione", "Calibrazione", "Campionamento", "Analisi"]
+              },
+              model: {
+                label: "Stimatore differenziabile JouleGrad",
+                tool: "JouleGrad",
+                steps: ["Tabulazione", "Bracketing", "Interpolazione", "Differenziazione"]
+              },
+              train: {
+                label: "Ciclo di training JouleNAS",
+                tool: "JouleNAS",
+                steps: ["Mascheramento", "Penalizzazione", "Aggiornamento", "Estrazione"]
+              }
+            }
           }
         }
       }
@@ -370,16 +400,33 @@ function validatePortfolioCatalog(catalog) {
       }
 
       const consolePath = `${localizedPath}.console`;
-      ["overviewLabel", "detailLabel", "backLabel"].forEach((field) => {
+      ["overviewLabel", "backLabel"].forEach((field) => {
         requireString(localized.console?.[field], `${consolePath}.${field}`);
       });
-      ["overviewSteps", "detailSteps"].forEach((field) => {
-        if (requireArray(localized.console?.[field], `${consolePath}.${field}`, 4)) {
-          localized.console[field].forEach((step, stepIndex) => {
-            requireString(step, `${consolePath}.${field}[${stepIndex}]`);
-          });
+      if (requireArray(localized.console?.overviewSteps, `${consolePath}.overviewSteps`, 4)) {
+        localized.console.overviewSteps.forEach((step, stepIndex) => {
+          requireString(step, `${consolePath}.overviewSteps[${stepIndex}]`);
+        });
+      }
+      if (!localized.console?.subWorkflows || typeof localized.console.subWorkflows !== "object") {
+        errors.push(`${consolePath}.subWorkflows must be an object`);
+      } else {
+        const subKeys = Object.keys(localized.console.subWorkflows);
+        if (subKeys.length === 0) {
+          errors.push(`${consolePath}.subWorkflows must contain at least one workflow`);
         }
-      });
+        subKeys.forEach((key) => {
+          const subPath = `${consolePath}.subWorkflows.${key}`;
+          const sub = localized.console.subWorkflows[key];
+          requireString(sub?.label, `${subPath}.label`);
+          requireString(sub?.tool, `${subPath}.tool`);
+          if (requireArray(sub?.steps, `${subPath}.steps`, 4)) {
+            sub.steps.forEach((step, stepIndex) => {
+              requireString(step, `${subPath}.steps[${stepIndex}]`);
+            });
+          }
+        });
+      }
     });
   });
 
