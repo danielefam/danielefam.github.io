@@ -2342,6 +2342,7 @@ main,
 
   .header-actions {
     justify-self: end;
+    gap: 8px;
   }
 
   .header-mood {
@@ -2352,17 +2353,23 @@ main,
   }
 
   .mood-bubble {
-    max-width: 210px;
+    right: -20px;
+    max-width: 200px;
     font-size: 0.68rem;
     padding: 6px 10px;
   }
 
   .mood-bubble::before {
-    right: 15px;
+    right: 36px;
   }
 
   .header-contact {
-    display: none;
+    display: inline-flex;
+    min-height: 34px;
+    height: 34px;
+    padding: 0 10px;
+    font-size: 0.68rem;
+    gap: 6px;
   }
 
   main,
