@@ -16,7 +16,7 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=26" />
+    <link rel="stylesheet" href="styles.css?v=32" />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -34,10 +34,11 @@
       </nav>
 
       <div class="header-actions">
-        <div class="language-toggle" aria-label="Language selector">
-          <button class="lang-button is-active" type="button" data-lang="en">EN</button>
-          <button class="lang-button" type="button" data-lang="it">IT</button>
-        </div>
+        <button class="header-mood" type="button" aria-label="Interactive smiley face: hover to stick tongue out" title=":)">
+          <span class="mood-face" aria-hidden="true">
+            <span class="mood-eyes">:</span><span class="mood-mouth"><span class="mouth-smile">)</span><span class="mouth-tongue">P</span></span>
+          </span>
+        </button>
         <a class="header-contact" href="mailto:daniele.fama03@outlook.com">Email <span aria-hidden="true">&nearr;</span></a>
       </div>
     </header>
@@ -91,23 +92,23 @@
           </span>
         </div>
         <div class="section-kicker-row">
-          <p class="section-tag" data-i18n="experience.tag">Research internship · <a href="https://anr.fr/Projet-ANR-24-CE23-4369" target="_blank" rel="noreferrer" class="research-fund-link" title="ANR BANERA project">BANERA</a> · 2026</p>
+          <p class="section-tag">Research internship · <a href="https://anr.fr/Projet-ANR-24-CE23-4369" target="_blank" rel="noreferrer" class="research-fund-link" title="ANR BANERA project">BANERA</a> · 2026</p>
           <span class="research-state"><span aria-hidden="true"></span> JOULE / COMPLETED</span>
         </div>
 
         <div class="research-grid">
           <div class="research-copy">
-            <h2 id="research-title" class="section-title" data-i18n="experience.title">
+            <h2 id="research-title" class="section-title">
               Environmentally-aware Neural Architecture Search
             </h2>
-            <p class="section-text" data-i18n="experience.text">
+            <p class="section-text">
               At T&#233;l&#233;com Paris (LTCI), I engineered the Joule ecosystem, an end-to-end framework to measure, model, and minimize neural network energy consumption on edge hardware by coupling physical telemetry, differentiable estimation, and hardware-regularized pruning.
             </p>
             <ul class="research-points">
-              <li data-i18n="experience.point1">JouleQuest: Automated hardware energy profiling across 2,000+ layer configurations on Jetson and Raspberry Pi boards by building a synchronized telemetry tool with an INA226EVM sensor</li>
-              <li data-i18n="experience.point2">JouleGrad: Enabled exact differentiable energy optimization in PyTorch by replacing heuristic lookup tables with a multilinear interpolation autograd estimator</li>
-              <li data-i18n="experience.point3">JouleNAS: Built an architecture search tool that finds energy-efficient models by pruning networks during training with real hardware measurements</li>
-              <li data-i18n="experience.point4">Validated results: Physically validated up to 60% energy reduction on real hardware measurements (Raspberry Pi 5, NVIDIA Jetson) on ResNet-18 with zero accuracy loss, identifying hardware-specific cache and memory bottlenecks</li>
+              <li>JouleQuest: Automated hardware energy profiling across 2,000+ layer configurations on Jetson and Raspberry Pi boards by building a synchronized telemetry tool with an INA226EVM sensor</li>
+              <li>JouleGrad: Enabled exact differentiable energy optimization in PyTorch by replacing heuristic lookup tables with a multilinear interpolation autograd estimator</li>
+              <li>JouleNAS: Built an architecture search tool that finds energy-efficient models by pruning networks during training with real hardware measurements</li>
+              <li>Validated results: Physically validated up to 60% energy reduction on real hardware measurements (Raspberry Pi 5, NVIDIA Jetson) on ResNet-18 with zero accuracy loss, identifying hardware-specific cache and memory bottlenecks</li>
             </ul>
           </div>
 
@@ -193,16 +194,16 @@
 
         <div class="research-outcomes" aria-label="Research outcomes">
           <div class="research-outcome">
-            <strong data-i18n="experience.result1Value">60%</strong>
-            <span data-i18n="experience.result1Label">energy reduction validated on real hardware (Pi 5 / Jetson) with zero accuracy loss</span>
+            <strong>60%</strong>
+            <span>energy reduction validated on real hardware (Pi 5 / Jetson) with zero accuracy loss</span>
           </div>
           <div class="research-outcome">
-            <strong data-i18n="experience.result2Value">2,000+</strong>
-            <span data-i18n="experience.result2Label">layer configurations profiled with physical sensor telemetry</span>
+            <strong>2,000+</strong>
+            <span>layer configurations profiled with physical sensor telemetry</span>
           </div>
           <div class="research-outcome">
-            <strong data-i18n="experience.result3Value">3 tools</strong>
-            <span data-i18n="experience.result3Label">JouleQuest (measure), JouleGrad (estimate), JouleNAS (search)</span>
+            <strong>3 tools</strong>
+            <span>JouleQuest (measure), JouleGrad (estimate), JouleNAS (search)</span>
           </div>
         </div>
       </section>
@@ -293,7 +294,7 @@
       <span>Paris, France / 2026</span>
     </footer>
 
-    <script src="content.js?v=11"></script>
-    <script src="script.js?v=22"></script>
+    <script src="content.js?v=12"></script>
+    <script src="script.js?v=29"></script>
   </body>
 </html>

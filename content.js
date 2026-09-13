@@ -19,19 +19,6 @@ const portfolioCatalogData = {
             "Eliminated runtime memory overhead on a 64 KB RAM calculator by engineering a standalone C inference engine with zero dynamic allocations or floating-point instructions"
           ],
           linkLabel: "View repository"
-        },
-        it: {
-          title: "Riconoscimento di cifre scritte a mano su calcolatrice",
-          text: "Una rete neurale fixed-point nativa per il riconoscimento di cifre scritte a mano su Casio fx-9860GIII: dall'addestramento in NumPy all'inferenza portabile in C puro",
-          meta: "ML embedded · C / Python · 2026",
-          metric: "95.47%",
-          metricLabel: "accuratezza INT8 su MNIST",
-          bullets: [
-            "Mantenuta un'accuratezza del 95,47% su MNIST con appena 0,06 punti percentuali di scarto dal float32, quantizzando un MLP 256-32-10 a precisione INT8",
-            "Garantita la perfetta parità numerica (100%) su 1.000 vettori di test, validando l'inferenza fixed-point in C puro a fronte della baseline NumPy",
-            "Azzerato l'overhead di memoria su calcolatrice con 64 KB di RAM, realizzando un motore di inferenza in C autonomo senza allocazioni dinamiche né istruzioni floating-point"
-          ],
-          linkLabel: "Apri il repository"
         }
       }
     },
@@ -54,19 +41,6 @@ const portfolioCatalogData = {
             "Validated distributed reliability across 4 analytical jobs with 89 automated Go unit tests by benchmarking high-throughput Common Crawl workloads"
           ],
           linkLabel: "View repository"
-        },
-        it: {
-          title: "MapReduce distribuito su macchine di laboratorio",
-          text: "Un framework MapReduce fault-tolerant in Go che coordina worker remoti, elabora dump Common Crawl ed esegue job analitici modulari senza privilegi di root né container",
-          meta: "Sistemi distribuiti · Go · 2026",
-          metric: "64 nodi",
-          metricLabel: "benchmark con dataset Common Crawl",
-          bullets: [
-            "Scalata l'elaborazione distribuita fino a 64 nodi di laboratorio senza privilegi di root, realizzando una pipeline MapReduce modulare coordinata via HTTP e SSH",
-            "Garantita la continuità del servizio a fronte di crash dei nodi senza perdita di dati, implementando cold spare, monitoraggio heartbeat e ripristino su epoche",
-            "Validata l'affidabilità su 4 job analitici tramite 89 test automatici in Go, eseguendo benchmark prestazionali su dataset Common Crawl"
-          ],
-          linkLabel: "Apri il repository"
         }
       }
     },
@@ -89,19 +63,6 @@ const portfolioCatalogData = {
             "Enhanced cross-modal grounding under tight parameter constraints by integrating FiLM conditioning directly into the compact temporal backbone"
           ],
           linkLabel: "View repository"
-        },
-        it: {
-          title: "ARDA VSLNet: localizzazione video-linguaggio efficiente",
-          text: "Estensione di VSLNet con FiLM conditioning e knowledge distillation per la localizzazione temporale di query in linguaggio naturale nei video Ego4D",
-          meta: "Multimodal ML · PyTorch · 2025",
-          metric: "88.47%",
-          metricLabel: "riduzione della dimensione del modello",
-          bullets: [
-            "Superata del 19,73% una baseline di pari dimensioni su Ego4D NLQ, trasferendo rappresentazioni multimodali tramite knowledge distillation",
-            "Ridotti i parametri del 47,62% e la complessità computazionale dell'80,6% dei GFLOP, progettando una distillazione strutturata a blocchi",
-            "Migliorato il condizionamento video-linguaggio con risorse computazionali ridotte, integrando moduli FiLM direttamente nella dorsale temporale compatta"
-          ],
-          linkLabel: "Apri il repository"
         }
       }
     },
@@ -124,19 +85,6 @@ const portfolioCatalogData = {
             "Verified strict atomic register semantics with 100% linearizable traces by building an automated history-checking verification harness analyzing read/write logs"
           ],
           linkLabel: "View repository"
-        },
-        it: {
-          title: "Key-Value Store distribuito e fault-tolerant",
-          text: "Uno storage chiave-valore distribuito basato sul modello ad attori, che implementa un registro atomico multi-writer multi-reader (MWMR) in Akka",
-          meta: "Sistemi distribuiti · Java / Akka · 2025",
-          metric: "MWMR",
-          metricLabel: "registro atomico",
-          bullets: [
-            "Eliminati colli di bottiglia e contesa sui lock, implementando un registro atomico Multi-Writer Multi-Reader (MWMR) basato su passaggio di messaggi tra attori Akka",
-            "Preservata la consistenza dei dati sotto crash di nodi e partizioni di rete simulate, sviluppando protocolli di consenso a quorum con replicazione dinamica",
-            "Dimostrata la correttezza formale delle esecuzioni con il 100% di tracce linearizzabili, realizzando un tool automatico di verifica della cronologia read/write"
-          ],
-          linkLabel: "Apri il repository"
         }
       }
     },
@@ -159,19 +107,6 @@ const portfolioCatalogData = {
             "Minimized estimation error on out-of-distribution audio recordings by systematically tuning dimensionality reduction and robust scaling strategies"
           ],
           linkLabel: "View repository"
-        },
-        it: {
-          title: "Stima dell'età da segnali vocali",
-          text: "Una pipeline di regressione end-to-end che combina estrazione di feature acustiche, preprocessing tabulare e modelli ensemble ottimizzati",
-          meta: "Audio ML · Python · 2025",
-          metric: "1°",
-          metricLabel: "posto nella classifica pubblica del corso",
-          bullets: [
-            "Conquistato il 1° posto nella classifica pubblica del corso, sviluppando una pipeline di regressione ensemble che combina CatBoost e Random Forest",
-            "Massimizzata l'accuratezza predittiva su parlanti eterogenei, estraendo feature ibride da spettrogrammi Mel, descrittori spettrali e parametri statistici",
-            "Minimizzato l'errore di stima su registrazioni vocali fuori distribuzione, ottimizzando strategie di riduzione dimensionale e scaling robusto"
-          ],
-          linkLabel: "Apri il repository"
         }
       }
     }
@@ -233,74 +168,23 @@ const portfolioCatalogData = {
               }
             }
           }
-        },
-        it: {
-          tag: 'Tirocinio di ricerca · <a href="https://anr.fr/Projet-ANR-24-CE23-4369" target="_blank" rel="noreferrer" class="research-fund-link" title="Progetto ANR BANERA">BANERA</a> · 2026',
-          title: "Neural Architecture Search per l'efficienza energetica",
-          text: "Presso il laboratorio LTCI di Télécom Paris, ho sviluppato l'ecosistema Joule: un framework di ricerca end-to-end per misurare, modellare e ridurre il consumo energetico delle reti neurali su hardware edge, combinando telemetria fisica da sensore, stima differenziabile e pruning strutturato vincolato all'hardware.",
-          points: [
-            "JouleQuest: Automatizzata la profilazione energetica su oltre 2.000 configurazioni di layer su schede Jetson e Raspberry Pi, realizzando un tool di telemetria sincronizzato con sensore INA226EVM",
-            "JouleGrad: Resa possibile l'ottimizzazione energetica differenziabile in PyTorch, sostituendo tabelle euristiche con uno stimatore autograd a interpolazione multilineare esatta",
-            "JouleNAS: Sviluppato un tool di neural architecture search regolarizzato dal consumo energetico dei modelli per potare le reti durante il training",
-            "Risultati validati: Validata fisicamente una riduzione dei consumi energetici fino al 60% tramite misurazioni su hardware reale (Raspberry Pi 5, NVIDIA Jetson) su ResNet-18 senza perdita di accuratezza, identificando colli di bottiglia specifici dell'hardware su cache e memoria"
-          ],
-          outcomes: [
-            {
-              value: "60%",
-              label: "riduzione dei consumi validata su hardware reale (Pi 5 / Jetson) senza perdita di accuratezza"
-            },
-            {
-              value: "2.000+",
-              label: "configurazioni di layer profilate con telemetria da sensore fisico"
-            },
-            {
-              value: "3 moduli",
-              label: "JouleQuest (misura), JouleGrad (stima), JouleNAS (ottimizzazione)"
-            }
-          ],
-          console: {
-            overviewLabel: "Flusso dell'ecosistema Joule",
-            backLabel: "Indietro",
-            overviewSteps: ["Misura", "Modellazione", "Training", "Deploy"],
-            subWorkflows: {
-              measure: {
-                label: "Ciclo di misurazione JouleQuest",
-                tool: "JouleQuest",
-                steps: ["Esecuzione", "Calibrazione", "Campionamento", "Analisi"]
-              },
-              model: {
-                label: "Stimatore differenziabile JouleGrad",
-                tool: "JouleGrad",
-                steps: ["Tabulazione", "Bracketing", "Interpolazione", "Differenziazione"]
-              },
-              train: {
-                label: "Ciclo di training JouleNAS",
-                tool: "JouleNAS",
-                steps: ["Mascheramento", "Penalizzazione", "Aggiornamento", "Estrazione"]
-              }
-            }
-          }
         }
       }
     }
   ]
 };
 
-const catalogLanguages = ["en", "it"];
+const catalogLanguages = ["en"];
 const projectVisuals = new Set(["calculator", "database", "pov", "locks", "audio"]);
 const projectAccents = new Set(["orange", "lime", "blue"]);
 
-function formatProjectHeading(language, count) {
-  const numberWords = {
-    en: ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"],
-    it: ["Zero", "Un", "Due", "Tre", "Quattro", "Cinque", "Sei", "Sette", "Otto", "Nove", "Dieci"]
-  };
-  const countLabel = numberWords[language]?.[count] || String(count);
+function formatProjectHeading(arg1, arg2) {
+  const count = typeof arg1 === "number" ? arg1 : arg2;
+  const numberWords = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"];
+  const countLabel = numberWords[count] || String(count);
   const countLabelLower = countLabel.toLowerCase();
 
-  if (count === 1 && language === "it") return "Un sistema, un vincolo reale";
   if (count === 1) return "One system, one different constraint";
-  if (language === "it") return `${countLabel} sistemi, ${countLabelLower} vincoli differenti`;
   return `${countLabel} systems, ${countLabelLower} different constraints`;
 }
 

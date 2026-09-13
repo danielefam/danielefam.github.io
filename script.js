@@ -109,116 +109,6 @@ const siteContent = {
           text: "Bachelor's Degree in Computer Engineering, 110/110 with honors, with a thesis on Tow-Thomas Butterworth filter design for audio-band applications."
         }
       ]
-    },
-    it: {
-      title: "Daniele Fam\u00e0",
-      nav: {
-        about: "Chi sono",
-        focus: "Competenze",
-        experience: "Ricerca",
-        highlights: "Progetti",
-        contact: "Contatti"
-      },
-      hero: {
-        eyebrow: "Sistemi AI · Frugal ML · Ricerca applicata",
-        title: "Sistemi AI, dal ciclo di addestramento all'hardware",
-        text:
-          "Sono Daniele Fam\u00e0, ingegnere al lavoro all'intersezione tra machine learning, software e hardware. Progetto modelli efficienti, architetture distribuite e prototipi di ricerca capaci di scalare oltre il notebook.",
-        primaryCta: "Scopri i progetti",
-        cvCta: "Scarica il CV",
-        secondaryCta: "Contattami",
-        proof1: "accuratezza INT8 su MNIST",
-        proof2: "con lode",
-        proof3: "compressione VSLNet",
-        cardLabel: "Profilo ingegneristico",
-        stat1Label: "Focus",
-        stat1Value: "Sistemi AI efficienti",
-        stat2Label: "Attualmente",
-        stat2Value: "T\u00e9l\u00e9com Paris",
-        stat3Label: "Stato",
-        stat3Value: "Aperto a nuove opportunit\u00e0",
-        cardNote: "Ricerca approfondita, rigore ingegneristico e risultati misurabili"
-      },
-      about: {
-        tag: "Profilo",
-        title: "I sistemi complessi mi affascinano, soprattutto quando il loro comportamento \u00e8 direttamente misurabile",
-        text1:
-          "Mi dedico all'intero ciclo di ingegneria dell'IA: comprensione del problema, progettazione dell'architettura, efficienza nell'inferenza e sviluppo di soluzioni chiare, robuste e verificabili.",
-        text2:
-          "I miei interessi spaziano tra deep learning multimodale, inferenza su sistemi embedded, profilazione energetica e sistemi distribuiti. L'obiettivo comune resta sempre lo stesso: trasformare la ricerca in sistemi concreti, misurabili ed efficienti."
-      },
-      focus: {
-        tag: "Competenze",
-        title: "Gli strumenti con cui progetto, sviluppo e rilascio"
-      },
-      highlights: {
-        tag: "Progetti",
-        title: "Cinque sistemi, cinque vincoli differenti",
-        intro:
-          "Dal machine learning embedded ai sistemi distribuiti fino alla visione egocentrica: ciascun progetto affronta vincoli reali e produce risultati empirici verificabili."
-      },
-      motionWords: [
-        "Machine learning",
-        "Sistemi distribuiti",
-        "Elaborazione dei segnali",
-        "PyTorch",
-        "Modelli efficienti",
-        "Computer vision",
-        "Audio ML",
-        "Python · C++",
-        "Italiano / Inglese"
-      ],
-      timeline: {
-        tag: "Formazione",
-        title: "Un percorso accademico tra Italia e Francia"
-      },
-      contact: {
-        tag: "Contatti",
-        title: "Alla ricerca del prossimo sistema complesso da costruire",
-        text:
-          "Valuto opportunit\u00e0 come AI Engineer, Machine Learning Engineer e in ruoli di ricerca applicata. Se stai sviluppando modelli intelligenti o infrastrutture ML ambiziose, parliamone.",
-        emailLabel: "Email",
-        linkedinLabel: "LinkedIn",
-        linkedinValue: "linkedin.com/in/daniele-fama",
-        cvLabel: "CV",
-        cvValue: "Curriculum in PDF",
-        githubValue: "github.com/danielefam"
-      },
-      focusCards: [
-        {
-          title: "Linguaggi",
-          text: "Python, Java, C/C++, MATLAB, PHP e JavaScript: utilizzati nello sviluppo di prototipi di ricerca, calcolo numerico e progetti software completi."
-        },
-        {
-          title: "Ecosistema Python",
-          text: "PyTorch, scikit-learn, NumPy, Pandas, Matplotlib, Keras e TensorFlow per modellazione, analisi dei dati e sperimentazione empirica."
-        },
-        {
-          title: "Dati e sistemi distribuiti",
-          text: "Hadoop, Spark e Akka, con esperienza nelle architetture distribuite per l'elaborazione di grandi moli di dati e nello sviluppo backend."
-        },
-        {
-          title: "Lingue operative",
-          text: "Italiano madrelingua, inglese fluente a livello professionale e nozioni di base di francese."
-        }
-      ],
-      timelineSteps: [
-        {
-          step: "2025-2027",
-          title: "T\u00e9l\u00e9com Paris",
-          text: "Master of Science in Engineering con corsi in algebra applicata, sistemi software distribuiti e Data Science."
-        },
-        {
-          step: "2024-2025",
-          title: "Politecnico di Torino",
-          text: "Laurea Magistrale in Data Science and Engineering, con focus su machine learning avanzato, deep learning e architetture distribuite per big data."
-        },
-        {
-          step: "2021-2024",
-          title: "Universit\u00e0 degli Studi di Catania",
-          text: "Laurea Triennale in Ingegneria Informatica (110/110 e lode). Tesi di laurea sul progetto di un filtro analogico Tow-Thomas Butterworth per la banda audio."
-        }
-      ]
     }
   }
 };
@@ -233,14 +123,13 @@ const highlightGrid = document.getElementById("highlight-grid");
 const timeline = document.getElementById("timeline");
 const motionTrack = document.getElementById("motion-track");
 const experienceList = document.getElementById("experience-list");
-const languageButtons = [...document.querySelectorAll("[data-lang]")];
 let revealObserver;
 
 function renderList(container, items, template) {
   container.innerHTML = items.map(template).join("");
 }
 
-function getLocalizedProjects(language) {
+function getLocalizedProjects(language = "en") {
   return portfolioCatalog.projects.map((project) => ({
     ...project,
     ...project.content[language],
@@ -253,7 +142,7 @@ function getLocalizedProjects(language) {
   }));
 }
 
-function getLocalizedExperiences(language) {
+function getLocalizedExperiences(language = "en") {
   return portfolioCatalog.experiences.map((experience) => ({
     ...experience,
     ...experience.content[language]
@@ -479,8 +368,8 @@ function renderProjectAtmosphere(visual) {
   return "";
 }
 
-function applyTranslations(language) {
-  const content = translations[language];
+function applyTranslations(language = "en") {
+  const content = translations[language] || translations.en;
   const projects = getLocalizedProjects(language);
 
   document.documentElement.lang = language;
@@ -559,24 +448,6 @@ function applyTranslations(language) {
   motionTrack.innerHTML = [...content.motionWords, ...content.motionWords]
     .map((word) => `<span class="motion-pill">${word}</span>`)
     .join("");
-
-  languageButtons.forEach((button) => {
-    const active = button.dataset.lang === language;
-    button.classList.toggle("is-active", active);
-    button.setAttribute("aria-pressed", String(active));
-  });
-
-  localStorage.setItem("portfolio-language", language);
-}
-
-function setupLanguageSwitcher() {
-  languageButtons.forEach((button) => {
-    button.addEventListener("click", () => applyTranslations(button.dataset.lang));
-  });
-
-  const storedLanguage = localStorage.getItem("portfolio-language");
-  const browserLanguage = navigator.language.toLowerCase().startsWith("it") ? "it" : "en";
-  applyTranslations(storedLanguage || browserLanguage);
 }
 
 function observeRevealNodes(root = document) {
@@ -650,6 +521,184 @@ function setupResearchConsole() {
   });
 }
 
-setupLanguageSwitcher();
+function triggerMoodExplosion(button) {
+  const container = document.createElement("div");
+  container.className = "mood-explosion";
+  container.setAttribute("aria-hidden", "true");
+  button.appendChild(container);
+
+  const shockwave = document.createElement("span");
+  shockwave.className = "mood-shockwave";
+  container.appendChild(shockwave);
+
+  const shockwave2 = document.createElement("span");
+  shockwave2.className = "mood-shockwave mood-shockwave-secondary";
+  container.appendChild(shockwave2);
+
+  const colors = ["var(--orange)", "var(--lime)", "var(--blue)", "var(--ink)", "#ffffff"];
+  const chars = ["+", "*", "✦", "×", "#", "•"];
+  const particleCount = 28;
+
+  for (let i = 0; i < particleCount; i++) {
+    const p = document.createElement("span");
+    p.className = "mood-particle";
+
+    const baseAngle = (i / particleCount) * 2 * Math.PI;
+    const angle = baseAngle + (Math.random() - 0.5) * 0.45;
+    const distance = 44 + Math.random() * 72;
+    const dx = Math.cos(angle) * distance;
+    const dy = Math.sin(angle) * distance + 16;
+    const rot = (Math.random() - 0.5) * 640;
+    const duration = 800 + Math.random() * 400;
+    const color = colors[Math.floor(Math.random() * colors.length)];
+
+    p.style.setProperty("--dx", `${dx.toFixed(1)}px`);
+    p.style.setProperty("--dy", `${dy.toFixed(1)}px`);
+    p.style.setProperty("--rot", `${rot.toFixed(0)}deg`);
+    p.style.setProperty("--duration", `${duration.toFixed(0)}ms`);
+
+    if (Math.random() > 0.6) {
+      p.textContent = chars[Math.floor(Math.random() * chars.length)];
+      p.style.color = color;
+      p.style.fontFamily = "var(--mono)";
+      p.style.fontSize = `${(10 + Math.random() * 6).toFixed(0)}px`;
+      p.style.fontWeight = "700";
+    } else {
+      const size = 4 + Math.random() * 4.5;
+      const isSquare = Math.random() > 0.35;
+      p.style.width = `${size.toFixed(1)}px`;
+      p.style.height = isSquare ? `${size.toFixed(1)}px` : `${(size * 1.7).toFixed(1)}px`;
+      p.style.backgroundColor = color;
+      p.style.borderRadius = Math.random() > 0.7 ? "50%" : "1px";
+      if (color === "var(--lime)" || color === "#ffffff") {
+        p.style.boxShadow = "0 0 3px rgba(17, 19, 15, 0.35)";
+      }
+    }
+
+    container.appendChild(p);
+  }
+
+  setTimeout(() => {
+    container.remove();
+  }, 1250);
+}
+
+let moodClickCount = 0;
+let moodClickResetTimer;
+let moodBubbleTimer;
+let moodBubbleLeaveTimer;
+let isHoveringMood = false;
+
+function dismissMoodBubble() {
+  const bubble = document.querySelector(".header-mood .mood-bubble");
+  if (!bubble || bubble.classList.contains("is-leaving")) return;
+
+  clearTimeout(moodBubbleTimer);
+  clearTimeout(moodBubbleLeaveTimer);
+
+  bubble.classList.add("is-leaving");
+  moodBubbleLeaveTimer = setTimeout(() => {
+    bubble.remove();
+  }, 270);
+}
+
+function showMoodBubble(button, text) {
+  let bubble = button.querySelector(".mood-bubble");
+  if (!bubble) {
+    bubble = document.createElement("div");
+    bubble.className = "mood-bubble";
+    bubble.setAttribute("role", "status");
+    button.appendChild(bubble);
+  } else {
+    bubble.classList.remove("is-leaving");
+    bubble.classList.remove("mood-bubble-bounce");
+    void bubble.offsetWidth;
+    bubble.classList.add("mood-bubble-bounce");
+  }
+
+  bubble.textContent = text;
+
+  clearTimeout(moodBubbleTimer);
+  clearTimeout(moodBubbleLeaveTimer);
+
+  const timeout = isHoveringMood ? 4000 : 1500;
+  moodBubbleTimer = setTimeout(() => {
+    dismissMoodBubble();
+  }, timeout);
+}
+
+function setupHeaderMood() {
+  const moodBtn = document.querySelector(".header-mood");
+  if (!moodBtn) return;
+
+  const eyes = moodBtn.querySelector(".mood-eyes");
+  let resetFaceTimer;
+
+  moodBtn.addEventListener("mouseenter", () => {
+    isHoveringMood = true;
+    clearTimeout(moodBubbleTimer);
+  });
+
+  moodBtn.addEventListener("mouseleave", () => {
+    isHoveringMood = false;
+    moodClickCount = 0;
+    clearTimeout(moodClickResetTimer);
+
+    const bubble = moodBtn.querySelector(".mood-bubble");
+    if (bubble && !bubble.classList.contains("is-leaving")) {
+      clearTimeout(moodBubbleTimer);
+      moodBubbleTimer = setTimeout(() => {
+        dismissMoodBubble();
+      }, 200);
+    }
+  });
+
+  document.addEventListener("pointerdown", (e) => {
+    if (!moodBtn.contains(e.target)) {
+      moodClickCount = 0;
+      dismissMoodBubble();
+    }
+  });
+
+  moodBtn.addEventListener("click", () => {
+    triggerMoodExplosion(moodBtn);
+
+    moodBtn.classList.remove("is-exploding");
+    void moodBtn.offsetWidth;
+    moodBtn.classList.add("is-exploding");
+
+    if (eyes) eyes.textContent = ">";
+    moodBtn.classList.add("is-tongue");
+
+    clearTimeout(resetFaceTimer);
+    resetFaceTimer = setTimeout(() => {
+      if (eyes) eyes.textContent = ":";
+      moodBtn.classList.remove("is-tongue");
+    }, 1200);
+
+    moodClickCount++;
+    clearTimeout(moodClickResetTimer);
+    moodClickResetTimer = setTimeout(() => {
+      moodClickCount = 0;
+    }, 8000);
+
+    if (moodClickCount >= 2) {
+      let message = "stop playing... please hire me 🙏";
+      if (moodClickCount >= 12) {
+        message = "still here? my inbox is waiting! 📩";
+      } else if (moodClickCount >= 8) {
+        message = "okay now you're just enjoying the explosions 💥";
+      } else if (moodClickCount >= 5) {
+        message = "seriously, my email is right next to me ↗";
+      } else if (moodClickCount >= 2) {
+        message = "stop playing... please hire me 🙏";
+      }
+      showMoodBubble(moodBtn, message);
+    }
+  });
+}
+
+applyTranslations("en");
 setupRevealAnimations();
 setupResearchConsole();
+setupHeaderMood();

@@ -23,11 +23,10 @@ test("the current catalog is valid", () => {
 
 test("project headings preserve the current copy and support the next item", () => {
   assert.equal(formatProjectHeading("en", 1), "One system, one different constraint");
-  assert.equal(formatProjectHeading("it", 1), "Un sistema, un vincolo reale");
   assert.equal(formatProjectHeading("en", 5), "Five systems, five different constraints");
-  assert.equal(formatProjectHeading("it", 5), "Cinque sistemi, cinque vincoli differenti");
   assert.equal(formatProjectHeading("en", 6), "Six systems, six different constraints");
-  assert.equal(formatProjectHeading("it", 6), "Sei sistemi, sei vincoli differenti");
+  assert.equal(formatProjectHeading(1), "One system, one different constraint");
+  assert.equal(formatProjectHeading(5), "Five systems, five different constraints");
 });
 
 test("a project can be added with one catalog record", () => {
@@ -65,9 +64,9 @@ test("validation reports the exact invalid field", () => {
     },
     {
       mutate(catalog) {
-        delete catalog.projects[0].content.it;
+        delete catalog.projects[0].content.en;
       },
-      message: "projects[0].content.it is required"
+      message: "projects[0].content.en is required"
     },
     {
       mutate(catalog) {
