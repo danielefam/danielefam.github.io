@@ -31,14 +31,14 @@ const portfolioCatalogData = {
       content: {
         en: {
           title: "Distributed MapReduce on Lab Machines",
-          text: "A fault-aware MapReduce framework in Go that deploys remote workers, processes Common Crawl data, and runs pluggable analytical jobs without root access or containers",
+          text: "A fault-tolerant MapReduce framework in Go that orchestrates remote workers, streams Common Crawl data, and executes pluggable analytical jobs without root access or containers",
           meta: "Distributed systems · Go · 2026",
-          metric: "64 nodes",
-          metricLabel: "measured Common Crawl benchmark",
+          metric: "5.45x",
+          metricLabel: "speedup across 64 lab nodes",
           bullets: [
-            "Scaled distributed analytical processing up to 64 unprivileged lab nodes by architecting an automated load-map-shuffle-reduce pipeline over HTTP and SSH",
-            "Achieved continuous job availability with zero data loss during worker node crashes by implementing cold-spare replacement, heartbeats, and epoch-based recovery",
-            "Validated distributed reliability across 4 analytical jobs with 89 automated Go unit tests by benchmarking high-throughput Common Crawl workloads"
+            "Achieved a 5.45x scaling speedup across 64 unprivileged lab nodes on Common Crawl by architecting a disk-backed streaming TSV shuffle that eliminated memory and NFS bottlenecks",
+            "Guaranteed zero data loss during worker crashes with sub-10s recovery by implementing an epoch-tracked slot state machine that activates cold spares and rewinds stale reduce phases",
+            "Validated 4 analytical jobs on Common Crawl, outperforming an 8-node Kafka baseline by 38x (0.266s vs 10.10s), by designing modular Go interfaces and automated integration harnesses"
           ],
           linkLabel: "View repository"
         }
