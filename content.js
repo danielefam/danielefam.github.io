@@ -123,12 +123,12 @@ const portfolioCatalogData = {
       activeStep: 3,
       content: {
         en: {
-          tag: 'Research internship · <a href="https://anr.fr/Projet-ANR-24-CE23-4369" target="_blank" rel="noreferrer" class="research-fund-link" title="ANR BANERA project">BANERA</a> · <a href="https://github.com/danielefam/jouleecosystem-report" target="_blank" rel="noreferrer" class="research-fund-link" title="Joule ecosystem technical report">Technical Report ↗</a> · 2026',
+          tag: 'Research internship · <a href="https://anr.fr/Projet-ANR-24-CE23-4369" target="_blank" rel="noreferrer" class="research-fund-link" title="ANR BANERA project">BANERA</a> · <a href="https://github.com/danielefam/jouleecosystem-report" target="_blank" rel="noreferrer" class="research-fund-link" title="Joule ecosystem technical report">Technical Report&nbsp;↗</a> · 2026',
           title: "Environmentally-aware Neural Architecture Search",
           text: "At Télécom Paris (LTCI), I engineered the Joule ecosystem, an end-to-end framework to measure, model, and minimize neural network energy consumption on edge hardware by coupling physical telemetry, differentiable estimation, and hardware-regularized pruning.",
           points: [
-            '<a href="https://github.com/danielefam/joulequest" target="_blank" rel="noreferrer" class="research-fund-link">JouleQuest ↗</a>: Automated hardware energy profiling across 2,000+ layer configurations on Jetson and Raspberry Pi boards by building a synchronized telemetry tool with an INA226EVM sensor',
-            '<a href="https://github.com/danielefam/joulegrad" target="_blank" rel="noreferrer" class="research-fund-link">JouleGrad ↗</a>: Enabled exact differentiable energy optimization in PyTorch by replacing heuristic lookup tables with a multilinear interpolation autograd estimator',
+            '<a href="https://github.com/danielefam/joulequest" target="_blank" rel="noreferrer" class="research-fund-link">JouleQuest&nbsp;↗</a>: Automated hardware energy profiling across 2,000+ layer configurations on Jetson and Raspberry Pi boards by building a synchronized telemetry tool with an INA226EVM sensor',
+            '<a href="https://github.com/danielefam/joulegrad" target="_blank" rel="noreferrer" class="research-fund-link">JouleGrad&nbsp;↗</a>: Enabled exact differentiable energy optimization in PyTorch by replacing heuristic lookup tables with a multilinear interpolation autograd estimator',
             "JouleNAS: Built a neural architecture search tool regularized by the energy consumption of the models to prune networks during training",
             "Validated results: Physically validated up to 60% energy reduction on real hardware measurements (Raspberry Pi 5, NVIDIA Jetson) on ResNet-18 with zero accuracy loss, identifying hardware-specific cache and memory bottlenecks"
           ],

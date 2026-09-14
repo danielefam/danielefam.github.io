@@ -1043,6 +1043,7 @@ main,
 
 .research-section .section-tag {
   color: var(--lime);
+  line-height: 1.6;
 }
 
 .research-fund-link {
@@ -1050,6 +1051,7 @@ main,
   text-decoration: underline;
   text-decoration-color: rgba(201, 255, 54, 0.45);
   text-underline-offset: 3px;
+  white-space: nowrap;
   transition: text-decoration-color 0.2s ease, opacity 0.2s ease;
 }
 
@@ -2565,6 +2567,7 @@ main,
   .section-kicker-row {
     align-items: start;
     flex-direction: column;
+    gap: 12px;
     margin-bottom: 30px;
   }
 
