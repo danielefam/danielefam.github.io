@@ -50,7 +50,7 @@ const siteContent = {
       motionWords: [
         "Watts, not guesses",
         "Neural nets on a calculator",
-        "From PyTorch to silicon",
+        "Putting neural nets on a diet",
         "60% fewer joules",
         "Crash-proof by design",
         "64 KB is plenty",
@@ -457,7 +457,7 @@ function applyTranslations(language = "en") {
     const isCurrent = index === steps.length - 1;
     return `
       <li class="route-stop${isCurrent ? " is-current" : ""}">
-        <span class="route-year">${item.step}${isCurrent ? '<span class="route-now">Now</span>' : ""}</span>
+        <span class="route-year">${item.step}</span>
         <span class="route-dot" aria-hidden="true"></span>
         <h3>${item.title}</h3>
         <p>${item.text}</p>
@@ -645,7 +645,9 @@ function setupAnchorScroll() {
     }
 
     window.scrollTo({ top: Math.max(0, top), behavior: prefersReducedMotion.matches ? "auto" : "smooth" });
-    history.pushState(null, "", `#${id}`);
+    if (window.location.hash) {
+      history.replaceState(null, "", window.location.pathname + window.location.search);
+    }
   });
 }
 
@@ -961,6 +963,143 @@ function setupHeaderMood() {
   });
 }
 
+function triggerEtnaEruption(volcano, isBig = false) {
+  if (prefersReducedMotion.matches) return;
+
+  const container = document.createElement("div");
+  container.className = "etna-eruption";
+  container.setAttribute("aria-hidden", "true");
+  volcano.appendChild(container);
+
+  const flash = document.createElement("span");
+  flash.className = isBig ? "etna-crater-flash is-big" : "etna-crater-flash";
+  container.appendChild(flash);
+
+  if (isBig) {
+    const shockwave = document.createElement("span");
+    shockwave.className = "etna-shockwave";
+    container.appendChild(shockwave);
+
+    const shockwave2 = document.createElement("span");
+    shockwave2.className = "etna-shockwave etna-shockwave-secondary";
+    container.appendChild(shockwave2);
+  }
+
+  const magmaColors = ["#fff6b8", "#ffb703", "#ff7b00", "#ff4f1f", "#d9260f", "#11130f"];
+  const emberChars = ["•", "✦", "*", "▲"];
+  const dropCount = isBig ? 30 : 12;
+
+  for (let i = 0; i < dropCount; i++) {
+    const drop = document.createElement("span");
+    drop.className = "etna-magma-drop";
+
+    const startX = (Math.random() - 0.5) * 6;
+    let dx;
+    let peakY;
+    let landY;
+    let duration;
+
+    if (isBig) {
+      const baseAngle = (i / dropCount) * 2 * Math.PI;
+      const angle = baseAngle + (Math.random() - 0.5) * 0.4;
+      const distance = 36 + Math.random() * 68;
+      dx = Math.cos(angle) * distance;
+      peakY = Math.sin(angle) * distance - (14 + Math.random() * 18);
+      landY = Math.sin(angle) * distance + (12 + Math.random() * 16);
+      duration = 720 + Math.random() * 380;
+    } else {
+      const spread = (i / (dropCount - 1) - 0.5) * 2;
+      dx = spread * (7 + Math.random() * 11) + (Math.random() - 0.5) * 4;
+      peakY = -(9 + Math.random() * 14);
+      landY = 5 + Math.random() * 9;
+      duration = 540 + Math.random() * 300;
+    }
+
+    const rot = (Math.random() - 0.5) * 540;
+    const isAsh = i % 6 === 0;
+    const color = isAsh ? "#11130f" : magmaColors[Math.floor(Math.random() * (magmaColors.length - 1))];
+
+    drop.style.setProperty("--start-x", `${startX.toFixed(1)}px`);
+    drop.style.setProperty("--dx", `${dx.toFixed(1)}px`);
+    drop.style.setProperty("--peak-y", `${peakY.toFixed(1)}px`);
+    drop.style.setProperty("--land-y", `${landY.toFixed(1)}px`);
+    drop.style.setProperty("--rot", `${rot.toFixed(0)}deg`);
+    drop.style.setProperty("--duration", `${duration.toFixed(0)}ms`);
+
+    if (isBig && Math.random() > 0.68) {
+      drop.textContent = emberChars[Math.floor(Math.random() * emberChars.length)];
+      drop.style.color = color;
+      drop.style.fontFamily = "var(--mono)";
+      drop.style.fontSize = `${(9 + Math.random() * 6).toFixed(0)}px`;
+      drop.style.fontWeight = "700";
+    } else {
+      const size = isBig ? 4 + Math.random() * 4.5 : 2.8 + Math.random() * 2.5;
+      drop.style.width = `${size.toFixed(1)}px`;
+      drop.style.height = `${(size * (0.8 + Math.random() * 0.65)).toFixed(1)}px`;
+      drop.style.backgroundColor = color;
+      drop.style.borderRadius = isAsh ? "1px" : "50% 50% 45% 20%";
+      if (!isAsh) {
+        drop.style.boxShadow = "0 0 5px rgba(255, 106, 0, 0.8)";
+      }
+    }
+
+    container.appendChild(drop);
+  }
+
+  setTimeout(() => {
+    container.remove();
+  }, 1150);
+}
+
+function setupEtnaEruption() {
+  const brand = document.querySelector(".brand");
+  const volcano = brand?.querySelector(".brand-volcano");
+  if (!brand || !volcano) return;
+
+  let eruptResetTimer;
+  let explodeResetTimer;
+  let hoverEruptInterval;
+
+  const hoverErupt = () => {
+    brand.classList.remove("is-erupting");
+    void volcano.offsetWidth;
+    brand.classList.add("is-erupting");
+    triggerEtnaEruption(volcano, false);
+
+    clearTimeout(eruptResetTimer);
+    eruptResetTimer = setTimeout(() => {
+      brand.classList.remove("is-erupting");
+    }, 900);
+  };
+
+  const clickExplode = () => {
+    brand.classList.remove("is-exploding");
+    void volcano.offsetWidth;
+    brand.classList.add("is-exploding");
+    triggerEtnaEruption(volcano, true);
+
+    clearTimeout(explodeResetTimer);
+    explodeResetTimer = setTimeout(() => {
+      brand.classList.remove("is-exploding");
+    }, 420);
+  };
+
+  brand.addEventListener("mouseenter", () => {
+    hoverErupt();
+    clearInterval(hoverEruptInterval);
+    hoverEruptInterval = setInterval(() => {
+      triggerEtnaEruption(volcano, false);
+    }, 560);
+  });
+
+  brand.addEventListener("mouseleave", () => {
+    clearInterval(hoverEruptInterval);
+  });
+
+  brand.addEventListener("focusin", hoverErupt);
+  brand.addEventListener("click", clickExplode);
+}
+
 applyTranslations("en");
 setupRevealAnimations();
 setupResearchConsole();
@@ -970,3 +1109,4 @@ setupContactTorch();
 setupAnchorScroll();
 setupPowerTrace();
 setupHeaderMood();
+setupEtnaEruption();

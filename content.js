@@ -47,7 +47,7 @@ const portfolioCatalogData = {
     {
       id: "arda-vslnet",
       visual: "pov",
-      accent: "lime",
+      accent: "orange",
       featured: false,
       href: "https://github.com/AndreaLolli2912/ARDA-VSLNet-FiLM-Enhanced-Knowledge-Distillation-for-Efficient-NLQ-Localization-in-Ego4D-Videos",
       content: {
@@ -69,7 +69,7 @@ const portfolioCatalogData = {
     {
       id: "fault-tolerant-key-value-store",
       visual: "locks",
-      accent: "orange",
+      accent: "lime",
       featured: false,
       href: "https://github.com/marcutudor79/robust-key-value-store",
       content: {

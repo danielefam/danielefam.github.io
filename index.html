@@ -20,16 +20,30 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=45" />
+    <link rel="stylesheet" href="styles.css?v=47" />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
 
     <header class="site-header">
       <a class="brand" href="#top" aria-label="Daniele Fam&#224;, back to top">
-        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
-          <path d="M3 25 L12 9 L16 15 L20 10 L29 25 Z" />
-        </svg>
+        <span class="brand-volcano" aria-hidden="true">
+          <svg class="brand-mark" viewBox="0 0 32 32">
+            <defs>
+              <linearGradient id="etna-lava-grad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#fff6b8" />
+                <stop offset="42%" stop-color="#ffaa00" />
+                <stop offset="100%" stop-color="#ff2a00" />
+              </linearGradient>
+            </defs>
+            <path class="etna-cone" d="M3 25 L12 9 L16 15 L20 10 L29 25 Z" />
+            <path
+              class="etna-lava"
+              fill="url(#etna-lava-grad)"
+              d="M12 9 L16 12.2 L20 10 L18.6 15.6 L19.5 21.4 L17.1 17.5 L15.6 23.4 L14.2 16.9 L11.5 20.4 L13.1 14.2 Z"
+            />
+          </svg>
+        </span>
         <span class="brand-name">Daniele Fam&#224;</span>
       </a>
 
@@ -329,7 +343,7 @@
       <span>Paris, France / 2026</span>
     </footer>
 
-    <script src="content.js?v=12"></script>
-    <script src="script.js?v=47"></script>
+    <script src="content.js?v=13"></script>
+    <script src="script.js?v=51"></script>
   </body>
 </html>
