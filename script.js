@@ -388,7 +388,7 @@ function renderProject(item, index) {
   const number = String(index + 1).padStart(2, "0");
   const panelId = `project-panel-${item.id}`;
   const buttonId = `project-button-${item.id}`;
-  const isOpen = false;
+  const isOpen = Boolean(item.featured);
 
   return `
     <article class="project project-accent-${item.accent}${isOpen ? " is-open" : ""}">

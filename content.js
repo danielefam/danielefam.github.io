@@ -1,10 +1,32 @@
 const portfolioCatalogData = {
   projects: [
     {
-      id: "casio-digit-recognition",
-      visual: "calculator",
+      id: "arda-vslnet",
+      visual: "pov",
       accent: "lime",
       featured: true,
+      href: "https://github.com/AndreaLolli2912/ARDA-VSLNet-FiLM-Enhanced-Knowledge-Distillation-for-Efficient-NLQ-Localization-in-Ego4D-Videos",
+      content: {
+        en: {
+          title: "ARDA VSLNet: Efficient Video-Language Localization",
+          text: "Enhanced VSLNet with FiLM conditioning and knowledge distillation for natural-language temporal localization in Ego4D videos",
+          meta: "Multimodal ML · PyTorch · 2025",
+          metric: "88.47%",
+          metricLabel: "model size reduction",
+          bullets: [
+            "Outperformed an equal-sized baseline by 19.73% on Ego4D NLQ localization by transferring multimodal representations through knowledge distillation",
+            "Reduced model parameters by 47.62% and compute by 80.6% GFLOPs by designing a structured block-wise distillation strategy",
+            "Enhanced cross-modal grounding under tight parameter constraints by integrating FiLM conditioning directly into the compact temporal backbone"
+          ],
+          linkLabel: "View repository"
+        }
+      }
+    },
+    {
+      id: "casio-digit-recognition",
+      visual: "calculator",
+      accent: "blue",
+      featured: false,
       href: "https://github.com/danielefam/enhance-casio-with-ai",
       content: {
         en: {
@@ -25,7 +47,7 @@ const portfolioCatalogData = {
     {
       id: "distributed-map-reduce",
       visual: "database",
-      accent: "blue",
+      accent: "orange",
       featured: false,
       href: "https://github.com/danielefam/slr_map_reduce",
       content: {
@@ -39,28 +61,6 @@ const portfolioCatalogData = {
             "Achieved a 5.45x scaling speedup across 64 unprivileged lab nodes on Common Crawl by architecting a disk-backed streaming TSV shuffle that eliminated memory and NFS bottlenecks",
             "Guaranteed zero data loss during worker crashes with sub-10s recovery by implementing an epoch-tracked slot state machine that activates cold spares and rewinds stale reduce phases",
             "Validated 4 analytical jobs on Common Crawl, outperforming an 8-node Kafka baseline by 38x (0.266s vs 10.10s), by designing modular Go interfaces and automated integration harnesses"
-          ],
-          linkLabel: "View repository"
-        }
-      }
-    },
-    {
-      id: "arda-vslnet",
-      visual: "pov",
-      accent: "orange",
-      featured: false,
-      href: "https://github.com/AndreaLolli2912/ARDA-VSLNet-FiLM-Enhanced-Knowledge-Distillation-for-Efficient-NLQ-Localization-in-Ego4D-Videos",
-      content: {
-        en: {
-          title: "ARDA VSLNet: Efficient Video-Language Localization",
-          text: "Enhanced VSLNet with FiLM conditioning and knowledge distillation for natural-language temporal localization in Ego4D videos",
-          meta: "Multimodal ML · PyTorch · 2025",
-          metric: "88.47%",
-          metricLabel: "model size reduction",
-          bullets: [
-            "Outperformed an equal-sized baseline by 19.73% on Ego4D NLQ localization by transferring multimodal representations through knowledge distillation",
-            "Reduced model parameters by 47.62% and compute by 80.6% GFLOPs by designing a structured block-wise distillation strategy",
-            "Enhanced cross-modal grounding under tight parameter constraints by integrating FiLM conditioning directly into the compact temporal backbone"
           ],
           linkLabel: "View repository"
         }
