@@ -10,7 +10,7 @@ const siteContent = {
         contact: "Contact"
       },
       hero: {
-        eyebrow: "AI systems · Frugal ML · Research",
+        eyebrow: "AI systems · SWE · Research",
         title: "AI systems, from training loop to physical device",
         text:
           "I'm Daniele Fam\u00e0, an engineer working where machine learning meets software and hardware. I build efficient models, distributed systems, and research prototypes designed to scale.",
@@ -48,15 +48,13 @@ const siteContent = {
           "The projects span embedded machine learning, distributed workers, and egocentric video. Each project has a result you can inspect."
       },
       motionWords: [
-        "Machine learning",
-        "Distributed systems",
-        "Signal processing",
-        "PyTorch",
-        "Model efficiency",
-        "Computer vision",
-        "Audio ML",
-        "Python · C++",
-        "Italian / English"
+        "Watts, not guesses",
+        "Neural nets on a calculator",
+        "Putting neural nets on a diet",
+        "60% fewer joules",
+        "Crash-proof by design",
+        "64 KB is plenty",
+        "Educated under Etna"
       ],
       timeline: {
         tag: "Education",
@@ -123,6 +121,7 @@ const highlightGrid = document.getElementById("highlight-grid");
 const timeline = document.getElementById("timeline");
 const motionTrack = document.getElementById("motion-track");
 const experienceList = document.getElementById("experience-list");
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 let revealObserver;
 
 function renderList(container, items, template) {
@@ -229,6 +228,20 @@ function renderResearchConsole(experience, activeView = "overview") {
   `;
 }
 
+function renderPowerTrace(experience) {
+  if (experience.device !== "INA226EVM") return "";
+
+  return `
+    <div class="power-trace" aria-hidden="true">
+      <div class="power-readout">
+        <span>P(t) &middot; ${experience.device} &middot; simulated</span>
+        <strong><span data-power-value>3.10</span> W</strong>
+      </div>
+      <canvas data-power-trace></canvas>
+    </div>
+  `;
+}
+
 function renderExperiences(language) {
   const activeViewMap = new Map(
     [...experienceList.querySelectorAll(".research-section")].map((section, index) => {
@@ -266,7 +279,10 @@ function renderExperiences(language) {
               </ul>
             </div>
 
-            ${renderResearchConsole(experience, activeView)}
+            <div class="research-instrument">
+              ${renderResearchConsole(experience, activeView)}
+              ${renderPowerTrace(experience)}
+            </div>
           </div>
 
           <div class="research-outcomes" aria-label="${experience.outcomesLabel}">
@@ -368,6 +384,44 @@ function renderProjectAtmosphere(visual) {
   return "";
 }
 
+function renderProject(item, index) {
+  const number = String(index + 1).padStart(2, "0");
+  const panelId = `project-panel-${item.id}`;
+  const buttonId = `project-button-${item.id}`;
+  const isOpen = Boolean(item.featured);
+
+  return `
+    <article class="project project-accent-${item.accent}${isOpen ? " is-open" : ""}">
+      <h3 class="project-heading">
+        <button class="project-toggle" id="${buttonId}" type="button" aria-expanded="${isOpen}" aria-controls="${panelId}">
+          <span class="project-index">${number}</span>
+          <span class="project-metric"><strong>${item.metric}</strong><small>${item.metricLabel}</small></span>
+          <span class="project-title">${item.title}</span>
+          <span class="project-meta">${item.meta}</span>
+          <span class="project-plus" aria-hidden="true"></span>
+        </button>
+      </h3>
+      <div class="project-panel" id="${panelId}" role="region" aria-labelledby="${buttonId}"${isOpen ? "" : " inert"}>
+        <div class="project-panel-inner">
+          ${renderProjectAtmosphere(item.visual)}
+          <div class="project-panel-body">
+            <p>${item.text}</p>
+            <ul class="project-points">
+              ${item.bullets.map((bullet) => `<li>${bullet}</li>`).join("")}
+            </ul>
+            ${item.links
+              .map(
+                (link) =>
+                  `<a class="project-link" href="${link.href}" target="_blank" rel="noreferrer">${link.label}<span aria-hidden="true">&nearr;</span></a>`
+              )
+              .join("")}
+          </div>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
 function applyTranslations(language = "en") {
   const content = translations[language] || translations.en;
   const projects = getLocalizedProjects(language);
@@ -395,58 +449,24 @@ function applyTranslations(language = "en") {
     `
   );
 
-  renderList(
-    highlightGrid,
-    projects,
-    (item, index) => `
-      <article class="highlight-card highlight-card-accent-${item.accent} ${item.featured ? "highlight-card-featured" : ""}">
-        ${renderProjectAtmosphere(item.visual)}
-        <div class="highlight-topline">
-          <span class="project-index">${String(index + 1).padStart(2, "0")}</span>
-          <span class="highlight-meta">${item.meta}</span>
-        </div>
-        <div class="highlight-body">
-          <div class="highlight-copy">
-            <div class="highlight-header">
-              <h3>${item.title}</h3>
-            </div>
-            <p>${item.text}</p>
-            <ul class="highlight-points">
-              ${item.bullets.map((bullet) => `<li>${bullet}</li>`).join("")}
-            </ul>
-          </div>
-          <div class="project-metric" aria-label="${item.metric} ${item.metricLabel}">
-            <strong>${item.metric}</strong>
-            <span>${item.metricLabel}</span>
-          </div>
-        </div>
-        <div class="highlight-links">
-          ${item.links
-        .map(
-          (link) => `
-                <a class="project-link" href="${link.href}" target="_blank" rel="noreferrer">${link.label}<span aria-hidden="true">&nearr;</span></a>
-              `
-        )
-        .join("")}
-        </div>
-      </article>
-    `
-  );
+  renderList(highlightGrid, projects, renderProject);
 
-  renderList(
-    timeline,
-    content.timelineSteps,
-    (item) => `
-      <article class="timeline-step">
+  // Rendered oldest-first so the route reads Catania to Paris.
+  const steps = [...content.timelineSteps].reverse();
+  renderList(timeline, steps, (item, index) => {
+    const isCurrent = index === steps.length - 1;
+    return `
+      <li class="route-stop${isCurrent ? " is-current" : ""}">
+        <span class="route-year">${item.step}</span>
+        <span class="route-dot" aria-hidden="true"></span>
         <h3>${item.title}</h3>
         <p>${item.text}</p>
-        <span>${item.step}</span>
-      </article>
-    `
-  );
+      </li>
+    `;
+  });
 
   motionTrack.innerHTML = [...content.motionWords, ...content.motionWords]
-    .map((word) => `<span class="motion-pill">${word}</span>`)
+    .map((word) => `<span class="motion-word">${word}</span><span class="motion-sep">&#10035;</span>`)
     .join("");
 }
 
@@ -519,6 +539,251 @@ function setupResearchConsole() {
       }
     }
   });
+}
+
+function setupProjectLedger() {
+  highlightGrid.addEventListener("click", (event) => {
+    const toggle = event.target.closest(".project-toggle");
+    if (!toggle) return;
+
+    const project = toggle.closest(".project");
+    const panel = document.getElementById(toggle.getAttribute("aria-controls"));
+    const willOpen = toggle.getAttribute("aria-expanded") !== "true";
+
+    toggle.setAttribute("aria-expanded", String(willOpen));
+    project.classList.toggle("is-open", willOpen);
+    if (panel) panel.inert = !willOpen;
+  });
+
+  highlightGrid.addEventListener("pointermove", (event) => {
+    const project = event.target.closest(".project");
+    if (!project) return;
+    const rect = project.getBoundingClientRect();
+    project.style.setProperty("--mx", `${event.clientX - rect.left}px`);
+    project.style.setProperty("--my", `${event.clientY - rect.top}px`);
+  });
+}
+
+function setupParisClock() {
+  const nodes = document.querySelectorAll("[data-paris-time]");
+  if (!nodes.length) return;
+
+  const format = new Intl.DateTimeFormat("en-GB", {
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZone: "Europe/Paris"
+  });
+  const tick = () => {
+    const value = format.format(new Date());
+    nodes.forEach((node) => {
+      node.textContent = value;
+    });
+  };
+
+  tick();
+  setInterval(tick, 15000);
+}
+
+// A flashlight rests aimed at the email and follows the mouse while it is over the contact section.
+function setupContactTorch() {
+  const section = document.querySelector(".contact-section");
+  const email = section?.querySelector(".contact-email");
+  const torch = section?.querySelector(".contact-torch");
+  if (!section || !email) return;
+
+  const aim = (x, y) => {
+    section.style.setProperty("--tx", `${x}px`);
+    section.style.setProperty("--ty", `${y}px`);
+    if (!torch) return;
+    const box = section.getBoundingClientRect();
+    const head = torch.getBoundingClientRect();
+    const dx = x - (head.left - box.left);
+    const dy = y - (head.top - box.top);
+    section.style.setProperty("--torch-angle", `${Math.atan2(dy, dx)}rad`);
+    section.style.setProperty("--beam-length", `${Math.hypot(dx, dy) + 60}px`);
+  };
+  const rest = () => {
+    const box = section.getBoundingClientRect();
+    const target = email.getBoundingClientRect();
+    section.classList.remove("is-tracking");
+    aim(target.left - box.left + target.width / 2, target.top - box.top + target.height / 2);
+  };
+
+  section.addEventListener("pointermove", (event) => {
+    if (event.pointerType !== "mouse") return;
+    const box = section.getBoundingClientRect();
+    section.classList.add("is-tracking");
+    aim(event.clientX - box.left, event.clientY - box.top);
+  });
+  section.addEventListener("pointerleave", rest);
+  new ResizeObserver(rest).observe(section);
+  document.fonts?.ready.then(rest);
+  window.addEventListener("load", rest);
+}
+
+// Scrolls anchors so the section starts right below the sticky header, ignoring reveal transforms.
+function setupAnchorScroll() {
+  const header = document.querySelector(".site-header");
+
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest('a[href^="#"]');
+    if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey) return;
+
+    const id = link.getAttribute("href").slice(1);
+    if (!id || id === "main-content") return;
+    const target = document.getElementById(id);
+    if (!target) return;
+
+    event.preventDefault();
+    target.classList.add("reveal-visible");
+
+    let top = 0;
+    if (id !== "top") {
+      for (let node = target; node; node = node.offsetParent) top += node.offsetTop;
+      const isSticky = getComputedStyle(header).position === "sticky";
+      top -= (isSticky ? header.offsetHeight : 0) + 16;
+    }
+
+    window.scrollTo({ top: Math.max(0, top), behavior: prefersReducedMotion.matches ? "auto" : "smooth" });
+    if (window.location.hash) {
+      history.replaceState(null, "", window.location.pathname + window.location.search);
+    }
+  });
+}
+
+// Decorative, simulated power signal: idle draw with periodic inference bursts.
+function setupPowerTrace() {
+  const canvas = document.querySelector("[data-power-trace]");
+  const readout = document.querySelector("[data-power-value]");
+  if (!canvas || !canvas.getContext) return;
+
+  const context = canvas.getContext("2d");
+  const step = 2;
+  let samples = [];
+  let width = 0;
+  let height = 0;
+  let segment = null;
+  let frame = 0;
+  let rafId = 0;
+  let isVisible = true;
+
+  const random = (min, max) => min + Math.random() * (max - min);
+
+  // Each shape maps progress t in [0, 1) to a stepped hardware load plateau on top of the idle draw.
+  const shapes = [
+    (level) => (t) => (t < 0.08 || t > 0.92 ? level * 0.65 : level),
+    (level) => (t) => (t < 0.18 ? level * 1.14 : level),
+    (level) => (t) => (t < 0.64 ? level : level * 0.58),
+    (level) => (t) => (t < 0.28 ? level * 0.62 : level),
+    (level) => (t) => (t > 0.42 && t < 0.56 ? level * 0.24 : level),
+    (level) => (t) => (t < 0.25 ? level * 0.74 : t < 0.76 ? level : level * 0.66)
+  ];
+
+  function nextSegment() {
+    const isIdle = !segment || !segment.isIdle || Math.random() < 0.4;
+    if (isIdle) return { isIdle: true, length: Math.round(random(18, 46)), at: 0, level: () => 0 };
+    const shape = shapes[Math.floor(Math.random() * shapes.length)];
+    return { isIdle: false, length: Math.round(random(8, 20)), at: 0, level: shape(random(0.38, 0.72)) };
+  }
+
+  function nextSample() {
+    if (!segment || segment.at >= segment.length) segment = nextSegment();
+    const burst = segment.level(segment.at / segment.length);
+    segment.at += 1;
+    const idle = 0.14;
+    const baseNoise = (Math.random() - 0.5) * 0.06 + (Math.random() - 0.5) * 0.04;
+    const loadNoise = burst > 0 ? (Math.random() - 0.5) * 0.08 : 0;
+    const spikeNoise = Math.random() < 0.15 ? (Math.random() - 0.5) * 0.06 : 0;
+    return Math.max(0.04, Math.min(0.96, idle + burst + baseNoise + loadNoise + spikeNoise));
+  }
+
+  function resize() {
+    const ratio = Math.min(window.devicePixelRatio || 1, 2);
+    width = canvas.clientWidth;
+    height = canvas.clientHeight;
+    canvas.width = Math.round(width * ratio);
+    canvas.height = Math.round(height * ratio);
+    context.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+    const count = Math.ceil(width / step) + 2;
+    while (samples.length < count) samples.push(nextSample());
+    samples = samples.slice(-count);
+    draw();
+  }
+
+  function tracePath() {
+    context.beginPath();
+    samples.forEach((value, index) => {
+      const x = index * step;
+      const y = 6 + (height - 12) * (1 - value);
+      if (index === 0) context.moveTo(x, y);
+      else context.lineTo(x, y);
+    });
+  }
+
+  function draw() {
+    context.clearRect(0, 0, width, height);
+
+    context.strokeStyle = "rgba(17, 19, 15, 0.2)";
+    context.setLineDash([2, 5]);
+    context.lineWidth = 1;
+    context.beginPath();
+    context.moveTo(0, height / 2);
+    context.lineTo(width, height / 2);
+    context.stroke();
+    context.setLineDash([]);
+
+    tracePath();
+    const gradient = context.createLinearGradient(0, 0, 0, height);
+    gradient.addColorStop(0, "rgba(49, 92, 255, 0.24)");
+    gradient.addColorStop(1, "rgba(49, 92, 255, 0)");
+    context.lineTo((samples.length - 1) * step, height);
+    context.lineTo(0, height);
+    context.closePath();
+    context.fillStyle = gradient;
+    context.fill();
+
+    tracePath();
+    context.strokeStyle = "#315cff";
+    context.lineWidth = 1.5;
+    context.stroke();
+  }
+
+  function loop() {
+    frame += 1;
+    if (frame % 5 === 0) {
+      samples.push(nextSample());
+      samples.shift();
+      draw();
+    }
+    if (readout && frame % 20 === 0) {
+      const latest = samples[samples.length - 1] ?? 0;
+      readout.textContent = (2.4 + latest * 4.6).toFixed(2);
+    }
+    rafId = requestAnimationFrame(loop);
+  }
+
+  function start() {
+    cancelAnimationFrame(rafId);
+    if (isVisible && !document.hidden && !prefersReducedMotion.matches) {
+      rafId = requestAnimationFrame(loop);
+    }
+  }
+
+  resize();
+  start();
+
+  window.addEventListener("resize", resize);
+  document.addEventListener("visibilitychange", start);
+  prefersReducedMotion.addEventListener?.("change", start);
+
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver((entries) => {
+      isVisible = entries[0].isIntersecting;
+      if (isVisible) start();
+      else cancelAnimationFrame(rafId);
+    }).observe(canvas);
+  }
 }
 
 function triggerMoodExplosion(button) {
@@ -698,7 +963,150 @@ function setupHeaderMood() {
   });
 }
 
+function triggerEtnaEruption(volcano, isBig = false) {
+  if (prefersReducedMotion.matches) return;
+
+  const container = document.createElement("div");
+  container.className = "etna-eruption";
+  container.setAttribute("aria-hidden", "true");
+  volcano.appendChild(container);
+
+  const flash = document.createElement("span");
+  flash.className = isBig ? "etna-crater-flash is-big" : "etna-crater-flash";
+  container.appendChild(flash);
+
+  if (isBig) {
+    const shockwave = document.createElement("span");
+    shockwave.className = "etna-shockwave";
+    container.appendChild(shockwave);
+
+    const shockwave2 = document.createElement("span");
+    shockwave2.className = "etna-shockwave etna-shockwave-secondary";
+    container.appendChild(shockwave2);
+  }
+
+  const magmaColors = ["#fff6b8", "#ffb703", "#ff7b00", "#ff4f1f", "#d9260f", "#11130f"];
+  const emberChars = ["•", "✦", "*", "▲"];
+  const dropCount = isBig ? 30 : 12;
+
+  for (let i = 0; i < dropCount; i++) {
+    const drop = document.createElement("span");
+    drop.className = "etna-magma-drop";
+
+    const startX = (Math.random() - 0.5) * 6;
+    let dx;
+    let peakY;
+    let landY;
+    let duration;
+
+    if (isBig) {
+      const baseAngle = (i / dropCount) * 2 * Math.PI;
+      const angle = baseAngle + (Math.random() - 0.5) * 0.4;
+      const distance = 36 + Math.random() * 68;
+      dx = Math.cos(angle) * distance;
+      peakY = Math.sin(angle) * distance - (14 + Math.random() * 18);
+      landY = Math.sin(angle) * distance + (12 + Math.random() * 16);
+      duration = 720 + Math.random() * 380;
+    } else {
+      const spread = (i / (dropCount - 1) - 0.5) * 2;
+      dx = spread * (7 + Math.random() * 11) + (Math.random() - 0.5) * 4;
+      peakY = -(9 + Math.random() * 14);
+      landY = 5 + Math.random() * 9;
+      duration = 540 + Math.random() * 300;
+    }
+
+    const rot = (Math.random() - 0.5) * 540;
+    const isAsh = i % 6 === 0;
+    const color = isAsh ? "#11130f" : magmaColors[Math.floor(Math.random() * (magmaColors.length - 1))];
+
+    drop.style.setProperty("--start-x", `${startX.toFixed(1)}px`);
+    drop.style.setProperty("--dx", `${dx.toFixed(1)}px`);
+    drop.style.setProperty("--peak-y", `${peakY.toFixed(1)}px`);
+    drop.style.setProperty("--land-y", `${landY.toFixed(1)}px`);
+    drop.style.setProperty("--rot", `${rot.toFixed(0)}deg`);
+    drop.style.setProperty("--duration", `${duration.toFixed(0)}ms`);
+
+    if (isBig && Math.random() > 0.68) {
+      drop.textContent = emberChars[Math.floor(Math.random() * emberChars.length)];
+      drop.style.color = color;
+      drop.style.fontFamily = "var(--mono)";
+      drop.style.fontSize = `${(9 + Math.random() * 6).toFixed(0)}px`;
+      drop.style.fontWeight = "700";
+    } else {
+      const size = isBig ? 4 + Math.random() * 4.5 : 2.8 + Math.random() * 2.5;
+      drop.style.width = `${size.toFixed(1)}px`;
+      drop.style.height = `${(size * (0.8 + Math.random() * 0.65)).toFixed(1)}px`;
+      drop.style.backgroundColor = color;
+      drop.style.borderRadius = isAsh ? "1px" : "50% 50% 45% 20%";
+      if (!isAsh) {
+        drop.style.boxShadow = "0 0 5px rgba(255, 106, 0, 0.8)";
+      }
+    }
+
+    container.appendChild(drop);
+  }
+
+  setTimeout(() => {
+    container.remove();
+  }, 1150);
+}
+
+function setupEtnaEruption() {
+  const brand = document.querySelector(".brand");
+  const volcano = brand?.querySelector(".brand-volcano");
+  if (!brand || !volcano) return;
+
+  let eruptResetTimer;
+  let explodeResetTimer;
+  let hoverEruptInterval;
+
+  const hoverErupt = () => {
+    brand.classList.remove("is-erupting");
+    void volcano.offsetWidth;
+    brand.classList.add("is-erupting");
+    triggerEtnaEruption(volcano, false);
+
+    clearTimeout(eruptResetTimer);
+    eruptResetTimer = setTimeout(() => {
+      brand.classList.remove("is-erupting");
+    }, 900);
+  };
+
+  const clickExplode = () => {
+    brand.classList.remove("is-exploding");
+    void volcano.offsetWidth;
+    brand.classList.add("is-exploding");
+    triggerEtnaEruption(volcano, true);
+
+    clearTimeout(explodeResetTimer);
+    explodeResetTimer = setTimeout(() => {
+      brand.classList.remove("is-exploding");
+    }, 420);
+  };
+
+  brand.addEventListener("mouseenter", () => {
+    hoverErupt();
+    clearInterval(hoverEruptInterval);
+    hoverEruptInterval = setInterval(() => {
+      triggerEtnaEruption(volcano, false);
+    }, 560);
+  });
+
+  brand.addEventListener("mouseleave", () => {
+    clearInterval(hoverEruptInterval);
+  });
+
+  brand.addEventListener("focusin", hoverErupt);
+  brand.addEventListener("click", clickExplode);
+}
+
 applyTranslations("en");
 setupRevealAnimations();
 setupResearchConsole();
+setupProjectLedger();
+setupParisClock();
+setupContactTorch();
+setupAnchorScroll();
+setupPowerTrace();
 setupHeaderMood();
+setupEtnaEruption();

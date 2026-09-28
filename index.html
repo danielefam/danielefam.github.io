@@ -10,20 +10,41 @@
       content="Daniele Fam&#224; is an AI systems engineer and researcher building efficient machine learning, embedded inference, and distributed software."
     />
     <meta name="google-site-verification" content="vZZBsT3FlgSBNTk1A4DWDJpKi2VEjk6vRIv4xX8VwcM" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M3 25 L12 9 L16 15 L20 10 L29 25 Z' fill='%23ff4f1f'/%3E%3C/svg%3E"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=34" />
+    <link rel="stylesheet" href="styles.css?v=47" />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
 
     <header class="site-header">
       <a class="brand" href="#top" aria-label="Daniele Fam&#224;, back to top">
-        <span class="brand-mark">DF</span><span class="brand-index">/01</span>
+        <span class="brand-volcano" aria-hidden="true">
+          <svg class="brand-mark" viewBox="0 0 32 32">
+            <defs>
+              <linearGradient id="etna-lava-grad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#fff6b8" />
+                <stop offset="42%" stop-color="#ffaa00" />
+                <stop offset="100%" stop-color="#ff2a00" />
+              </linearGradient>
+            </defs>
+            <path class="etna-cone" d="M3 25 L12 9 L16 15 L20 10 L29 25 Z" />
+            <path
+              class="etna-lava"
+              fill="url(#etna-lava-grad)"
+              d="M12 9 L16 12.2 L20 10 L18.6 15.6 L19.5 21.4 L17.1 17.5 L15.6 23.4 L14.2 16.9 L11.5 20.4 L13.1 14.2 Z"
+            />
+          </svg>
+        </span>
+        <span class="brand-name">Daniele Fam&#224;</span>
       </a>
 
       <nav class="main-nav" aria-label="Primary navigation">
@@ -34,6 +55,9 @@
       </nav>
 
       <div class="header-actions">
+        <span class="header-clock" aria-label="Local time in Paris">
+          <span class="clock-dot" aria-hidden="true"></span>Paris <time data-paris-time>--:--</time>
+        </span>
         <button class="header-mood" type="button" aria-label="Interactive smiley face: hover to stick tongue out" title=":)">
           <span class="mood-face" aria-hidden="true">
             <span class="mood-eyes">:</span><span class="mood-mouth"><span class="mouth-smile">)</span><span class="mouth-tongue">P</span></span>
@@ -50,14 +74,21 @@
           <div class="hero-origin" aria-label="From Catania to Paris">
             <span>Catania</span><span aria-hidden="true">&rarr;</span><span>Paris</span>
           </div>
+          <p class="hero-coords">
+            <span>Piscina di Venere, Milazzo</span>
+            <span>38.27&deg;N &middot; 15.23&deg;E</span>
+          </p>
           <h1 id="hero-name"><span>Daniele</span> <span>Fam&#224;</span></h1>
         </div>
 
         <div class="hero-intro">
           <div class="hero-copy">
             <div class="hero-status">
-              <span class="status-dot" aria-hidden="true"></span>
-              <span data-i18n="hero.eyebrow">AI systems · Efficient ML · Research</span>
+              <span class="hero-availability">
+                <span class="status-dot" aria-hidden="true"></span>
+                <span data-i18n="hero.stat3Value">Open to opportunities</span>
+              </span>
+              <span data-i18n="hero.eyebrow">AI systems · SWE · Research</span>
             </div>
             <h2 data-i18n="hero.title">AI systems, from training loop to physical device</h2>
             <p data-i18n="hero.text">
@@ -222,7 +253,7 @@
             has a result you can inspect.
           </p>
         </div>
-        <div class="highlight-grid" id="highlight-grid"></div>
+        <div class="project-ledger" id="highlight-grid"></div>
       </section>
 
       <section id="about" class="profile-section reveal" aria-labelledby="profile-title">
@@ -257,34 +288,52 @@
             Academic path across Italy and France
           </h2>
         </div>
-        <div class="timeline" id="timeline"></div>
+        <ol class="route" id="timeline"></ol>
       </section>
 
       <section id="contact" class="contact-section reveal" aria-labelledby="contact-title">
-        <div class="contact-copy">
-          <p class="section-tag section-tag-inverse" data-i18n="contact.tag">Contact</p>
-          <h2 id="contact-title" class="section-title" data-i18n="contact.title">
-            Looking for the next hard system to build
-          </h2>
+        <p class="section-tag section-tag-inverse" data-i18n="contact.tag">Contact</p>
+        <h2 id="contact-title" class="contact-title" data-i18n="contact.title">
+          Looking for the next hard system to build
+        </h2>
+        <div class="contact-grid">
           <p class="contact-text" data-i18n="contact.text">
-            I'm currently open to AI Engineer, Machine Learning Engineer, and research-oriented opportunities. If
+            I'm currently open to AI Engineer, Software Engineer, and research-oriented opportunities. If
             you're building intelligent products or ambitious ML systems, I'd love to hear from you.
           </p>
           <a class="contact-email" href="mailto:daniele.fama03@outlook.com">
-            daniele.fama03@outlook.com <span aria-hidden="true">&nearr;</span>
+            <span>daniele.fama03@outlook.com</span><span aria-hidden="true">&nearr;</span>
           </a>
         </div>
-
-        <div class="contact-list">
-          <a href="https://www.linkedin.com/in/daniele-fama" target="_blank" rel="noreferrer">
-            <span data-i18n="contact.linkedinLabel">LinkedIn</span><span aria-hidden="true">&nearr;</span>
-          </a>
-          <a href="https://github.com/danielefam" target="_blank" rel="noreferrer">
-            <span>GitHub</span><span aria-hidden="true">&nearr;</span>
-          </a>
-          <a target="_blank" rel="noopener noreferrer" href="assets/daniele_fama-cv.pdf" download>
-            <span data-i18n="contact.cvLabel">CV</span><span aria-hidden="true">&darr;</span>
-          </a>
+        <ul class="contact-links">
+          <li>
+            <a href="https://www.linkedin.com/in/daniele-fama" target="_blank" rel="noreferrer">
+              <span data-i18n="contact.linkedinLabel">LinkedIn</span><span aria-hidden="true">&nearr;</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/danielefam" target="_blank" rel="noreferrer">
+              <span>GitHub</span><span aria-hidden="true">&nearr;</span>
+            </a>
+          </li>
+          <li>
+            <a target="_blank" rel="noopener noreferrer" href="assets/daniele_fama-cv.pdf" download>
+              <span data-i18n="contact.cvLabel">CV</span><span aria-hidden="true">&darr;</span>
+            </a>
+          </li>
+        </ul>
+        <div class="contact-torch" aria-hidden="true">
+          <span class="torch-beam"></span>
+          <svg class="torch-body" viewBox="0 0 124 48" width="124" height="48">
+            <rect x="2" y="15" width="70" height="18" fill="#11130f" />
+            <rect x="12" y="15" width="3" height="18" fill="#3a3d36" />
+            <rect x="20" y="15" width="3" height="18" fill="#3a3d36" />
+            <rect x="28" y="15" width="3" height="18" fill="#3a3d36" />
+            <rect x="46" y="11" width="12" height="5" fill="#ff4f1f" />
+            <polygon points="72,15 94,5 94,43 72,33" fill="#11130f" />
+            <rect x="94" y="3" width="24" height="42" fill="#ff4f1f" stroke="#11130f" stroke-width="2" />
+            <rect x="118" y="6" width="5" height="36" fill="#fff3b0" stroke="#11130f" stroke-width="2" />
+          </svg>
         </div>
       </section>
     </main>
@@ -294,7 +343,7 @@
       <span>Paris, France / 2026</span>
     </footer>
 
-    <script src="content.js?v=12"></script>
-    <script src="script.js?v=29"></script>
+    <script src="content.js?v=15"></script>
+    <script src="script.js?v=52"></script>
   </body>
 </html>
