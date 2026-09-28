@@ -542,6 +542,21 @@ function setupResearchConsole() {
 }
 
 function setupProjectLedger() {
+  let litProject = null;
+  let clearLitTimer;
+
+  const setLitProject = (project, clientX, clientY) => {
+    if (litProject && litProject !== project) {
+      litProject.classList.remove("is-lit");
+    }
+    litProject = project;
+    if (!project) return;
+    const rect = project.getBoundingClientRect();
+    project.style.setProperty("--mx", `${clientX - rect.left}px`);
+    project.style.setProperty("--my", `${clientY - rect.top}px`);
+    project.classList.add("is-lit");
+  };
+
   highlightGrid.addEventListener("click", (event) => {
     const toggle = event.target.closest(".project-toggle");
     if (!toggle) return;
@@ -562,6 +577,36 @@ function setupProjectLedger() {
     project.style.setProperty("--mx", `${event.clientX - rect.left}px`);
     project.style.setProperty("--my", `${event.clientY - rect.top}px`);
   });
+
+  const handleTouch = (event) => {
+    const touch = event.touches[0];
+    if (!touch) return;
+    clearTimeout(clearLitTimer);
+    const target = document.elementFromPoint(touch.clientX, touch.clientY);
+    const project = target?.closest(".project");
+    if (project && highlightGrid.contains(project)) {
+      setLitProject(project, touch.clientX, touch.clientY);
+    } else if (litProject) {
+      litProject.classList.remove("is-lit");
+      litProject = null;
+    }
+  };
+
+  highlightGrid.addEventListener("touchstart", handleTouch, { passive: true });
+  highlightGrid.addEventListener("touchmove", handleTouch, { passive: true });
+
+  const endTouch = () => {
+    clearTimeout(clearLitTimer);
+    clearLitTimer = setTimeout(() => {
+      if (litProject) {
+        litProject.classList.remove("is-lit");
+        litProject = null;
+      }
+    }, 600);
+  };
+
+  highlightGrid.addEventListener("touchend", endTouch, { passive: true });
+  highlightGrid.addEventListener("touchcancel", endTouch, { passive: true });
 }
 
 function setupParisClock() {
@@ -584,12 +629,14 @@ function setupParisClock() {
   setInterval(tick, 15000);
 }
 
-// A flashlight rests aimed at the email and follows the mouse while it is over the contact section.
+// A flashlight rests aimed at the email and follows the mouse or finger while over the contact section.
 function setupContactTorch() {
   const section = document.querySelector(".contact-section");
   const email = section?.querySelector(".contact-email");
   const torch = section?.querySelector(".contact-torch");
   if (!section || !email) return;
+
+  let touchRestTimer;
 
   const aim = (x, y) => {
     section.style.setProperty("--tx", `${x}px`);
@@ -615,7 +662,30 @@ function setupContactTorch() {
     section.classList.add("is-tracking");
     aim(event.clientX - box.left, event.clientY - box.top);
   });
-  section.addEventListener("pointerleave", rest);
+  section.addEventListener("pointerleave", (event) => {
+    if (event.pointerType !== "mouse") return;
+    rest();
+  });
+
+  const handleTouch = (event) => {
+    const touch = event.touches[0];
+    if (!touch) return;
+    clearTimeout(touchRestTimer);
+    const box = section.getBoundingClientRect();
+    section.classList.add("is-tracking");
+    aim(touch.clientX - box.left, touch.clientY - box.top);
+  };
+
+  const endTouch = () => {
+    clearTimeout(touchRestTimer);
+    touchRestTimer = setTimeout(rest, 900);
+  };
+
+  section.addEventListener("touchstart", handleTouch, { passive: true });
+  section.addEventListener("touchmove", handleTouch, { passive: true });
+  section.addEventListener("touchend", endTouch, { passive: true });
+  section.addEventListener("touchcancel", endTouch, { passive: true });
+
   new ResizeObserver(rest).observe(section);
   document.fonts?.ready.then(rest);
   window.addEventListener("load", rest);
@@ -963,7 +1033,7 @@ function setupHeaderMood() {
   });
 }
 
-function triggerEtnaEruption(volcano, isBig = false) {
+function triggerEtnaEruption(volcano, isBig = false, customDropCount = null) {
   if (prefersReducedMotion.matches) return;
 
   const container = document.createElement("div");
@@ -983,17 +1053,22 @@ function triggerEtnaEruption(volcano, isBig = false) {
     const shockwave2 = document.createElement("span");
     shockwave2.className = "etna-shockwave etna-shockwave-secondary";
     container.appendChild(shockwave2);
+
+    const shockwave3 = document.createElement("span");
+    shockwave3.className = "etna-shockwave etna-shockwave-tertiary";
+    container.appendChild(shockwave3);
   }
 
-  const magmaColors = ["#fff6b8", "#ffb703", "#ff7b00", "#ff4f1f", "#d9260f", "#11130f"];
+  const magmaColors = ["#ffffff", "#fff6b8", "#ffb703", "#ff7b00", "#ff4f1f", "#d9260f", "#11130f"];
   const emberChars = ["•", "✦", "*", "▲"];
-  const dropCount = isBig ? 30 : 12;
+  const dropCount = customDropCount ?? (isBig ? 38 : 8);
 
   for (let i = 0; i < dropCount; i++) {
     const drop = document.createElement("span");
     drop.className = "etna-magma-drop";
 
     const startX = (Math.random() - 0.5) * 6;
+    const startY = isBig ? -(10 + Math.random() * 10) : 0;
     let dx;
     let peakY;
     let landY;
@@ -1001,25 +1076,26 @@ function triggerEtnaEruption(volcano, isBig = false) {
 
     if (isBig) {
       const baseAngle = (i / dropCount) * 2 * Math.PI;
-      const angle = baseAngle + (Math.random() - 0.5) * 0.4;
-      const distance = 36 + Math.random() * 68;
+      const angle = baseAngle + (Math.random() - 0.5) * 0.38;
+      const distance = 40 + Math.random() * 78;
       dx = Math.cos(angle) * distance;
-      peakY = Math.sin(angle) * distance - (14 + Math.random() * 18);
-      landY = Math.sin(angle) * distance + (12 + Math.random() * 16);
-      duration = 720 + Math.random() * 380;
+      peakY = Math.sin(angle) * distance - (20 + Math.random() * 24);
+      landY = Math.sin(angle) * distance + (16 + Math.random() * 22);
+      duration = 1150 + Math.random() * 550;
     } else {
-      const spread = (i / (dropCount - 1) - 0.5) * 2;
-      dx = spread * (7 + Math.random() * 11) + (Math.random() - 0.5) * 4;
-      peakY = -(9 + Math.random() * 14);
-      landY = 5 + Math.random() * 9;
-      duration = 540 + Math.random() * 300;
+      const spread = dropCount > 1 ? (i / (dropCount - 1) - 0.5) * 2 : 0;
+      dx = spread * (5 + Math.random() * 8) + (Math.random() - 0.5) * 3;
+      peakY = -(8 + Math.random() * 12);
+      landY = 4 + Math.random() * 7;
+      duration = 820 + Math.random() * 350;
     }
 
-    const rot = (Math.random() - 0.5) * 540;
-    const isAsh = i % 6 === 0;
+    const rot = (Math.random() - 0.5) * 520;
+    const isAsh = i % 7 === 0;
     const color = isAsh ? "#11130f" : magmaColors[Math.floor(Math.random() * (magmaColors.length - 1))];
 
     drop.style.setProperty("--start-x", `${startX.toFixed(1)}px`);
+    drop.style.setProperty("--start-y", `${startY.toFixed(1)}px`);
     drop.style.setProperty("--dx", `${dx.toFixed(1)}px`);
     drop.style.setProperty("--peak-y", `${peakY.toFixed(1)}px`);
     drop.style.setProperty("--land-y", `${landY.toFixed(1)}px`);
@@ -1030,16 +1106,16 @@ function triggerEtnaEruption(volcano, isBig = false) {
       drop.textContent = emberChars[Math.floor(Math.random() * emberChars.length)];
       drop.style.color = color;
       drop.style.fontFamily = "var(--mono)";
-      drop.style.fontSize = `${(9 + Math.random() * 6).toFixed(0)}px`;
+      drop.style.fontSize = `${(10 + Math.random() * 6).toFixed(0)}px`;
       drop.style.fontWeight = "700";
     } else {
-      const size = isBig ? 4 + Math.random() * 4.5 : 2.8 + Math.random() * 2.5;
+      const size = isBig ? 4.5 + Math.random() * 4.5 : 2.5 + Math.random() * 2;
       drop.style.width = `${size.toFixed(1)}px`;
-      drop.style.height = `${(size * (0.8 + Math.random() * 0.65)).toFixed(1)}px`;
+      drop.style.height = `${(size * (0.8 + Math.random() * 0.7)).toFixed(1)}px`;
       drop.style.backgroundColor = color;
       drop.style.borderRadius = isAsh ? "1px" : "50% 50% 45% 20%";
       if (!isAsh) {
-        drop.style.boxShadow = "0 0 5px rgba(255, 106, 0, 0.8)";
+        drop.style.boxShadow = "0 0 6px rgba(255, 115, 0, 0.9)";
       }
     }
 
@@ -1048,7 +1124,7 @@ function triggerEtnaEruption(volcano, isBig = false) {
 
   setTimeout(() => {
     container.remove();
-  }, 1150);
+  }, 1800);
 }
 
 function setupEtnaEruption() {
@@ -1056,47 +1132,70 @@ function setupEtnaEruption() {
   const volcano = brand?.querySelector(".brand-volcano");
   if (!brand || !volcano) return;
 
-  let eruptResetTimer;
+  let chargeTimer;
+  let preSparkTimer;
   let explodeResetTimer;
-  let hoverEruptInterval;
-
-  const hoverErupt = () => {
-    brand.classList.remove("is-erupting");
-    void volcano.offsetWidth;
-    brand.classList.add("is-erupting");
-    triggerEtnaEruption(volcano, false);
-
-    clearTimeout(eruptResetTimer);
-    eruptResetTimer = setTimeout(() => {
-      brand.classList.remove("is-erupting");
-    }, 900);
-  };
+  let activeColumnEl = null;
 
   const clickExplode = () => {
-    brand.classList.remove("is-exploding");
-    void volcano.offsetWidth;
-    brand.classList.add("is-exploding");
-    triggerEtnaEruption(volcano, true);
-
+    clearTimeout(chargeTimer);
+    clearTimeout(preSparkTimer);
     clearTimeout(explodeResetTimer);
-    explodeResetTimer = setTimeout(() => {
-      brand.classList.remove("is-exploding");
-    }, 420);
+    if (activeColumnEl) {
+      activeColumnEl.remove();
+      activeColumnEl = null;
+    }
+
+    brand.classList.remove("is-rumbling", "is-charging", "is-exploding");
+    void volcano.offsetWidth;
+    brand.classList.add("is-charging");
+
+    if (!prefersReducedMotion.matches) {
+      const colWrap = document.createElement("div");
+      colWrap.className = "etna-eruption";
+      colWrap.setAttribute("aria-hidden", "true");
+      const column = document.createElement("span");
+      column.className = "etna-lava-column";
+      colWrap.appendChild(column);
+      volcano.appendChild(colWrap);
+      activeColumnEl = colWrap;
+    }
+
+    preSparkTimer = setTimeout(() => {
+      triggerEtnaEruption(volcano, false, 8);
+    }, 650);
+
+    chargeTimer = setTimeout(() => {
+      if (activeColumnEl) {
+        activeColumnEl.remove();
+        activeColumnEl = null;
+      }
+      brand.classList.remove("is-charging");
+      void volcano.offsetWidth;
+      brand.classList.add("is-exploding");
+      triggerEtnaEruption(volcano, true);
+
+      explodeResetTimer = setTimeout(() => {
+        brand.classList.remove("is-exploding");
+      }, 950);
+    }, 1350);
   };
 
-  brand.addEventListener("mouseenter", () => {
-    hoverErupt();
-    clearInterval(hoverEruptInterval);
-    hoverEruptInterval = setInterval(() => {
-      triggerEtnaEruption(volcano, false);
-    }, 560);
+  brand.addEventListener("pointerenter", (event) => {
+    if (event.pointerType !== "mouse") return;
+    if (!brand.classList.contains("is-charging") && !brand.classList.contains("is-exploding")) {
+      brand.classList.add("is-rumbling");
+    }
   });
 
-  brand.addEventListener("mouseleave", () => {
-    clearInterval(hoverEruptInterval);
+  brand.addEventListener("pointerleave", () => {
+    brand.classList.remove("is-rumbling");
   });
 
-  brand.addEventListener("focusin", hoverErupt);
+  brand.addEventListener("pointercancel", () => {
+    brand.classList.remove("is-rumbling");
+  });
+
   brand.addEventListener("click", clickExplode);
 }
 
