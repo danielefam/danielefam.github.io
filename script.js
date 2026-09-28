@@ -660,7 +660,6 @@ function setupPowerTrace() {
   let samples = [];
   let width = 0;
   let height = 0;
-  let tick = 0;
   let segment = null;
   let frame = 0;
   let rafId = 0;
@@ -668,33 +667,32 @@ function setupPowerTrace() {
 
   const random = (min, max) => min + Math.random() * (max - min);
 
-  // Each shape maps progress t in [0, 1) to a load level on top of the idle draw.
+  // Each shape maps progress t in [0, 1) to a stepped hardware load plateau on top of the idle draw.
   const shapes = [
-    (level) => () => level,
-    (level) => (t) => level * t,
-    (level) => (t) => level * (1 - t),
-    (level) => (t) => level * Math.sin(Math.PI * t),
-    (level) => (t) => (t < 0.4 || t > 0.6 ? level : 0.1),
-    (level) => (t) => level * (Math.floor(t * 4) + 1) / 4,
-    (level) => (t) => level * Math.exp(-5 * t),
-    (level) => (t) => (t < 0.7 ? level * 0.5 : level),
-    (level) => (t) => level * (0.6 + 0.4 * Math.sin(t * Math.PI * 6))
+    (level) => (t) => (t < 0.08 || t > 0.92 ? level * 0.65 : level),
+    (level) => (t) => (t < 0.18 ? level * 1.14 : level),
+    (level) => (t) => (t < 0.64 ? level : level * 0.58),
+    (level) => (t) => (t < 0.28 ? level * 0.62 : level),
+    (level) => (t) => (t > 0.42 && t < 0.56 ? level * 0.24 : level),
+    (level) => (t) => (t < 0.25 ? level * 0.74 : t < 0.76 ? level : level * 0.66)
   ];
 
   function nextSegment() {
-    const isIdle = segment && !segment.isIdle ? Math.random() < 0.75 : Math.random() < 0.15;
-    if (isIdle) return { isIdle, length: Math.round(random(3, 18)), at: 0, level: () => 0 };
+    const isIdle = !segment || !segment.isIdle || Math.random() < 0.4;
+    if (isIdle) return { isIdle: true, length: Math.round(random(18, 46)), at: 0, level: () => 0 };
     const shape = shapes[Math.floor(Math.random() * shapes.length)];
-    return { isIdle, length: Math.round(random(6, 26)), at: 0, level: shape(random(0.3, 0.75)) };
+    return { isIdle: false, length: Math.round(random(8, 20)), at: 0, level: shape(random(0.38, 0.72)) };
   }
 
   function nextSample() {
-    tick += 1;
     if (!segment || segment.at >= segment.length) segment = nextSegment();
     const burst = segment.level(segment.at / segment.length);
     segment.at += 1;
-    const idle = 0.12 + 0.03 * Math.sin(tick * 0.05);
-    return Math.max(0.04, Math.min(0.96, idle + burst + (Math.random() - 0.5) * 0.04));
+    const idle = 0.14;
+    const baseNoise = (Math.random() - 0.5) * 0.06 + (Math.random() - 0.5) * 0.04;
+    const loadNoise = burst > 0 ? (Math.random() - 0.5) * 0.08 : 0;
+    const spikeNoise = Math.random() < 0.15 ? (Math.random() - 0.5) * 0.06 : 0;
+    return Math.max(0.04, Math.min(0.96, idle + burst + baseNoise + loadNoise + spikeNoise));
   }
 
   function resize() {
