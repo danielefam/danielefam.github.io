@@ -13,7 +13,7 @@ const siteContent = {
         eyebrow: "AI systems · Frugal ML · Research",
         title: "AI systems, from training loop to physical device",
         text:
-          "I'm Daniele Fam\u00e0, an engineer working where machine learning meets software and hardware. I build efficient models, distributed systems, and research prototypes designed to scale.",
+          "I build efficient models, distributed systems, and research prototypes where machine learning meets real hardware.",
         primaryCta: "See my work",
         cvCta: "Download CV",
         secondaryCta: "Get in touch",
@@ -32,6 +32,7 @@ const siteContent = {
       about: {
         tag: "Profile",
         title: "Complex systems fascinate me, but the real magic begins when you manage to measure them",
+        titleEmphasis: "measure them",
         text1:
           "I care about the full AI engineering loop: understanding the problem, designing the model, making inference efficient, and shipping a clear, testable solution.",
         text2:
@@ -117,6 +118,7 @@ window.siteContent = siteContent;
 
 const translations = siteContent.translations;
 const portfolioCatalog = window.portfolioCatalog;
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 const focusGrid = document.getElementById("focus-grid");
 const highlightGrid = document.getElementById("highlight-grid");
@@ -147,19 +149,6 @@ function getLocalizedExperiences(language = "en") {
     ...experience,
     ...experience.content[language]
   }));
-}
-
-function renderBotanicalAtmosphere() {
-  const sprigFive = "<i><span></span></i>".repeat(5);
-  const sprigFour = "<i><span></span></i>".repeat(4);
-
-  return `
-    <div class="research-botanical" aria-hidden="true">
-      <span class="botanical-sprig botanical-sprig-a">${sprigFive}</span>
-      <span class="botanical-sprig botanical-sprig-b">${sprigFour}</span>
-      <span class="botanical-sprig botanical-sprig-c">${sprigFive}</span>
-    </div>
-  `;
 }
 
 function renderConsoleSteps(steps, activeStep, interactiveKeys = []) {
@@ -229,57 +218,76 @@ function renderResearchConsole(experience, activeView = "overview") {
   `;
 }
 
+function renderResearchPoint(point) {
+  const separator = point.indexOf(": ");
+  if (separator === -1) return `<li><div>${point}</div></li>`;
+
+  const name = point.slice(0, separator);
+  const detail = point.slice(separator + 2);
+  return `<li><div><span class="point-name">${name}</span> <span>${detail}</span></div></li>`;
+}
+
+function renderOutcome(outcome) {
+  const percent = outcome.value.trim().endsWith("%") ? parseFloat(outcome.value) : NaN;
+  const meter = Number.isFinite(percent)
+    ? `<span class="outcome-meter" aria-hidden="true"><i style="--value: ${Math.min(percent, 100) / 100}"></i></span>`
+    : "";
+
+  return `
+    <div class="research-outcome">
+      <strong>${outcome.value}</strong>
+      <span>${outcome.label}</span>
+      ${meter}
+    </div>
+  `;
+}
+
 function renderExperiences(language) {
   const activeViewMap = new Map(
-    [...experienceList.querySelectorAll(".research-section")].map((section, index) => {
+    [...experienceList.querySelectorAll(".research")].map((section, index) => {
       const id = section.dataset.experienceId || portfolioCatalog.experiences[index]?.id;
       const openView = [...section.querySelectorAll("[data-console-view]")].find((view) => !view.hidden);
       return [id, openView?.dataset.consoleView || "overview"];
     })
   );
   const visibleIds = new Set(
-    [...experienceList.querySelectorAll(".research-section.reveal-visible")]
-      .map((section, index) => section.dataset.experienceId || portfolioCatalog.experiences[index]?.id)
+    [...experienceList.querySelectorAll(".research.reveal-visible")].map(
+      (section, index) => section.dataset.experienceId || portfolioCatalog.experiences[index]?.id
+    )
   );
 
   experienceList.innerHTML = getLocalizedExperiences(language)
     .map((experience, index) => {
       const sectionId = index === 0 ? "experience" : `experience-${experience.id}`;
       const titleId = index === 0 ? "research-title" : `research-title-${experience.id}`;
+      const sectionIndex = index === 0 ? "01" : `01.${index + 1}`;
       const activeView = activeViewMap.get(experience.id) || "overview";
       const revealVisible = visibleIds.has(experience.id) ? " reveal-visible" : "";
 
       return `
-        <section id="${sectionId}" class="research-section reveal${revealVisible}" data-experience-id="${experience.id}" aria-labelledby="${titleId}">
-          ${renderBotanicalAtmosphere()}
-          <div class="section-kicker-row">
+        <section id="${sectionId}" class="research reveal${revealVisible}" data-experience-id="${experience.id}" aria-labelledby="${titleId}">
+          <header class="section-head">
+            <span class="section-index">${sectionIndex}</span>
             <p class="section-tag">${experience.tag}</p>
-            <span class="research-state"><span aria-hidden="true"></span> ${experience.state}</span>
-          </div>
+          </header>
 
           <div class="research-grid">
             <div class="research-copy">
               <h2 id="${titleId}" class="section-title">${experience.title}</h2>
               <p class="section-text">${experience.text}</p>
-              <ul class="research-points">
-                ${experience.points.map((point) => `<li>${point}</li>`).join("")}
-              </ul>
+              <ol class="research-points">
+                ${experience.points.map(renderResearchPoint).join("")}
+              </ol>
             </div>
 
-            ${renderResearchConsole(experience, activeView)}
+            <aside class="research-instrument">
+              ${renderResearchConsole(experience, activeView)}
+              <div class="instrument-meter" aria-hidden="true">${"<i></i>".repeat(32)}</div>
+            </aside>
           </div>
 
           <div class="research-outcomes" aria-label="${experience.outcomesLabel}">
-            ${experience.outcomes
-          .map(
-            (outcome) => `
-                  <div class="research-outcome">
-                    <strong>${outcome.value}</strong>
-                    <span>${outcome.label}</span>
-                  </div>
-                `
-          )
-          .join("")}
+            ${experience.outcomes.map(renderOutcome).join("")}
           </div>
         </section>
       `;
@@ -289,83 +297,52 @@ function renderExperiences(language) {
   observeRevealNodes(experienceList);
 }
 
-function renderProjectAtmosphere(visual) {
-  if (visual === "calculator") {
-    const keys = "<i></i>".repeat(9);
-    return `
-      <div class="project-atmosphere project-atmosphere-calculator" aria-hidden="true">
-        <span class="mini-calculator mini-calculator-a"><span>${keys}</span></span>
-        <span class="mini-calculator mini-calculator-b"><span>${keys}</span></span>
-        <span class="mini-calculator mini-calculator-c"><span>${keys}</span></span>
-        <span class="mini-calculator mini-calculator-d"><span>${keys}</span></span>
-        <span class="mini-calculator mini-calculator-e"><span>${keys}</span></span>
-        <span class="mini-calculator mini-calculator-f"><span>${keys}</span></span>
-        <span class="mini-calculator mini-calculator-g"><span>${keys}</span></span>
-      </div>
-    `;
-  }
+function renderProject(item, index) {
+  const number = String(index + 1).padStart(2, "0");
+  const panelId = `project-panel-${item.id}`;
+  const buttonId = `project-button-${item.id}`;
+  const isOpen = item.featured;
 
-  if (visual === "database") {
-    const dbIcon = `<svg viewBox="0 0 48 50" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 100%; height: 100%;"><path d="M4 8 v32 c0 4.4 9 8 20 8 s20 -3.6 20 -8 v-32" /><ellipse cx="24" cy="8" rx="20" ry="5" /><path d="M4 19 c0 4.4 9 8 20 8 s20 -3.6 20 -8" /><path d="M4 30 c0 4.4 9 8 20 8 s20 -3.6 20 -8" /></svg>`;
-    return `
-      <div class="project-atmosphere project-atmosphere-database" aria-hidden="true">
-        <span class="database-mark database-mark-a">${dbIcon}</span>
-        <span class="database-mark database-mark-b">${dbIcon}</span>
-        <span class="database-mark database-mark-c">${dbIcon}</span>
-        <span class="database-mark database-mark-d">${dbIcon}</span>
-        <span class="database-mark database-mark-e">${dbIcon}</span>
-        <span class="database-mark database-mark-f">${dbIcon}</span>
-        <span class="database-mark database-mark-g">${dbIcon}</span>
+  return `
+    <article class="project${isOpen ? " is-open" : ""}" data-project-id="${item.id}">
+      <h3 class="project-heading">
+        <button class="project-toggle" id="${buttonId}" type="button" aria-expanded="${isOpen}" aria-controls="${panelId}">
+          <span class="project-index">${number}</span>
+          <span class="project-metric"><strong>${item.metric}</strong><small>${item.metricLabel}</small></span>
+          <span class="project-title">${item.title}</span>
+          <span class="project-meta">${item.meta}</span>
+          <span class="project-plus" aria-hidden="true"></span>
+        </button>
+      </h3>
+      <div class="project-panel" id="${panelId}" role="region" aria-labelledby="${buttonId}"${isOpen ? "" : " inert"}>
+        <div class="project-panel-inner">
+          <div class="project-panel-body">
+            <p>${item.text}</p>
+            <ul class="project-points">
+              ${item.bullets.map((bullet) => `<li>${bullet}</li>`).join("")}
+            </ul>
+            ${item.links
+              .map(
+                (link) =>
+                  `<a class="project-link" href="${link.href}" target="_blank" rel="noreferrer">${link.label}<span aria-hidden="true">&nearr;</span></a>`
+              )
+              .join("")}
+          </div>
+        </div>
       </div>
-    `;
-  }
+    </article>
+  `;
+}
 
-  if (visual === "audio") {
-    const samples = "<i></i>".repeat(11);
-    return `
-      <div class="project-atmosphere project-atmosphere-audio" aria-hidden="true">
-        <span class="audio-trace audio-trace-a">${samples}</span>
-        <span class="audio-trace audio-trace-b">${samples}</span>
-        <span class="audio-trace audio-trace-c">${samples}</span>
-        <span class="audio-trace audio-trace-d">${samples}</span>
-        <span class="audio-trace audio-trace-e">${samples}</span>
-        <span class="audio-trace audio-trace-f">${samples}</span>
-        <span class="audio-trace audio-trace-g">${samples}</span>
-      </div>
-    `;
-  }
+function emphasizePhrase(node, phrase) {
+  if (!node || !phrase) return;
+  const text = node.textContent;
+  const index = text.lastIndexOf(phrase);
+  if (index === -1) return;
 
-  if (visual === "pov") {
-    return `
-      <div class="project-atmosphere project-atmosphere-pov" aria-hidden="true">
-        <span class="pov-camera pov-camera-a"><i></i></span>
-        <span class="pov-camera pov-camera-b"><i></i></span>
-        <span class="pov-glasses pov-glasses-a"><i></i><i></i></span>
-        <span class="pov-glasses pov-glasses-b"><i></i><i></i></span>
-        <span class="pov-glasses pov-glasses-c"><i></i><i></i></span>
-        <span class="pov-glasses pov-glasses-d"><i></i><i></i></span>
-        <span class="pov-glasses pov-glasses-e"><i></i><i></i></span>
-      </div>
-    `;
-  }
-
-  if (visual === "locks") {
-    return `
-      <div class="project-atmosphere project-atmosphere-locks" aria-hidden="true">
-        <span class="kv-node kv-node-a"></span>
-        <span class="kv-node kv-node-b"></span>
-        <span class="kv-node kv-node-c"></span>
-        <span class="kv-node kv-node-d"></span>
-        <span class="kv-node kv-node-e"></span>
-        <span class="kv-route kv-route-a"></span>
-        <span class="kv-route kv-route-b"></span>
-        <span class="kv-route kv-route-c"></span>
-        <span class="kv-route kv-route-d"></span>
-      </div>
-    `;
-  }
-
-  return "";
+  const emphasis = document.createElement("em");
+  emphasis.textContent = phrase;
+  node.replaceChildren(text.slice(0, index), emphasis, text.slice(index + phrase.length));
 }
 
 function applyTranslations(language = "en") {
@@ -382,71 +359,45 @@ function applyTranslations(language = "en") {
     node.textContent = value;
   });
 
+  emphasizePhrase(document.getElementById("profile-title"), content.about.titleEmphasis);
   document.getElementById("projects-title").textContent = window.formatProjectHeading(language, projects.length);
 
   renderList(
     focusGrid,
     content.focusCards,
-    (item) => `
-      <article class="focus-card">
-        <h3>${item.title}</h3>
-        <p>${item.text}</p>
-      </article>
-    `
-  );
-
-  renderList(
-    highlightGrid,
-    projects,
     (item, index) => `
-      <article class="highlight-card highlight-card-accent-${item.accent} ${item.featured ? "highlight-card-featured" : ""}">
-        ${renderProjectAtmosphere(item.visual)}
-        <div class="highlight-topline">
-          <span class="project-index">${String(index + 1).padStart(2, "0")}</span>
-          <span class="highlight-meta">${item.meta}</span>
-        </div>
-        <div class="highlight-body">
-          <div class="highlight-copy">
-            <div class="highlight-header">
-              <h3>${item.title}</h3>
-            </div>
-            <p>${item.text}</p>
-            <ul class="highlight-points">
-              ${item.bullets.map((bullet) => `<li>${bullet}</li>`).join("")}
-            </ul>
-          </div>
-          <div class="project-metric" aria-label="${item.metric} ${item.metricLabel}">
-            <strong>${item.metric}</strong>
-            <span>${item.metricLabel}</span>
-          </div>
-        </div>
-        <div class="highlight-links">
-          ${item.links
-        .map(
-          (link) => `
-                <a class="project-link" href="${link.href}" target="_blank" rel="noreferrer">${link.label}<span aria-hidden="true">&nearr;</span></a>
-              `
-        )
-        .join("")}
+      <article class="tool">
+        <span class="tool-index">${String(index + 1).padStart(2, "0")}</span>
+        <div>
+          <h4>${item.title}</h4>
+          <p>${item.text}</p>
         </div>
       </article>
     `
   );
 
+  renderList(highlightGrid, projects, renderProject);
+
+  // Rendered oldest-first so the route reads Catania to Paris.
+  const steps = [...content.timelineSteps].reverse();
   renderList(
     timeline,
-    content.timelineSteps,
-    (item) => `
-      <article class="timeline-step">
-        <h3>${item.title}</h3>
-        <p>${item.text}</p>
-        <span>${item.step}</span>
-      </article>
-    `
+    steps,
+    (item, index) => {
+      const isCurrent = index === steps.length - 1;
+      return `
+        <li class="route-stop${isCurrent ? " is-current" : ""}">
+          <span class="route-year">${item.step}${isCurrent ? '<span class="route-now">Now</span>' : ""}</span>
+          <span class="route-dot" aria-hidden="true"></span>
+          <h3>${item.title}</h3>
+          <p>${item.text}</p>
+        </li>
+      `;
+    }
   );
 
   motionTrack.innerHTML = [...content.motionWords, ...content.motionWords]
-    .map((word) => `<span class="motion-pill">${word}</span>`)
+    .map((word) => `<span class="motion-word">${word}</span><span class="motion-sep">&#10035;</span>`)
     .join("");
 }
 
@@ -479,7 +430,7 @@ function setupRevealAnimations() {
         }
       });
     },
-    { threshold: 0.01 }
+    { threshold: 0.01, rootMargin: "0px 0px -8% 0px" }
   );
 
   observeRevealNodes();
@@ -512,13 +463,213 @@ function setupResearchConsole() {
       const overview = consoleEl.querySelector('[data-console-view="overview"]');
       if (overview) {
         overview.hidden = false;
-        const trigger = currentKey
-          ? consoleEl.querySelector(`[data-console-open="${currentKey}"]`)
-          : null;
+        const trigger = currentKey ? consoleEl.querySelector(`[data-console-open="${currentKey}"]`) : null;
         (trigger || consoleEl.querySelector("[data-console-open]"))?.focus();
       }
     }
   });
+}
+
+function setupProjectLedger() {
+  highlightGrid.addEventListener("click", (event) => {
+    const toggle = event.target.closest(".project-toggle");
+    if (!toggle) return;
+
+    const project = toggle.closest(".project");
+    const panel = document.getElementById(toggle.getAttribute("aria-controls"));
+    const willOpen = toggle.getAttribute("aria-expanded") !== "true";
+
+    toggle.setAttribute("aria-expanded", String(willOpen));
+    project.classList.toggle("is-open", willOpen);
+    if (panel) panel.inert = !willOpen;
+  });
+
+  highlightGrid.addEventListener("pointermove", (event) => {
+    const project = event.target.closest(".project");
+    if (!project) return;
+    const rect = project.getBoundingClientRect();
+    project.style.setProperty("--mx", `${event.clientX - rect.left}px`);
+    project.style.setProperty("--my", `${event.clientY - rect.top}px`);
+  });
+}
+
+function setupHeader() {
+  const header = document.querySelector(".site-header");
+  const updateHeader = () => header.classList.toggle("is-scrolled", window.scrollY > 12);
+  updateHeader();
+  window.addEventListener("scroll", updateHeader, { passive: true });
+
+  if (!("IntersectionObserver" in window)) return;
+
+  const links = new Map(
+    [...document.querySelectorAll(".main-nav a")].map((link) => [link.getAttribute("href").slice(1), link])
+  );
+  const navObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        links.forEach((link, id) => {
+          if (id === entry.target.id) link.setAttribute("aria-current", "true");
+          else link.removeAttribute("aria-current");
+        });
+      });
+    },
+    { rootMargin: "-45% 0px -50% 0px" }
+  );
+
+  links.forEach((_, id) => {
+    const section = document.getElementById(id);
+    if (section) navObserver.observe(section);
+  });
+}
+
+function setupParisClock() {
+  const nodes = document.querySelectorAll("[data-paris-time]");
+  if (!nodes.length) return;
+
+  const format = new Intl.DateTimeFormat("en-GB", {
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZone: "Europe/Paris"
+  });
+  const tick = () => {
+    const value = format.format(new Date());
+    nodes.forEach((node) => {
+      node.textContent = value;
+    });
+  };
+
+  tick();
+  setInterval(tick, 15000);
+}
+
+// Decorative, simulated power signal: idle draw with periodic inference bursts.
+function setupPowerTrace() {
+  const canvas = document.getElementById("power-trace");
+  const readout = document.getElementById("power-value");
+  if (!canvas || !canvas.getContext) return;
+
+  const context = canvas.getContext("2d");
+  const step = 3;
+  let samples = [];
+  let width = 0;
+  let height = 0;
+  let tick = 0;
+  let frame = 0;
+  let rafId = 0;
+  let isVisible = true;
+
+  function nextSample() {
+    tick += 1;
+    const phase = tick % 110;
+    const burst = phase < 26 ? 0.5 + 0.18 * Math.sin(phase * 0.55) : phase < 32 ? 0.22 : 0;
+    const idle = 0.16 + 0.03 * Math.sin(tick * 0.06);
+    return Math.max(0.04, Math.min(0.96, idle + burst + (Math.random() - 0.5) * 0.07));
+  }
+
+  function resize() {
+    const ratio = Math.min(window.devicePixelRatio || 1, 2);
+    width = canvas.clientWidth;
+    height = canvas.clientHeight;
+    canvas.width = Math.round(width * ratio);
+    canvas.height = Math.round(height * ratio);
+    context.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+    const count = Math.ceil(width / step) + 2;
+    while (samples.length < count) samples.push(nextSample());
+    samples = samples.slice(-count);
+    draw();
+  }
+
+  function draw() {
+    const top = height * 0.12;
+    const usable = height * 0.58;
+    const yFor = (value) => top + usable * (1 - value);
+
+    context.clearRect(0, 0, width, height);
+
+    context.strokeStyle = "rgba(235, 232, 225, 0.12)";
+    context.setLineDash([2, 5]);
+    context.lineWidth = 1;
+    context.beginPath();
+    context.moveTo(0, yFor(0.5));
+    context.lineTo(width, yFor(0.5));
+    context.stroke();
+    context.setLineDash([]);
+
+    context.beginPath();
+    samples.forEach((value, index) => {
+      const x = index * step;
+      const y = yFor(value);
+      if (index === 0) context.moveTo(x, y);
+      else context.lineTo(x, y);
+    });
+
+    const gradient = context.createLinearGradient(0, top, 0, height);
+    gradient.addColorStop(0, "rgba(239, 99, 55, 0.32)");
+    gradient.addColorStop(1, "rgba(239, 99, 55, 0)");
+    context.save();
+    context.lineTo((samples.length - 1) * step, height);
+    context.lineTo(0, height);
+    context.closePath();
+    context.fillStyle = gradient;
+    context.fill();
+    context.restore();
+
+    context.beginPath();
+    samples.forEach((value, index) => {
+      const x = index * step;
+      const y = yFor(value);
+      if (index === 0) context.moveTo(x, y);
+      else context.lineTo(x, y);
+    });
+    context.strokeStyle = "#ef6337";
+    context.lineWidth = 1.5;
+    context.stroke();
+
+    const last = samples[samples.length - 1] ?? 0;
+    const lastX = (samples.length - 1) * step;
+    context.fillStyle = "#ebe8e1";
+    context.beginPath();
+    context.arc(Math.min(lastX, width - 3), yFor(last), 2.5, 0, Math.PI * 2);
+    context.fill();
+  }
+
+  function loop() {
+    frame += 1;
+    if (frame % 2 === 0) {
+      samples.push(nextSample());
+      samples.shift();
+      draw();
+    }
+    if (readout && frame % 12 === 0) {
+      const latest = samples[samples.length - 1] ?? 0;
+      readout.textContent = (2.4 + latest * 4.6).toFixed(2);
+    }
+    rafId = requestAnimationFrame(loop);
+  }
+
+  function start() {
+    cancelAnimationFrame(rafId);
+    if (isVisible && !document.hidden && !prefersReducedMotion.matches) {
+      rafId = requestAnimationFrame(loop);
+    }
+  }
+
+  resize();
+  start();
+
+  window.addEventListener("resize", resize);
+  document.addEventListener("visibilitychange", start);
+  prefersReducedMotion.addEventListener?.("change", start);
+
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver((entries) => {
+      isVisible = entries[0].isIntersecting;
+      if (isVisible) start();
+      else cancelAnimationFrame(rafId);
+    }).observe(canvas);
+  }
 }
 
 function triggerMoodExplosion(button) {
@@ -570,9 +721,6 @@ function triggerMoodExplosion(button) {
       p.style.height = isSquare ? `${size.toFixed(1)}px` : `${(size * 1.7).toFixed(1)}px`;
       p.style.backgroundColor = color;
       p.style.borderRadius = Math.random() > 0.7 ? "50%" : "1px";
-      if (color === "var(--lime)" || color === "#ffffff") {
-        p.style.boxShadow = "0 0 3px rgba(17, 19, 15, 0.35)";
-      }
     }
 
     container.appendChild(p);
@@ -690,8 +838,6 @@ function setupHeaderMood() {
         message = "okay now you're just enjoying the explosions 💥";
       } else if (moodClickCount >= 5) {
         message = "seriously, my email is right next to me ↗";
-      } else if (moodClickCount >= 2) {
-        message = "stop playing... please hire me 🙏";
       }
       showMoodBubble(moodBtn, message);
     }
@@ -701,4 +847,8 @@ function setupHeaderMood() {
 applyTranslations("en");
 setupRevealAnimations();
 setupResearchConsole();
+setupProjectLedger();
+setupHeader();
+setupParisClock();
+setupPowerTrace();
 setupHeaderMood();
