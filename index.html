@@ -20,7 +20,7 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=53" />
+    <link rel="stylesheet" href="styles.css?v=55" />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -270,27 +270,52 @@
       </section>
 
       <section id="about" class="profile-section reveal" aria-labelledby="profile-title">
-        <div class="profile-copy">
-          <p class="section-tag" data-i18n="about.tag">Profile</p>
-          <h2 id="profile-title" class="section-title" data-i18n="about.title">
-            I like difficult systems with observable behavior
-          </h2>
-          <p class="section-text" data-i18n="about.text1">
-            I care about the full AI engineering loop: understanding the problem, designing the model, making
-            inference efficient, and shipping a clear, testable solution.
-          </p>
-          <p class="section-text" data-i18n="about.text2">
-            My work crosses multimodal learning, embedded inference, energy measurement, numerical methods, and
-            distributed architectures. The common thread is making complex ideas concrete and measurable.
-          </p>
+        <div class="profile-ruler" id="profile-ruler" aria-label="Interactive ruler: move to measure distance" role="region" title="Hover or drag across to measure">
+          <div class="profile-ruler-fill" aria-hidden="true"></div>
+          <div class="profile-ruler-cursor" aria-hidden="true">
+            <span class="profile-ruler-line"></span>
+            <span class="profile-ruler-badge"><span class="profile-ruler-val">0 mm</span></span>
+          </div>
         </div>
 
-        <div id="focus" class="focus-panel">
-          <div class="focus-heading">
-            <p class="section-tag" data-i18n="focus.tag">Skills</p>
-            <h2 class="focus-title" data-i18n="focus.title">The tools I use to build and ship</h2>
+        <div class="profile-kicker">
+          <p class="section-tag" data-i18n="about.tag">Profile</p>
+          <span class="profile-kicker-note" data-i18n="about.kicker">// the person behind the systems</span>
+        </div>
+
+        <div class="profile-grid">
+          <div class="profile-copy">
+            <h2 id="profile-title" class="profile-title" data-profile-title>
+              Complex systems fascinate me, but the real magic begins when you measure them
+            </h2>
+            <p class="profile-lead" data-i18n="about.lead">
+              I'm an engineer from Catania, now at Télécom Paris, focused on applied AI and software engineering—studying the theory and research to bring it into reality.
+            </p>
+
+            <ol class="profile-principles" id="profile-principles"></ol>
           </div>
-          <div class="focus-grid" id="focus-grid"></div>
+
+          <div class="profile-side">
+            <div class="profile-card" aria-label="Quick facts">
+              <div class="profile-card-bar">
+                <span class="profile-card-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span>~/daniele $ whoami</span>
+              </div>
+              <dl class="profile-facts" id="profile-facts"></dl>
+              <div class="profile-languages">
+                <p class="profile-label" data-i18n="about.languagesLabel">Languages</p>
+                <ul class="profile-lang-list" id="profile-languages"></ul>
+              </div>
+            </div>
+
+            <div id="focus" class="focus-panel">
+              <div class="focus-heading">
+                <p class="section-tag" data-i18n="focus.tag">Toolbox</p>
+                <h3 class="focus-title" data-i18n="focus.title">What I reach for</h3>
+              </div>
+              <div class="focus-grid" id="focus-grid"></div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -357,6 +382,6 @@
     </footer>
 
     <script src="content.js?v=15"></script>
-    <script src="script.js?v=57"></script>
+    <script src="script.js?v=59"></script>
   </body>
 </html>

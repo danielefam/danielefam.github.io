@@ -31,15 +31,41 @@ const siteContent = {
       },
       about: {
         tag: "Profile",
-        title: "Complex systems fascinate me, but the real magic begins when you manage to measure them",
-        text1:
-          "I care about the full AI engineering loop: understanding the problem, designing the model, making inference efficient, and shipping a clear, testable solution.",
-        text2:
-          "My work crosses multimodal learning, embedded inference, energy measurement, numerical methods, and distributed architectures. The common thread is making complex ideas concrete and measurable."
+        kicker: "// the person behind the systems",
+        // Wrapped words in [[...]] get the highlighter treatment.
+        title: "Complex systems fascinate me, but the real magic begins when you [[measure]] them",
+        lead:
+          "I'm an engineer from Catania, now at Télécom Paris, focused on applied AI and software engineering—studying the theory and research to bring it into reality.",
+        languagesLabel: "Languages",
+        principles: [
+          {
+            title: "Research into reality",
+            text: "I love studying the underlying maths and reading research papers, but the real payoff is bridging that theory into practical, functioning software."
+          },
+          {
+            title: "Applied AI with SWE rigor",
+            text: "A model in a notebook is only half the work. I care about the software engineering around it: clean architecture, testing, reproducibility, and robust pipelines."
+          },
+          {
+            title: "Concrete and measurable",
+            text: "My work crosses multimodal learning, embedded inference, energy measurement, numerical methods, and distributed architectures. The common thread is making complex ideas concrete and measurable."
+          }
+        ],
+        facts: [
+          { label: "Based in", value: "Paris, FR" },
+          { label: "Studying", value: "MSc Engineering @ T\u00e9l\u00e9com Paris" },
+          { label: "Into", value: "Applied AI · Software Engineering · Distributed systems" },
+          { label: "Status", value: '<span class="profile-status"><span aria-hidden="true"></span>Open to opportunities</span>' }
+        ],
+        languages: [
+          { name: "Italian", level: "Native", score: 5 },
+          { name: "English", level: "Professional", score: 4 },
+          { name: "French", level: "Elementary", score: 2 }
+        ]
       },
       focus: {
-        tag: "Skills",
-        title: "The tools I use to build and ship"
+        tag: "Toolbox",
+        title: "What I reach for"
       },
       highlights: {
         tag: "Projects",
@@ -74,20 +100,20 @@ const siteContent = {
       },
       focusCards: [
         {
-          title: "Programming",
-          text: "Python, Java, C/C++, Matlab, PHP, and JavaScript across coursework, projects, and research prototypes."
+          title: "Code",
+          items: ["Python", "C / C++", "Java", "JavaScript", "Matlab", "PHP"]
         },
         {
-          title: "Python ecosystem",
-          text: "NumPy, Pandas, Matplotlib, scikit-learn, PyTorch, Keras, and TensorFlow for analysis, modeling, and experimentation."
+          title: "ML & data",
+          items: ["PyTorch", "TensorFlow", "Keras", "scikit-learn", "NumPy", "Pandas", "Matplotlib"]
         },
         {
-          title: "Data and frameworks",
-          text: "Hadoop, Spark, and Laravel, with exposure to distributed architectures for big data processing and backend-oriented thinking."
+          title: "Systems",
+          items: ["Spark", "Hadoop", "Akka", "Laravel"]
         },
         {
-          title: "Working languages",
-          text: "Italian native, English professional working proficiency, and French elementary proficiency."
+          title: "Edge & tools",
+          items: ["NVIDIA Jetson", "Raspberry Pi", "Linux", "INA226 sensor"]
         }
       ],
       timelineSteps: [
@@ -422,6 +448,47 @@ function renderProject(item, index) {
   `;
 }
 
+function renderProfile(about) {
+  const title = document.querySelector("[data-profile-title]");
+  if (title) {
+    title.innerHTML = about.title.replace(/\[\[(.+?)\]\]/g, '<mark class="profile-mark">$1</mark>');
+  }
+
+  renderList(
+    document.getElementById("profile-principles"),
+    about.principles,
+    (item, index) => `
+      <li class="profile-principle">
+        <span class="profile-principle-index">${String(index + 1).padStart(2, "0")}</span>
+        <div>
+          <h3>${item.title}</h3>
+          <p>${item.text}</p>
+        </div>
+      </li>
+    `
+  );
+
+  renderList(
+    document.getElementById("profile-facts"),
+    about.facts,
+    (fact) => `<div class="profile-fact"><dt>${fact.label}</dt><dd>${fact.value}</dd></div>`
+  );
+
+  renderList(
+    document.getElementById("profile-languages"),
+    about.languages,
+    (lang) => `
+      <li class="profile-lang">
+        <span class="profile-lang-name">${lang.name}</span>
+        <span class="profile-lang-meter" role="img" aria-label="${lang.level}: ${lang.score} out of 5">
+          ${Array.from({ length: 5 }, (_, i) => `<i${i < lang.score ? ' class="is-on"' : ""}></i>`).join("")}
+        </span>
+        <span class="profile-lang-level">${lang.level}</span>
+      </li>
+    `
+  );
+}
+
 function applyTranslations(language = "en") {
   const content = translations[language] || translations.en;
   const projects = getLocalizedProjects(language);
@@ -438,13 +505,17 @@ function applyTranslations(language = "en") {
 
   document.getElementById("projects-title").textContent = window.formatProjectHeading(language, projects.length);
 
+  renderProfile(content.about);
+
   renderList(
     focusGrid,
     content.focusCards,
     (item) => `
       <article class="focus-card">
-        <h3>${item.title}</h3>
-        <p>${item.text}</p>
+        <h4>${item.title}</h4>
+        <ul class="focus-chips">
+          ${item.items.map((skill) => `<li>${skill}</li>`).join("")}
+        </ul>
       </article>
     `
   );
@@ -1199,6 +1270,75 @@ function setupEtnaEruption() {
   brand.addEventListener("click", clickExplode);
 }
 
+function setupProfileRuler() {
+  const ruler = document.getElementById("profile-ruler");
+  if (!ruler) return;
+
+  const fill = ruler.querySelector(".profile-ruler-fill");
+  const cursor = ruler.querySelector(".profile-ruler-cursor");
+  const badge = ruler.querySelector(".profile-ruler-badge");
+  const val = ruler.querySelector(".profile-ruler-val");
+  if (!fill || !cursor || !badge || !val) return;
+
+  let isMeasuring = false;
+  let rafId = null;
+
+  const updateMeasurement = (clientX) => {
+    const rect = ruler.getBoundingClientRect();
+    const x = Math.max(0, Math.min(rect.width, clientX - rect.left));
+
+    // Ruler ticks: 8px = 10mm (1cm), 40px = 50mm, 80px = 100mm. 1px = 1.25mm.
+    const mm = Math.round(x * 1.25);
+    const cm = (mm / 10).toFixed(1);
+
+    fill.style.width = `${x}px`;
+    cursor.style.left = `${x}px`;
+    val.textContent = rect.width > 420 ? `${mm} mm · ${cm} cm` : `${mm} mm`;
+
+    const badgeWidth = badge.offsetWidth || 70;
+    const minCenter = badgeWidth / 2 + 4;
+    const maxCenter = rect.width - badgeWidth / 2 - 4;
+
+    if (x < minCenter) {
+      badge.style.transform = `translateX(${minCenter - x - 50}%)`;
+    } else if (x > maxCenter) {
+      badge.style.transform = `translateX(${-50 - (x - maxCenter)}%)`;
+    } else {
+      badge.style.transform = "translateX(-50%)";
+    }
+  };
+
+  const startMeasure = (e) => {
+    isMeasuring = true;
+    ruler.classList.add("is-measuring");
+    updateMeasurement(e.clientX);
+  };
+
+  const moveMeasure = (e) => {
+    if (!isMeasuring) {
+      isMeasuring = true;
+      ruler.classList.add("is-measuring");
+    }
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(() => {
+      updateMeasurement(e.clientX);
+    });
+  };
+
+  const endMeasure = () => {
+    isMeasuring = false;
+    ruler.classList.remove("is-measuring");
+    if (rafId) cancelAnimationFrame(rafId);
+  };
+
+  ruler.addEventListener("pointerenter", startMeasure);
+  ruler.addEventListener("pointerdown", startMeasure);
+  ruler.addEventListener("pointermove", moveMeasure);
+  ruler.addEventListener("pointerleave", endMeasure);
+  ruler.addEventListener("pointerup", endMeasure);
+  ruler.addEventListener("pointercancel", endMeasure);
+}
+
 applyTranslations("en");
 setupRevealAnimations();
 setupResearchConsole();
@@ -1209,3 +1349,4 @@ setupAnchorScroll();
 setupPowerTrace();
 setupHeaderMood();
 setupEtnaEruption();
+setupProfileRuler();
