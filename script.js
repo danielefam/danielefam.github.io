@@ -700,45 +700,62 @@ function setupParisClock() {
   setInterval(tick, 15000);
 }
 
-// A flashlight rests aimed at the email and follows the mouse or finger while over the contact section.
+// A subtle ambient glow rests near the email link and gently shifts toward mouse or touch.
 function setupContactTorch() {
   const section = document.querySelector(".contact-section");
   const email = section?.querySelector(".contact-email");
-  const torch = section?.querySelector(".contact-torch");
-  if (!section || !email) return;
+  if (!section) return;
 
   let touchRestTimer;
 
-  const aim = (x, y) => {
+  const prefersReducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const getRestCoords = () => {
+    const box = section.getBoundingClientRect();
+    if (email) {
+      const emailRect = email.getBoundingClientRect();
+      return {
+        x: Math.round(emailRect.left - box.left + emailRect.width * 0.7),
+        y: Math.round(emailRect.top - box.top + emailRect.height * 0.5)
+      };
+    }
+    return {
+      x: Math.round(box.width * 0.72),
+      y: Math.round(box.height * 0.65)
+    };
+  };
+
+  const rest = () => {
+    section.classList.remove("is-tracking");
+    const { x, y } = getRestCoords();
     section.style.setProperty("--tx", `${x}px`);
     section.style.setProperty("--ty", `${y}px`);
-    if (!torch) return;
-    const box = section.getBoundingClientRect();
-    const head = torch.getBoundingClientRect();
-    const dx = x - (head.left - box.left);
-    const dy = y - (head.top - box.top);
-    section.style.setProperty("--torch-angle", `${Math.atan2(dy, dx)}rad`);
-    section.style.setProperty("--beam-length", `${Math.hypot(dx, dy) + 60}px`);
   };
-  const rest = () => {
-    const box = section.getBoundingClientRect();
-    const target = email.getBoundingClientRect();
-    section.classList.remove("is-tracking");
-    aim(target.left - box.left + target.width / 2, target.top - box.top + target.height / 2);
+
+  // Subtle pointer influence (30% blend towards pointer, keeping glow anchored near the email area)
+  const aim = (px, py) => {
+    if (prefersReducedMotion()) return;
+    const { x: rx, y: ry } = getRestCoords();
+    const targetX = Math.round(rx + (px - rx) * 0.3);
+    const targetY = Math.round(ry + (py - ry) * 0.3);
+    section.style.setProperty("--tx", `${targetX}px`);
+    section.style.setProperty("--ty", `${targetY}px`);
   };
 
   section.addEventListener("pointermove", (event) => {
-    if (event.pointerType !== "mouse") return;
+    if (prefersReducedMotion() || event.pointerType !== "mouse") return;
     const box = section.getBoundingClientRect();
     section.classList.add("is-tracking");
     aim(event.clientX - box.left, event.clientY - box.top);
   });
+
   section.addEventListener("pointerleave", (event) => {
-    if (event.pointerType !== "mouse") return;
+    if (prefersReducedMotion() || event.pointerType !== "mouse") return;
     rest();
   });
 
   const handleTouch = (event) => {
+    if (prefersReducedMotion()) return;
     const touch = event.touches[0];
     if (!touch) return;
     clearTimeout(touchRestTimer);
@@ -748,8 +765,9 @@ function setupContactTorch() {
   };
 
   const endTouch = () => {
+    if (prefersReducedMotion()) return;
     clearTimeout(touchRestTimer);
-    touchRestTimer = setTimeout(rest, 900);
+    touchRestTimer = setTimeout(rest, 700);
   };
 
   section.addEventListener("touchstart", handleTouch, { passive: true });
