@@ -1388,15 +1388,15 @@ function setupTrinacriaSpin() {
 
   button.addEventListener("click", () => {
     if (prefersReducedMotion.matches) {
-      currentAngle = (currentAngle + 120) % 360;
+      currentAngle = (currentAngle - 120) % 360;
       mark.style.transform = currentAngle ? `rotate(${currentAngle}deg)` : "";
       return;
     }
 
     startAngle = currentAngle;
-    targetAngle += 720;
+    targetAngle -= 720;
     startTime = performance.now();
-    duration = Math.min(1800, 1050 + Math.floor((targetAngle - startAngle) / 720 - 1) * 180);
+    duration = Math.min(1800, 1050 + Math.floor(Math.abs(targetAngle - startAngle) / 720 - 1) * 180);
 
     if (!rafId) {
       rafId = requestAnimationFrame(step);
