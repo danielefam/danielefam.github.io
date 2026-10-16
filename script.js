@@ -1357,6 +1357,53 @@ function setupProfileRuler() {
   ruler.addEventListener("pointercancel", endMeasure);
 }
 
+function setupTrinacriaSpin() {
+  const button = document.querySelector(".hero-trinacria");
+  const mark = button?.querySelector(".trinacria-mark");
+  if (!button || !mark) return;
+
+  let currentAngle = 0;
+  let startAngle = 0;
+  let targetAngle = 0;
+  let startTime = 0;
+  let duration = 1100;
+  let rafId = 0;
+
+  const step = (now) => {
+    const elapsed = now - startTime;
+    const t = Math.min(1, elapsed / duration);
+    const eased = 1 - Math.pow(1 - t, 4);
+    currentAngle = startAngle + (targetAngle - startAngle) * eased;
+    mark.style.transform = `rotate(${currentAngle.toFixed(2)}deg)`;
+
+    if (t < 1) {
+      rafId = requestAnimationFrame(step);
+    } else {
+      currentAngle = targetAngle % 360;
+      targetAngle = currentAngle;
+      mark.style.transform = currentAngle ? `rotate(${currentAngle}deg)` : "";
+      rafId = 0;
+    }
+  };
+
+  button.addEventListener("click", () => {
+    if (prefersReducedMotion.matches) {
+      currentAngle = (currentAngle + 120) % 360;
+      mark.style.transform = currentAngle ? `rotate(${currentAngle}deg)` : "";
+      return;
+    }
+
+    startAngle = currentAngle;
+    targetAngle += 720;
+    startTime = performance.now();
+    duration = Math.min(1800, 1050 + Math.floor((targetAngle - startAngle) / 720 - 1) * 180);
+
+    if (!rafId) {
+      rafId = requestAnimationFrame(step);
+    }
+  });
+}
+
 applyTranslations("en");
 setupRevealAnimations();
 setupResearchConsole();
@@ -1368,3 +1415,4 @@ setupPowerTrace();
 setupHeaderMood();
 setupEtnaEruption();
 setupProfileRuler();
+setupTrinacriaSpin();

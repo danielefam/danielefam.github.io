@@ -20,7 +20,7 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=55" />
+    <link rel="stylesheet" href="styles.css?v=57" />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -84,13 +84,24 @@
       <section id="top" class="hero reveal reveal-visible" aria-labelledby="hero-name">
         <div class="hero-media">
           <img src="picture_for_website/4.jpg" alt="" width="3024" height="4032" />
-          <div class="hero-origin" aria-label="From Catania to Paris">
-            <span>Catania</span><span aria-hidden="true">&rarr;</span><span>Paris</span>
+          <div class="hero-origin">
+            <span>mamma etna - a muntagna</span>
           </div>
-          <p class="hero-coords">
-            <span>Piscina di Venere, Milazzo</span>
-            <span>38.27&deg;N &middot; 15.23&deg;E</span>
-          </p>
+          <button
+            class="hero-trinacria"
+            type="button"
+            aria-label="Spin the Sicilian Trinacria"
+            title="Spin Trinacria"
+          >
+            <img
+              class="trinacria-mark"
+              src="assets/trinacria.svg"
+              alt=""
+              width="48"
+              height="48"
+              draggable="false"
+            />
+          </button>
           <h1 id="hero-name"><span>Daniele</span> <span>Fam&#224;</span></h1>
         </div>
 
@@ -369,6 +380,6 @@
     </footer>
 
     <script src="content.js?v=15"></script>
-    <script src="script.js?v=59"></script>
+    <script src="script.js?v=60"></script>
   </body>
 </html>
